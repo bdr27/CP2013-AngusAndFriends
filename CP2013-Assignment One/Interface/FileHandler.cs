@@ -10,9 +10,11 @@ namespace CP2013_Assignment_One.Interface
     {
         void LoadUsers();
         void LoadTimeSlots();
-        void AddUser(User user);
+        void AddExistingUser(User user);
+        void AddNewUser(User user);
         void DeleteDentist(int userID);
-        void AddTimeSlot(TimeSlot timeSlot);
+        void AddNewTimeSlot(TimeSlot timeSlot);
+        void AddExistingTimeSlot(TimeSlot timeSlot);
         Dictionary<int, User> GetDentists();
         Dictionary<int, TimeSlot> GetTimeSlots();
         Dictionary<int, User> GetAllUsers();

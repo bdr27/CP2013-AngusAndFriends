@@ -29,19 +29,37 @@ namespace CP2013_Assignment_One.MOCK
 
         public void LoadUsers()
         {
-            users.Add(usersID, new MOCKUser(usersID++, "John Smith", UserType.ADMIN));
-            users.Add(usersID, new MOCKUser(usersID++, "Pen Vide", UserType.DENTIST));
-            users.Add(usersID, new MOCKUser(usersID++, "Home River", UserType.DENTIST));
+            AddNewUser(new MOCKUser("John Smith", UserType.ADMIN));
+            AddNewUser(new MOCKUser("Pen Vide", UserType.DENTIST));
+            AddNewUser(new MOCKUser("Home River", UserType.DENTIST));
         }
 
         public void LoadTimeSlots()
         {
-           
+            var day = 8;
+            var month = 10;
+            var year = 2013;
+            var startTime = 8;
+            var endTime = 17;
+
+            AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, startTime, 0, 0), 2));
+            AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, startTime, 0, 0), 2));
+            AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, startTime, 0, 0), 2));
+            AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, startTime, 0, 0), 2));
+            AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, startTime, 0, 0), 2));
+            AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, startTime, 0, 0), 2));
         }
 
-        public void AddUser(User user)
+        public void AddExistingUser(User user)
         {
             users.Add(user.GetUserID(), user);
+        }
+
+        public void AddNewUser(User user)
+        {
+            var ID = usersID++;
+            var newUser = new MOCKUser(ID, user.GetUsername(), user.GetUserType());
+            users.Add(ID, newUser);
         }
 
         public void DeleteDentist(int userID)
@@ -49,9 +67,16 @@ namespace CP2013_Assignment_One.MOCK
             users.Remove(userID);
         }
 
-        public void AddTimeSlot(TimeSlot timeSlot)
+        public void AddNewTimeSlot(TimeSlot timeSlot)
         {
-            throw new NotImplementedException();
+            var ID = timeSlotsID++;
+            var newTimeSlot = new MOCKTimeSlot(ID, timeSlot.GetStartTime(), timeSlot.GetEndTime(), timeSlot.GetUserID());
+            timeSlots.Add(ID, newTimeSlot);
+        }
+
+        public void AddExistingTimeSlot(TimeSlot timeSlot)
+        {
+            timeSlots.Add(timeSlot.GetTimeSlotID(), new MOCKTimeSlot(timeSlot.GetTimeSlotID(), timeSlot.GetStartTime(), timeSlot.GetEndTime(), timeSlot.GetUserID()));
         }
 
         public Dictionary<int, User> GetDentists()
@@ -70,7 +95,7 @@ namespace CP2013_Assignment_One.MOCK
 
         public Dictionary<int, TimeSlot> GetTimeSlots()
         {
-            throw new NotImplementedException();
+            return timeSlots;
         }
 
         public Dictionary<int, User> GetAllUsers()

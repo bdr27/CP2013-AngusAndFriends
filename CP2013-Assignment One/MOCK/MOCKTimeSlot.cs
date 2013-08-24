@@ -14,6 +14,13 @@ namespace CP2013_Assignment_One.MOCK
         DateTime endTime;
         int userID;
 
+        public MOCKTimeSlot(DateTime startTime, DateTime endTime, int userID)
+        {
+            this.startTime = startTime;
+            this.endTime = endTime;
+            this.userID = userID;
+        }
+
         public MOCKTimeSlot(int timeSlotID, DateTime startTime, DateTime endTime, int userID)
         {
             this.timeSlotID = timeSlotID;

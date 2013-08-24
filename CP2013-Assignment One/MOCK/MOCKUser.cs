@@ -14,6 +14,12 @@ namespace CP2013_Assignment_One.MOCK
         private string username;
         private UserType userType;
 
+        public MOCKUser(string username, UserType userType)
+        {
+            this.username = username;
+            this.userType = userType;
+        }
+
         public MOCKUser(int userID, string username, UserType userType)
         {
             this.userID = userID;

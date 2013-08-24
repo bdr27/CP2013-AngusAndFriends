@@ -50,7 +50,7 @@ namespace CP2013_Assignment_Tests
             string username = "johnSmith";
             UserType userType = UserType.ADMIN;
             User newUser = new MOCKUser(userID, username, userType);
-            mockFileHandler.AddUser(newUser);
+            mockFileHandler.AddExistingUser(newUser);
             var user = mockFileHandler.GetDentist(userID);
 
             Assert.AreEqual(userID, user.GetUserID());
@@ -71,6 +71,36 @@ namespace CP2013_Assignment_Tests
             {
                 Assert.AreEqual(id, users[id].GetUserID());
             }
+            var timeSlots = mockFileHandler.GetTimeSlots();
+            foreach (var id in timeSlots.Keys)
+            {
+                Assert.AreEqual(id, timeSlots[id].GetTimeSlotID());
+            }
         }
+
+        [TestMethod]
+        public void MOCKFileHandlerAddDeleteTimeSlotsTests()
+        {
+            var timeSlotID = 100;
+            var userID = 100;
+            var year = 2013;
+            var day = 2;
+            var month = 12;
+            var hourStart = 8;
+            var hourEnd = 15;
+            var startTime = new DateTime(year, month, day, hourStart, 0, 0);
+            var endTime = new DateTime(year, month, day, hourEnd, 0, 0);
+            var mockTimeSlot = new MOCKTimeSlot(timeSlotID, startTime, endTime, userID);
+            var mockFileHandler = new MOCKFileHandler();
+            mockFileHandler.AddExistingTimeSlot(mockTimeSlot);
+            var timeSlots = mockFileHandler.GetTimeSlots();
+
+            Assert.AreEqual(timeSlotID, timeSlots[timeSlotID].GetTimeSlotID());
+            Assert.AreEqual(userID, timeSlots[timeSlotID].GetUserID());
+            Assert.AreEqual(startTime, timeSlots[timeSlotID].GetStartTime());
+            Assert.AreEqual(endTime, timeSlots[timeSlotID].GetEndTime());
+            Assert.AreEqual(hourEnd - hourStart, timeSlots[timeSlotID].GetHoursBetween());
+        }
+        //TODO Proper tests for Add new users and timeslots
     }
 }
