@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CP2013_Assignment_One.Enum;
+using CP2013_Assignment_One.Interface;
 
-namespace CP2013_Assignment_One.Utility
+namespace CP2013_Assignment_One.MOCK
 {
-    class MOCKUser : User
+    public class MOCKUser : User
     {
         private int userID;
         private string username;
-        private int userType;
+        private UserType userType;
 
-        public MOCKUser(int userID, string username, int userType)
+        public MOCKUser(int userID, string username, UserType userType)
         {
             this.userID = userID;
             this.username = username;

@@ -35,6 +35,7 @@ namespace CP2013_Assignment_One
 
         static void AdminUI()
         {
+            //Add new dentist
             Console.WriteLine("Admin UI");
         }
 
