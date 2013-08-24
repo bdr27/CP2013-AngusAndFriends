@@ -2,11 +2,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CP2013_Assignment_One.Enum;
 using CP2013_Assignment_One.MOCK;
+using CP2013_Assignment_One.Interface;
 
 namespace CP2013_Assignment_Tests
 {
     [TestClass]
-    public class Utility
+    public class MOCK
     {
         [TestMethod]
         public void MOCKUserTests()
@@ -39,6 +40,37 @@ namespace CP2013_Assignment_Tests
             Assert.AreEqual(startTime, mockTimeSlot.GetStartTime());
             Assert.AreEqual(endTime, mockTimeSlot.GetEndTime());
             Assert.AreEqual(hourEnd - hourStart, mockTimeSlot.GetHoursBetween());
+        }
+
+        [TestMethod]
+        public void MOCKFileHandlerAddDeleteDentistTests()
+        {
+            var mockFileHandler = new MOCKFileHandler();
+            int userID = 100;
+            string username = "johnSmith";
+            UserType userType = UserType.ADMIN;
+            User newUser = new MOCKUser(userID, username, userType);
+            mockFileHandler.AddUser(newUser);
+            var user = mockFileHandler.GetDentist(userID);
+
+            Assert.AreEqual(userID, user.GetUserID());
+            Assert.AreEqual(username, user.GetUsername());
+            Assert.AreEqual(userType, user.GetUserType());
+
+            mockFileHandler.DeleteDentist(userID);
+            var users = mockFileHandler.GetDentists();
+            Assert.IsFalse(users.ContainsKey(userID));
+        }
+
+        [TestMethod]
+        public void MOCKFileHandlerTestLoad()
+        {
+            var mockFileHandler = new MOCKFileHandler();
+            var users = mockFileHandler.GetAllUsers();
+            foreach (var id in users.Keys)
+            {
+                Assert.AreEqual(id, users[id].GetUserID());
+            }
         }
     }
 }
