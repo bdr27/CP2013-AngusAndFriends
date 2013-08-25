@@ -101,6 +101,5 @@ namespace CP2013_Assignment_Tests
             Assert.AreEqual(endTime, timeSlots[timeSlotID].GetEndTime());
             Assert.AreEqual(hourEnd - hourStart, timeSlots[timeSlotID].GetHoursBetween());
         }
-        //TODO Proper tests for Add new users and timeslots
     }
 }

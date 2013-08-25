@@ -45,5 +45,10 @@ namespace CP2013_Assignment_One.MOCK
         }
 
         #endregion
+
+        public override string ToString()
+        {
+            return String.Format("ID: {0}, Username: {1}, UserType: {2}", userID, username, userType);
+        }
     }
 }

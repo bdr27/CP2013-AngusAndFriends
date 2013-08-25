@@ -85,7 +85,7 @@ namespace CP2013_Assignment_One.MOCK
             foreach (int userID in users.Keys)
             {
                 var user = users[userID];
-                if (user.GetType().Equals(UserType.DENTIST))
+                if (user.GetUserType().Equals(UserType.DENTIST))
                 {
                     dentists.Add(userID, user);
                 }
