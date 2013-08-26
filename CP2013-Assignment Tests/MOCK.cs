@@ -79,6 +79,20 @@ namespace CP2013_Assignment_Tests
         }
 
         [TestMethod]
+        public void MOCKFileHandlerAddNewTimeSlots()
+        {
+            var startTime = 8;
+            var endTime = 15;
+            var fileHandler = new MOCKFileHandler();
+            var times = fileHandler.GetTimeSlots();
+            
+            for (int i = 0; i < (startTime - endTime); i++)
+            {
+                Assert.AreEqual(startTime + (1 * i), times[i].GetStartHours());
+            }
+        }
+
+        [TestMethod]
         public void MOCKFileHandlerAddDeleteTimeSlotsTests()
         {
             var timeSlotID = 100;
@@ -100,6 +114,21 @@ namespace CP2013_Assignment_Tests
             Assert.AreEqual(startTime, timeSlots[timeSlotID].GetStartTime());
             Assert.AreEqual(endTime, timeSlots[timeSlotID].GetEndTime());
             Assert.AreEqual(hourEnd - hourStart, timeSlots[timeSlotID].GetHoursBetween());
+        }
+
+        [TestMethod]
+        public void MOCKBooking()
+        {
+            int bookingID = 12;
+            int timeSlotID = 2;
+            int userID = 3;
+            AppointmentType appointmentType = AppointmentType.GENERAL;
+
+            var booking = new MOCKBooking(bookingID, timeSlotID, userID, appointmentType);
+            Assert.AreEqual(bookingID, booking.GetBookingID());
+            Assert.AreEqual(timeSlotID, booking.GetTimeSlotID());
+            Assert.AreEqual(userID, booking.GetUserID());
+            Assert.AreEqual(appointmentType, booking.GetAppontmentType());
         }
     }
 }

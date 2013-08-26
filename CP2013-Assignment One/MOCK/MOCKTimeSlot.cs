@@ -51,6 +51,16 @@ namespace CP2013_Assignment_One.MOCK
             return userID;
         }
 
+        public int GetStartHours()
+        {
+            return startTime.Hour;
+        }
+
+        public int GetEndHours()
+        {
+            return endTime.Hour;
+        }
+
         public int GetHoursBetween()
         {
             var between = endTime - startTime;

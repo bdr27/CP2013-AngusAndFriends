@@ -41,7 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enum\AppointmentType.cs" />
     <Compile Include="Enum\UserType.cs" />
+    <Compile Include="Interface\Booking.cs" />
+    <Compile Include="MOCK\MOCKBooking.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interface\TimeSlot.cs" />

@@ -40,14 +40,14 @@ namespace CP2013_Assignment_One.MOCK
             var month = 10;
             var year = 2013;
             var startTime = 8;
-            var endTime = 17;
+            var endTime = 15;
 
-            AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, startTime, 0, 0), 2));
-            AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, startTime, 0, 0), 2));
-            AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, startTime, 0, 0), 2));
-            AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, startTime, 0, 0), 2));
-            AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, startTime, 0, 0), 2));
-            AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, startTime, 0, 0), 2));
+            AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, endTime, 0, 0), 2));
+            AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, endTime, 0, 0), 2));
+            AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, endTime, 0, 0), 2));
+            AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, endTime, 0, 0), 2));
+            AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, endTime, 0, 0), 2));
+            AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, endTime, 0, 0), 2));
         }
 
         public void AddExistingUser(User user)
@@ -69,9 +69,22 @@ namespace CP2013_Assignment_One.MOCK
 
         public void AddNewTimeSlot(TimeSlot timeSlot)
         {
-            var ID = timeSlotsID++;
-            var newTimeSlot = new MOCKTimeSlot(ID, timeSlot.GetStartTime(), timeSlot.GetEndTime(), timeSlot.GetUserID());
-            timeSlots.Add(ID, newTimeSlot);
+            var difference = timeSlot.GetHoursBetween();
+            for (int i = 0; i < difference; i++)
+            {
+                var ID = timeSlotsID++;
+                var time = timeSlot.GetStartTime();
+                var year = time.Year;
+                var day = time.Day;
+                var month = time.Month;
+                var hourStart = time.Hour + (i * 1);
+                var endHour = hourStart + 1;
+                var startTime = new DateTime(year, month, day, hourStart, 0, 0);
+                var endTime = new DateTime(year, month, day, endHour, 0, 0);
+
+                var newTimeSlot = new MOCKTimeSlot(ID, startTime, endTime, timeSlot.GetUserID());
+                timeSlots.Add(ID, newTimeSlot);
+            }
         }
 
         public void AddExistingTimeSlot(TimeSlot timeSlot)

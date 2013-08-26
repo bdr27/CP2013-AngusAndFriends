@@ -39,7 +39,6 @@ namespace CP2013_Assignment_One
 
         private static string GetStringFromOutput(string menu)
         {
-           // Console.Clear();
             Console.WriteLine(menu);
             return Console.ReadLine().ToLower();
         }
