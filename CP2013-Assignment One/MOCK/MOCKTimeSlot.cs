@@ -58,5 +58,10 @@ namespace CP2013_Assignment_One.MOCK
         }
 
         #endregion
+
+        public override string ToString()
+        {
+            return string.Format("ID: {0}, Start Time: {1}, End Time: {2}, User ID: {3}", timeSlotID, startTime, endTime, userID);
+        }
     }
 }

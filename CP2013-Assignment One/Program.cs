@@ -60,16 +60,17 @@ namespace CP2013_Assignment_One
 
         private static void AdminUI()
         {
-            //Add new dentist
             var key = GetStringFromOutput(ADMIN_MENU);
             while (key != "q")
             {
                 switch (key)
                 {
                     case "1":
+                        printBookings();
                         AddBookingUI();
                         break;
                     case "2":
+                        printDentists();
                         AddDentistUI();
                         break;
                     case "3":
@@ -78,7 +79,23 @@ namespace CP2013_Assignment_One
                     default:
                         break;
                 }
-                key = GetStringFromOutput(MENU);
+                key = GetStringFromOutput(ADMIN_MENU);
+            }
+        }
+
+        private static void printBookings()
+        {
+            foreach (var timeSlot in fileHandler.GetTimeSlots())
+            {
+                Console.WriteLine(timeSlot);
+            }
+        }
+
+        private static void printDentists()
+        {
+            foreach (var dentist in fileHandler.GetDentists())
+            {
+                Console.WriteLine(dentist);
             }
         }
 
@@ -91,32 +108,42 @@ namespace CP2013_Assignment_One
             var hourStart = GetIntFromOutput("Please enter start time: ");
             var hourEnd = GetIntFromOutput("Please enter end time: ");
             var dentists = fileHandler.GetDentists();
-            var dentistIDs = new List<int>();
             Console.WriteLine("Please enter your dentist number");
+            var dentistID = GetDentistID(dentists);
+            
+            var startTime = new DateTime(year, month, day, hourStart, 0, 0);
+            var endTime = new DateTime(year, month, day, hourEnd, 0, 0);
+            var timeSlot = new MOCKTimeSlot(startTime, endTime, dentistID);
+            fileHandler.AddNewTimeSlot(timeSlot);
+        }
+
+        private static int GetDentistID(Dictionary<int, User> dentists)
+        {
             foreach (var dentist in dentists.Values)
             {
                 var ID = dentist.GetUserID();
-                dentistIDs.Add(ID);
                 Console.WriteLine(dentist.GetUserID() + ". " + dentist.ToString());
             }
             var dentistID = 0;
             do
             {
                 dentistID = GetIntFromOutput(": ");
-            } while (!dentistIDs.Contains(dentistID));
-            var startTime = new DateTime(year, month, day, hourStart, 0, 0);
-            var endTime = new DateTime(year, month, day, hourEnd, 0, 0);
-            var timeSlot = new MOCKTimeSlot(startTime, endTime, dentistID);
+            } while (!dentists.Keys.Contains(dentistID));
+            return dentistID;
         }
 
         private static void AddDentistUI()
         {
             Console.WriteLine("Add Dentists");
+            var username = GetStringFromOutput("Please enter dentist name: ");
+            fileHandler.AddNewUser(new MOCKUser(username, UserType.DENTIST));
         }
         
         private static void RemoveDentistUI()
         {
             Console.WriteLine("Remove Dentists");
+            var dentistID = GetDentistID(fileHandler.GetDentists());
+            fileHandler.DeleteDentist(dentistID);
         }
 
         private static void UserUI()
