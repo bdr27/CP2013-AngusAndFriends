@@ -13,6 +13,7 @@ namespace CP2013_Assignment_One
     {
         const string MENU = "Where do you wish to do\n\t1. User UI\n\t2. Admin UI\n\t(Q)uit";
         const string ADMIN_MENU = "Do you want to\n\t1. Add Booking\n\t2. Add Dentist\n\t3. Remove Dentist\n\t(Q)uit";
+        const string USER_MENU = "Do you want to\n\t1. View Bookings\n\t2. Add Booking\n\t3. Remove Booking\n\t(Q)uit";
         private static FileHandler fileHandler;
 
         public static void Main(string[] args)
@@ -65,7 +66,7 @@ namespace CP2013_Assignment_One
                 switch (key)
                 {
                     case "1":
-                        printBookings();
+                        printTimeSlots();
                         AddBookingUI();
                         break;
                     case "2":
@@ -82,7 +83,7 @@ namespace CP2013_Assignment_One
             }
         }
 
-        private static void printBookings()
+        private static void printTimeSlots()
         {
             foreach (var timeSlot in fileHandler.GetTimeSlots())
             {
@@ -147,7 +148,104 @@ namespace CP2013_Assignment_One
 
         private static void UserUI()
         {
-            Console.WriteLine("User UI");
+            var key = GetStringFromOutput(USER_MENU);
+            while (key != "q")
+            {
+                switch (key)
+                {
+                    case "1":
+                        ViewBookings();
+                        break;
+                    case "2":
+                        AddBookings();
+                        break;
+                    case "3":
+                        RemoveBooking();
+                        break;
+                    default:
+                        break;
+                }
+                key = GetStringFromOutput(USER_MENU);
+            }
+        }
+
+        private static void RemoveBooking()
+        {
+            var userID = GetUserID();
+            var appointment = GetAppointment(userID);
+            fileHandler.DeleteBooking(appointment);
+        }
+
+        private static int GetAppointment(int userID)
+        {
+            var bookings = fileHandler.GetUserBookings(userID);
+            foreach (var book in bookings)
+            {
+                Console.WriteLine(book.ToString());
+            }
+            var num = 0;
+            while (true)
+            {            
+                if(Int32.TryParse(Console.ReadLine(), out num))
+                {
+                    if (bookings.ContainsKey(num))
+                    {
+                        break;
+                    }
+                }                
+            }
+            return num;
+        }
+
+        private static void AddBookings()
+        {
+            var result = 0;
+            var avaliableTimes = fileHandler.GetAvaliableTimeSlots();
+            foreach (var time in avaliableTimes.Values)
+            {
+                Console.WriteLine(time.GetTimeSlotID() + ". " + time.ToString());
+            }
+            while (true)
+            {
+                var query = Console.ReadLine();
+                if (Int32.TryParse(query, out result) && avaliableTimes.Keys.Contains(result))
+                {
+                    break;
+                }
+            }
+            var userID = GetUserID();
+            var booking = new MOCKBooking(result, userID, AppointmentType.GENERAL);
+            fileHandler.AddNewBooking(booking);
+        }
+
+        private static void ViewBookings()
+        {
+            var userID = GetUserID();
+            var bookings = fileHandler.GetUserBookings(userID);
+            foreach (var book in bookings)
+            {
+                Console.WriteLine(book.ToString());
+            }
+        }
+
+        private static int GetUserID()
+        {
+            int result = 0;
+            var query = "";
+            var users = fileHandler.GetAllUsers();
+            do
+            {
+                foreach (var user in users.Values)
+                {
+                    Console.WriteLine(user.GetUserID() + ". " + user.GetUsername());
+                }
+                query = Console.ReadLine();
+                if (Int32.TryParse(query, out result) && users.Keys.Contains(result))
+                {
+                    break;                    
+                }
+            } while (true);
+            return result;
         }
     }
 }

@@ -15,6 +15,13 @@ namespace CP2013_Assignment_One.MOCK
         int userID;
         AppointmentType appointmentType;
 
+        public MOCKBooking(int timeSlotID, int userID, AppointmentType appointmentType)
+        {
+            this.timeSlotID = timeSlotID;
+            this.userID = userID;
+            this.appointmentType = appointmentType;
+        }
+
         public MOCKBooking(int bookingID, int timeSlotID, int userID, AppointmentType appointmentType)
         {
             this.bookingID = bookingID;
@@ -46,5 +53,10 @@ namespace CP2013_Assignment_One.MOCK
         }
 
         #endregion
+
+        public override string ToString()
+        {
+            return string.Format("Booking ID: {0}, Time Slot ID: {1}, User ID: {2}, Appointment Type: {3}", bookingID, timeSlotID, userID, appointmentType);
+        }
     }
 }

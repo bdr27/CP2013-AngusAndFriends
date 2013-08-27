@@ -130,5 +130,58 @@ namespace CP2013_Assignment_Tests
             Assert.AreEqual(userID, booking.GetUserID());
             Assert.AreEqual(appointmentType, booking.GetAppontmentType());
         }
+
+        [TestMethod]
+        public void MOCKFileHandlerAddBooking()
+        {
+            var bookingID = 50;
+            var timeSlotID = 2;
+            var userID = 10;
+            var apType = AppointmentType.GENERAL;
+
+            var booking = new MOCKBooking(bookingID, timeSlotID, userID, apType);
+            var fileHandler = new MOCKFileHandler();
+            fileHandler.AddExistingBooking(booking);
+            var userBooking = fileHandler.GetUserBookings(userID);
+            Assert.AreEqual(timeSlotID, userBooking[bookingID].GetTimeSlotID());
+            Assert.AreEqual(userID, userBooking[bookingID].GetUserID());
+            Assert.AreEqual(apType, userBooking[bookingID].GetAppontmentType());
+        }
+
+        [TestMethod]
+        public void MOCKFileHandlerDeleteBooking()
+        {
+            var bookingID = 50;
+            var timeSlotID = 2;
+            var userID = 10;
+            var apType = AppointmentType.GENERAL;
+
+            var booking = new MOCKBooking(bookingID, timeSlotID, userID, apType);
+            var fileHandler = new MOCKFileHandler();
+            fileHandler.AddExistingBooking(booking);
+            var userBooking = fileHandler.GetUserBookings(userID);
+            Assert.AreEqual(timeSlotID, userBooking[bookingID].GetTimeSlotID());
+            Assert.AreEqual(userID, userBooking[bookingID].GetUserID());
+            Assert.AreEqual(apType, userBooking[bookingID].GetAppontmentType());
+
+            fileHandler.DeleteBooking(userBooking[bookingID].GetBookingID());
+
+            var newBooking = fileHandler.GetUserBookings(userID);
+            Assert.AreEqual(0, newBooking.Count);
+        }
+
+        [TestMethod]
+        public void MOCKFileHandlerTestAvaliableTimeSlots()
+        {
+            var fileHandler = new MOCKFileHandler();
+            var totalTimeSlots = fileHandler.GetTimeSlots();
+            var avaliableTimeSlots = fileHandler.GetAvaliableTimeSlots();
+            var takenSlots = fileHandler.GetAllBookings();
+            Assert.AreEqual(totalTimeSlots.Count - avaliableTimeSlots.Count, takenSlots.Count);
+            foreach (var booking in takenSlots.Values)
+            {
+                Assert.IsFalse(avaliableTimeSlots.ContainsKey(booking.GetTimeSlotID()));
+            }
+        }
     }
 }

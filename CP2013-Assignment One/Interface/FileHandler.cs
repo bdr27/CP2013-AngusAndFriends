@@ -15,6 +15,12 @@ namespace CP2013_Assignment_One.Interface
         void DeleteDentist(int userID);
         void AddNewTimeSlot(TimeSlot timeSlot);
         void AddExistingTimeSlot(TimeSlot timeSlot);
+        void AddNewBooking(Booking booking);
+        void AddExistingBooking(Booking booking);
+        void DeleteBooking(int bookingID);
+        Dictionary<int, TimeSlot> GetAvaliableTimeSlots();
+        Dictionary<int, Booking> GetAllBookings();
+        Dictionary<int, Booking> GetUserBookings(int userID);
         Dictionary<int, User> GetDentists();
         Dictionary<int, TimeSlot> GetTimeSlots();
         Dictionary<int, User> GetAllUsers();

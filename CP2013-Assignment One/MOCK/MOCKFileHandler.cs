@@ -12,26 +12,38 @@ namespace CP2013_Assignment_One.MOCK
     {
         int timeSlotsID;
         int usersID;
+        int bookingID;
         Dictionary<int, TimeSlot> timeSlots;
         Dictionary<int, User> users;
+        Dictionary<int, Booking> bookings;
 
         public MOCKFileHandler()
         {
             usersID = 1;
             timeSlotsID = 1;
+            bookingID = 1;
             users = new Dictionary<int, User>();
             timeSlots = new Dictionary<int, TimeSlot>();
+            bookings = new Dictionary<int, Booking>();
             LoadUsers();
             LoadTimeSlots();
+            LoadBookings();
         }
 
-        #region FileHandler Members
+        public void LoadBookings()
+        {
+            AddNewBooking(new MOCKBooking(2, 4, AppointmentType.GENERAL));
+            AddNewBooking(new MOCKBooking(3, 3, AppointmentType.GENERAL));
+            AddNewBooking(new MOCKBooking(4, 2, AppointmentType.GENERAL));
+            AddNewBooking(new MOCKBooking(5, 1, AppointmentType.GENERAL));
+        }
 
         public void LoadUsers()
         {
             AddNewUser(new MOCKUser("John Smith", UserType.ADMIN));
             AddNewUser(new MOCKUser("Pen Vide", UserType.DENTIST));
             AddNewUser(new MOCKUser("Home River", UserType.DENTIST));
+            AddNewUser(new MOCKUser("First Person", UserType.USER));
         }
 
         public void LoadTimeSlots()
@@ -49,6 +61,8 @@ namespace CP2013_Assignment_One.MOCK
             AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, endTime, 0, 0), 2));
             AddNewTimeSlot(new MOCKTimeSlot(new DateTime(year, month, day, startTime, 0, 0), new DateTime(year, month, day++, endTime, 0, 0), 2));
         }
+
+        #region FileHandler Members        
 
         public void AddExistingUser(User user)
         {
@@ -92,6 +106,22 @@ namespace CP2013_Assignment_One.MOCK
             timeSlots.Add(timeSlot.GetTimeSlotID(), new MOCKTimeSlot(timeSlot.GetTimeSlotID(), timeSlot.GetStartTime(), timeSlot.GetEndTime(), timeSlot.GetUserID()));
         }
 
+        public void AddNewBooking(Booking booking)
+        {
+            var newBook = new MOCKBooking(bookingID, booking.GetTimeSlotID(), booking.GetUserID(), booking.GetAppontmentType());
+            bookings.Add(bookingID++, newBook);
+        }
+
+        public void AddExistingBooking(Booking booking)
+        {
+            bookings.Add(booking.GetBookingID(), new MOCKBooking(booking.GetBookingID(), booking.GetTimeSlotID(), booking.GetUserID(), booking.GetAppontmentType()));
+        }
+
+        public void DeleteBooking(int bookingID)
+        {
+            bookings.Remove(bookingID);
+        }
+
         public Dictionary<int, User> GetDentists()
         {
             var dentists = new Dictionary<int, User>();
@@ -106,6 +136,28 @@ namespace CP2013_Assignment_One.MOCK
             return dentists;
         }
 
+        public Dictionary<int, TimeSlot> GetAvaliableTimeSlots()
+        {
+            var ats = new Dictionary<int, TimeSlot>();
+            foreach (var ts in timeSlots.Keys)
+            {
+                var taken = false;
+                foreach (var book in bookings.Values)
+                {
+                    if (book.GetTimeSlotID() == ts)
+                    {
+                        taken = true;
+                        break;
+                    }
+                }
+                if (!taken)
+                {
+                    ats.Add(ts, timeSlots[ts]);
+                }
+            }
+            return ats;
+        }
+
         public Dictionary<int, TimeSlot> GetTimeSlots()
         {
             return timeSlots;
@@ -114,6 +166,24 @@ namespace CP2013_Assignment_One.MOCK
         public Dictionary<int, User> GetAllUsers()
         {
             return users;
+        }
+
+        public Dictionary<int, Booking> GetAllBookings()
+        {
+            return bookings;
+        }
+
+        public Dictionary<int, Booking> GetUserBookings(int userID)
+        {
+            var b = new Dictionary<int, Booking>();
+            foreach (var booking in bookings.Values)
+            {
+                if (booking.GetUserID() == userID)
+                {
+                    b.Add(booking.GetBookingID(), booking);
+                }
+            }
+            return b;
         }
 
         public User GetDentist(int userID)
