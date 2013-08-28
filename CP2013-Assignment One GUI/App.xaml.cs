@@ -51,6 +51,7 @@ namespace CP2013_Assignment_One_GUI
         {
             var selectUser = new SelectUser();
             selectUser.LoadUsers(fileHandler.GetAllUsers());
+            selectUser.Owner = mainWindow;
             selectUser.ShowDialog();
             userID = selectUser.GetUserID();
             LoadBookings();

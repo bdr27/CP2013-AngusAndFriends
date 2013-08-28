@@ -33,7 +33,7 @@ namespace CP2013_Assignment_One_GUI.UserControls
             {
                 cmbNames.Items.Add(user);
             }
-            cmbNames.SelectedIndex = 1;
+            cmbNames.SelectedIndex = 0;
         }
 
         public int GetUserID()

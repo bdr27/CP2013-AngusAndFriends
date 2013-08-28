@@ -31,6 +31,7 @@ namespace CP2013_Assignment_One_GUI.UserControls
         {
             cbBookingType.Items.Add(AppointmentType.GENERAL);
             cbBookingType.Items.Add(AppointmentType.TEETH_CLEAN);
+            cbBookingType.SelectedIndex = 0;
         }
 
         public AppointmentType GetAppointmentType()
@@ -47,6 +48,7 @@ namespace CP2013_Assignment_One_GUI.UserControls
                 cbRemoveTime.Items.Add(booking);
                 lvBookingTimes.Items.Add(booking);
             }
+            cbRemoveTime.SelectedIndex = 0;
         }
         public void LoadTimeSlots(Dictionary<int, TimeSlot> dictionary)
         {
@@ -55,6 +57,7 @@ namespace CP2013_Assignment_One_GUI.UserControls
             {
                 cbAddTime.Items.Add(timeSlot);
             }
+            cbAddTime.SelectedIndex = 0;
         }
 
         public int GetRemoveBookingID()

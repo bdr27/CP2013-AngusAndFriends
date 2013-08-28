@@ -4,8 +4,39 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
+             Height="768" Width="1024">
+    <TabControl >
+        <TabItem Header="View Times">
+            <Grid>
+                <ListView x:Name="lvBookingTimes"  HorizontalAlignment="Left" Height="324" Margin="0,35,0,0" VerticalAlignment="Top" Width="1018">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+
+            </Grid>
+        </TabItem>
+        <TabItem Header="Add Time">
+            <Grid>
+                <Label Content="Time: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="33,21,0,0"/>
+                <ComboBox x:Name="cbAddTime" HorizontalAlignment="Left" Margin="98,21,0,0" VerticalAlignment="Top" Width="100"/>
+                <ComboBox x:Name="cbBookingType" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="98,50,0,0" Width="100"/>
+                <Button x:Name="btnAddTime" Content="Done" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="98,100,0,0" Width="75"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Remove Time">
+            <Grid>
+                <Label Content="Time: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="33,21,0,0"/>
+                <ComboBox x:Name="cbRemoveTime" HorizontalAlignment="Left" Margin="98,21,0,0" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="btnRemoveTime" Content="Done" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="98,50,0,0" Width="75"/>
+            </Grid>
+        </TabItem>
+
+
+
+
+    </TabControl>
 </UserControl>

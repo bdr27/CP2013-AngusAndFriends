@@ -63,7 +63,7 @@ namespace CP2013_Assignment_One_GUI.UserControls
             {
                 cb.Items.Add(den);
             }
-            cb.SelectedIndex = 1;
+            cb.SelectedIndex = 0;
         }
 
         public int GetDentistID()
@@ -105,7 +105,7 @@ namespace CP2013_Assignment_One_GUI.UserControls
             {
                 cb.Items.Add(timeSlot);
             }
-            cb.SelectedIndex = 1;
+            cb.SelectedIndex = 0;
        }
     }
 }
