@@ -9,6 +9,8 @@
         <TabControl >
             <TabItem Header="Add Booking">
                 <Grid>
+                    <Label Content="TimeSlots: " HorizontalAlignment="Left" Margin="449,23,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="cbTimeSlots" Height="20" Width="120" Margin="536,23,362,697"/>
                     <Label Content="Day: " HorizontalAlignment="Left" Margin="101,68,0,0" VerticalAlignment="Top"/>
                     <Label Content="Month: " HorizontalAlignment="Left" Margin="86,99,0,0" VerticalAlignment="Top"/>
                     <Label Content="Year: " HorizontalAlignment="Left" Margin="98,130,0,0" VerticalAlignment="Top"/>
@@ -39,6 +41,7 @@
                 </Grid>
             </TabItem>
            
+
 
 
         </TabControl>

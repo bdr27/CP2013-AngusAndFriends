@@ -48,7 +48,7 @@ namespace CP2013_Assignment_One.MOCK
 
         public override string ToString()
         {
-            return String.Format("ID: {0}, Username: {1}, UserType: {2}", userID, username, userType);
+            return username; //String.Format("ID: {0}, Username: {1}, UserType: {2}", userID, username, userType);
         }
     }
 }

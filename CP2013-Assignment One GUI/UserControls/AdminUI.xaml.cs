@@ -97,5 +97,15 @@ namespace CP2013_Assignment_One_GUI.UserControls
         {
             return tbDentistName.Text;
         }
+
+        public void LoadTimeSlots(Dictionary<int, TimeSlot> timeSlots, ComboBox cb)
+        {
+            cb.Items.Clear();
+            foreach (var timeSlot in timeSlots.Values)
+            {
+                cb.Items.Add(timeSlot);
+            }
+            cb.SelectedIndex = 1;
+       }
     }
 }

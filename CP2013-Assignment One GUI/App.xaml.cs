@@ -20,6 +20,7 @@ namespace CP2013_Assignment_One_GUI
     {
         MainWindow mainWindow;
         FileHandler fileHandler;
+        int userID;
 
         public App()
             : base()
@@ -33,6 +34,7 @@ namespace CP2013_Assignment_One_GUI
         private void WireHandlers()
         {
             WireMainUIHandlers();
+            WireUserUIHandlers();
         }
 
         #region MainUI
@@ -47,6 +49,11 @@ namespace CP2013_Assignment_One_GUI
 
         private void HandlerUser_Click(object sender, RoutedEventArgs e)
         {
+            var selectUser = new SelectUser();
+            selectUser.LoadUsers(fileHandler.GetAllUsers());
+            selectUser.ShowDialog();
+            userID = selectUser.GetUserID();
+            LoadBookings();
             mainWindow.ShowUser();
             Debug.WriteLine("User Click");
         }
@@ -70,15 +77,16 @@ namespace CP2013_Assignment_One_GUI
             mainWindow.ShowAdmin();
             var admin = mainWindow.viewAdminUI;
             WireAdminHandlers(admin);
-            LoadDentists(admin);
-            Debug.WriteLine("Admin Click");
+            LoadAdminCombo(admin);
         }
 
-        private void LoadDentists(AdminUI admin)
+        private void LoadAdminCombo(AdminUI admin)
         {
             var dentist = fileHandler.GetDentists();
+            var timeSlots = fileHandler.GetTimeSlots();
             admin.LoadDentists(dentist, admin.cbDentist);
             admin.LoadDentists(dentist, admin.cbDentistRemove);
+            admin.LoadTimeSlots(timeSlots, admin.cbTimeSlots);
         }
 
         private void WireAdminHandlers(AdminUI admin)
@@ -93,7 +101,7 @@ namespace CP2013_Assignment_One_GUI
             var admin = mainWindow.viewAdminUI;
             var dentistID = admin.GetRemoveDentistID();
             fileHandler.DeleteDentist(dentistID);
-            LoadDentists(admin);
+            LoadAdminCombo(admin);
         }
 
         private void HandleAddDentistDone_Click(object sender, RoutedEventArgs e)
@@ -101,7 +109,7 @@ namespace CP2013_Assignment_One_GUI
             var admin = mainWindow.viewAdminUI;
             var dentistName = admin.GetDentistName();
             fileHandler.AddNewUser(new MOCKUser(dentistName, UserType.DENTIST));
-            LoadDentists(admin);
+            LoadAdminCombo(admin);
         }
 
         private void HandleTimeSlotDone_Click(object sender, RoutedEventArgs e)
@@ -117,7 +125,41 @@ namespace CP2013_Assignment_One_GUI
             var dentistID = admin.GetDentistID();
 
             fileHandler.AddNewTimeSlot(new MOCKTimeSlot(startDate, endDate, dentistID));
-            LoadDentists(admin);
+            LoadAdminCombo(admin);
+        }
+        #endregion
+
+        #region UserUI
+
+        private void WireUserUIHandlers()
+        {
+            var userUI = mainWindow.viewUserUI;
+            userUI.AddBtnRemoveBookingHandler(HandleRemoveButton_Click);
+            userUI.AddBtnAddBookingHandler(HandleAddButton_Click);
+        }
+
+        private void HandleAddButton_Click(object sender, RoutedEventArgs e)
+        {
+            var userUI = mainWindow.viewUserUI;
+            var timeSlotID = userUI.GetTimeSlotID();
+            var bookingType = userUI.GetAppointmentType();
+            fileHandler.AddNewBooking(new MOCKBooking(timeSlotID, userID, bookingType));
+            LoadBookings();
+        }
+
+        private void HandleRemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+          var userUI = mainWindow.viewUserUI;
+          var bookingID = userUI.GetRemoveBookingID();
+          fileHandler.DeleteBooking(bookingID);
+          LoadBookings();
+        }
+
+        private void LoadBookings()
+        {
+            var userUI = mainWindow.viewUserUI;
+            userUI.LoadBookings(fileHandler.GetUserBookings(userID));
+            userUI.LoadTimeSlots(fileHandler.GetAvaliableTimeSlots());
         }
         #endregion
     }
