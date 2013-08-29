@@ -6,6 +6,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="768" d:DesignWidth="1024">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="248,207,0,0" TextWrapping="Wrap" Text="Please contact us at: angusandfriends.com for more information" VerticalAlignment="Top" Height="289" Width="456"/>
+        <TextBlock HorizontalAlignment="Left" Margin="248,207,0,0" TextWrapping="Wrap" Text="Pick up da fone, and give us a call… 1300 6555 06" VerticalAlignment="Top" Height="289" Width="456"/>
     </Grid>
 </UserControl>

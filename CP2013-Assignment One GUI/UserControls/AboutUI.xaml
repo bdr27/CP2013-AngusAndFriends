@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBlock Text="We are Angus and friends Written By: Brendan Russo, Alex Lakh, Josh Hall and Angus Thomsen" HorizontalAlignment="Left" Margin="57,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="143" Width="154"/>
+        <TextBlock Text="We are Word of Mouth, the Best Dental Centre in the World!!! " HorizontalAlignment="Left" Margin="57,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="143" Width="199"/>
 
     </Grid>
 </UserControl>
