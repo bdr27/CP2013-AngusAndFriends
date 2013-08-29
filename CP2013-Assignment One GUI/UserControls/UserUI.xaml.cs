@@ -62,8 +62,13 @@ namespace CP2013_Assignment_One_GUI.UserControls
 
         public int GetRemoveBookingID()
         {
+            var bookingID = -1;
             var booking = (Booking) cbRemoveTime.SelectedValue;
-            return booking.GetBookingID();
+            if (booking != null)
+            {
+                bookingID = booking.GetBookingID();
+            }
+            return bookingID;
         }
 
         public int GetTimeSlotID()
@@ -80,6 +85,15 @@ namespace CP2013_Assignment_One_GUI.UserControls
         public void AddBtnAddBookingHandler(RoutedEventHandler handler)
         {
             btnAddTime.Click += handler;
+        }
+
+        public void LoadTimeSlotsLV(Dictionary<int, TimeSlot> timeSlots)
+        {
+            lvBookingTimes.Items.Clear();
+            foreach (var booking in timeSlots.Values)
+            {
+                lvBookingTimes.Items.Add(booking);
+            }
         }
     }
 }

@@ -173,6 +173,17 @@ namespace CP2013_Assignment_One.MOCK
             return bookings;
         }
 
+        public Dictionary<int, TimeSlot> GetUserTimeSlots(int userID)
+        {
+            var bookings = GetUserBookings(userID);
+            var ts = new Dictionary<int, TimeSlot>();
+            foreach (var booking in bookings.Values)
+            {
+                ts.Add(booking.GetTimeSlotID(), timeSlots[booking.GetTimeSlotID()]);
+            }
+            return ts;
+        }
+
         public Dictionary<int, Booking> GetUserBookings(int userID)
         {
             var b = new Dictionary<int, Booking>();

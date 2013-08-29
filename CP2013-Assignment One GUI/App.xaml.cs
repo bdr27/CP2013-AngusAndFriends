@@ -159,7 +159,9 @@ namespace CP2013_Assignment_One_GUI
         private void LoadBookings()
         {
             var userUI = mainWindow.viewUserUI;
+            var timeSlots = fileHandler.GetUserTimeSlots(userID);
             userUI.LoadBookings(fileHandler.GetUserBookings(userID));
+            userUI.LoadTimeSlotsLV(timeSlots);
             userUI.LoadTimeSlots(fileHandler.GetAvaliableTimeSlots());
         }
         #endregion

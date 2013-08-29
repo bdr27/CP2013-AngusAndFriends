@@ -18,6 +18,7 @@ namespace CP2013_Assignment_One.Interface
         void AddNewBooking(Booking booking);
         void AddExistingBooking(Booking booking);
         void DeleteBooking(int bookingID);
+        Dictionary<int, TimeSlot> GetUserTimeSlots(int userID); 
         Dictionary<int, TimeSlot> GetAvaliableTimeSlots();
         Dictionary<int, Booking> GetAllBookings();
         Dictionary<int, Booking> GetUserBookings(int userID);
