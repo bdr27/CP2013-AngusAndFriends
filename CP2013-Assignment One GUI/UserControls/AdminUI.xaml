@@ -11,19 +11,8 @@
                 <Grid>
                     <Label Content="TimeSlots: " HorizontalAlignment="Left" Margin="449,23,0,0" VerticalAlignment="Top"/>
                     <ComboBox x:Name="cbTimeSlots" Height="20" Width="120" Margin="536,23,362,697"/>
-                    <Label Content="Day: " HorizontalAlignment="Left" Margin="101,68,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Month: " HorizontalAlignment="Left" Margin="86,99,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Year: " HorizontalAlignment="Left" Margin="98,130,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Start Time: " HorizontalAlignment="Left" Margin="67,161,0,0" VerticalAlignment="Top"/>
-                    <Label Content="End Time: " HorizontalAlignment="Left" Margin="72,192,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="tbEndTime" HorizontalAlignment="Left" Height="23" Margin="142,194,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="tbStartTime" HorizontalAlignment="Left" Height="23" Margin="142,164,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="tbYear" HorizontalAlignment="Left" Height="23" Margin="142,130,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="tbMonth" HorizontalAlignment="Left" Height="23" Margin="142,99,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="tbDay" HorizontalAlignment="Left" Height="23" Margin="142,68,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                     <ComboBox x:Name="cbDentist" HorizontalAlignment="Left" Margin="98,21,0,0" VerticalAlignment="Top" Width="120"/>
                     <Button x:Name="btnTimeSlotDone" Content="Done" HorizontalAlignment="Left" Margin="112,280,0,0" VerticalAlignment="Top" Width="75"/>
-
                 </Grid>
             </TabItem>
             <TabItem Header="Add Dentist">
