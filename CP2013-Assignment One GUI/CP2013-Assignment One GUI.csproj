@@ -68,6 +68,9 @@
     <Compile Include="UserControls\SelectUser.xaml.cs">
       <DependentUpon>SelectUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TestTable.xaml.cs">
+      <DependentUpon>TestTable.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UserUI.xaml.cs">
       <DependentUpon>UserUI.xaml</DependentUpon>
     </Compile>
@@ -100,6 +103,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\SelectUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TestTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
