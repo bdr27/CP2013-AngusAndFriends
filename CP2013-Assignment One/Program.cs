@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CP2013_Assignment_One.Enum;
+using CP2013_Assignment_One.Http;
 using CP2013_Assignment_One.Interface;
 using CP2013_Assignment_One.MOCK;
 
@@ -15,11 +16,25 @@ namespace CP2013_Assignment_One
         const string ADMIN_MENU = "Do you want to\n\t1. Add Booking\n\t2. Add Dentist\n\t3. Remove Dentist\n\t(Q)uit";
         const string USER_MENU = "Do you want to\n\t1. View Bookings\n\t2. Add Booking\n\t3. Remove Booking\n\t(Q)uit";
         private static FileHandler fileHandler;
-
+        private static RequestResponse rr = new HttpRequests("https://fast-taiga-8503.herokuapp.com/");
         public static void Main(string[] args)
         {
+            var dentists = rr.GetAllDentists();
+            var dentist = rr.GetDentist(dentists[0].Id);
+            var newDentist = new Dentist
+            {
+                Email = "Hello@world.com",
+                Phone = "09090909",
+                Name = "Bob"
+            };
+            rr.GetAllTimeSlots();
+            rr.GetTimeSlotsForDentist(dentists[0].Id);
+          //  rr.AddDentist(newDentist);
+          //  dentists = rr.GetAllDentists();
+
             fileHandler = new MOCKFileHandler();
             var key = GetStringFromOutput(MENU);
+            
             while (key != "q")
             {
                 switch (key)

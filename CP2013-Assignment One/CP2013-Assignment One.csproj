@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>packages\RestSharp.104.2.0\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,7 +49,11 @@
   <ItemGroup>
     <Compile Include="Enum\AppointmentType.cs" />
     <Compile Include="Enum\UserType.cs" />
+    <Compile Include="Http\Dentist.cs" />
+    <Compile Include="Http\HttpRequests.cs" />
+    <Compile Include="Http\TimeSlots.cs" />
     <Compile Include="Interface\Booking.cs" />
+    <Compile Include="Interface\RequestResponse.cs" />
     <Compile Include="MOCK\MOCKBooking.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Utility\" />

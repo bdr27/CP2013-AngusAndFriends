@@ -28,27 +28,32 @@ namespace CP2013_Assignment_One_GUI.UserControls
 
         public int GetDay()
         {
-            return GetInt(tbDay.Text);
+            return 0;
+    //        return GetInt(tbDay.Text);
         }
 
         public int GetMonth()
         {
-            return GetInt(tbMonth.Text);
+            return 0;
+      //      return GetInt(tbMonth.Text);
         }
 
         public int GetYear()
         {
-            return GetInt(tbYear.Text);
+            return 0;
+        //    return GetInt(tbYear.Text);
         }
 
         public int GetStart()
         {
-            return GetInt(tbStartTime.Text);
+            return 0;
+          //  return GetInt(tbStartTime.Text);
         }
 
         public int GetEnd()
         {
-            return GetInt(tbEndTime.Text);
+            return 0;
+       //     return GetInt(tbEndTime.Text);
         }
 
         private int GetInt(string s)
