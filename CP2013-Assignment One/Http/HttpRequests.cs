@@ -38,7 +38,9 @@ namespace CP2013_Assignment_One.Http
         public void AddDentist(Dentist dentist)
         {
             var request = new RestRequest();
-            request.Resource = "/add/dentist/" + dentist.GetJson();
+            request.RequestFormat = DataFormat.Json;
+            request.AddBody(dentist);
+            request.Resource = "/add/dentist";
             var response = client.Execute(request);
         }
 
@@ -53,7 +55,7 @@ namespace CP2013_Assignment_One.Http
         public List<TimeSlots> GetTimeSlotsForDentist(int id)
         {
             var request = new RestRequest();
-            request.Resource = "/get/all/times/for/dentist/" + id;
+            request.Resource = "/get/all/times/for/dentist" + id;
             var response = client.Execute(request);
             return JsonConvert.DeserializeObject<List<TimeSlots>>(response.Content);
         }

@@ -28,9 +28,10 @@ namespace CP2013_Assignment_One
                 Name = "Bob"
             };
             rr.GetAllTimeSlots();
-            rr.GetTimeSlotsForDentist(dentists[0].Id);
-          //  rr.AddDentist(newDentist);
-          //  dentists = rr.GetAllDentists();
+            //rr.GetTimeSlotsForDentist(dentists[0].Id);
+            Console.WriteLine(dentists);
+            rr.AddDentist(newDentist);
+            dentists = rr.GetAllDentists();
 
             fileHandler = new MOCKFileHandler();
             var key = GetStringFromOutput(MENU);
