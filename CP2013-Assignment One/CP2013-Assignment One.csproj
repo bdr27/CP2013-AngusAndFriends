@@ -49,10 +49,11 @@
   <ItemGroup>
     <Compile Include="Enum\AppointmentType.cs" />
     <Compile Include="Enum\UserType.cs" />
-    <Compile Include="Http\Dentist.cs" />
-    <Compile Include="Http\HttpRequests.cs" />
-    <Compile Include="Http\TimeSlots.cs" />
+    <Compile Include="Utility\Dentist.cs" />
+    <Compile Include="Utility\HttpRequests.cs" />
+    <Compile Include="Utility\TimeSlots.cs" />
     <Compile Include="Interface\Booking.cs" />
+    <Compile Include="Interface\ReqJson.cs" />
     <Compile Include="Interface\RequestResponse.cs" />
     <Compile Include="MOCK\MOCKBooking.cs" />
     <Compile Include="Program.cs" />
@@ -68,9 +69,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utility\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

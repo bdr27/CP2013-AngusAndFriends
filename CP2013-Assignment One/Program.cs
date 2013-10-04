@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CP2013_Assignment_One.Enum;
-using CP2013_Assignment_One.Http;
+using CP2013_Assignment_One.Utility;
 using CP2013_Assignment_One.Interface;
 using CP2013_Assignment_One.MOCK;
 
@@ -20,18 +20,18 @@ namespace CP2013_Assignment_One
         public static void Main(string[] args)
         {
             var dentists = rr.GetAllDentists();
-            var dentist = rr.GetDentist(dentists[0].Id);
+            var dentist = rr.GetDentist(dentists[0].id);
             var newDentist = new Dentist
             {
-                Email = "Hello@world.com",
-                Phone = "09090909",
-                Name = "Bob"
+                email = "testPerson@hotmail.com",
+                phone = "09090909",
+                name = "Jeb"
             };
-            rr.GetAllTimeSlots();
-            //rr.GetTimeSlotsForDentist(dentists[0].Id);
+   //         rr.GetAllTimeSlots();
+    //        rr.GetTimeSlotsForDentist(dentists[0].id);
             Console.WriteLine(dentists);
-            rr.AddDentist(newDentist);
-            dentists = rr.GetAllDentists();
+     //       rr.AddDentist(newDentist);
+
 
             fileHandler = new MOCKFileHandler();
             var key = GetStringFromOutput(MENU);

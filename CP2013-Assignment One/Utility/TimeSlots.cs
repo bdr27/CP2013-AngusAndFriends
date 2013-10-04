@@ -1,5 +1,5 @@
 ﻿
-namespace CP2013_Assignment_One.Http
+namespace CP2013_Assignment_One.Utility
 {
     public class TimeSlots
     {
