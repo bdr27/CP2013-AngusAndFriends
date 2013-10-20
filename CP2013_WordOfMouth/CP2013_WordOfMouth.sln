@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP2013_WordOfMouth", "CP2013_WordOfMouth.csproj", "{0478174D-772D-4941-B70C-A9B21DBB7649}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP2013_WordOFMouthTests", "..\CP2013-Assignment Tests\CP2013_WordOFMouthTests.csproj", "{40D178DA-4811-4655-AE45-5F1FFFDF54DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP2013_WordOFMouthTests", "..\CP2013_Assignment Tests\CP2013_WordOFMouthTests.csproj", "{40D178DA-4811-4655-AE45-5F1FFFDF54DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP2013_WordOfMouthGUI", "..\CP2013-WordOfMouthGUI\CP2013_WordOfMouthGUI.csproj", "{E984CEAF-CAB9-43D9-9E15-FB21967E1C4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CP2013_WordOfMouthGUI", "..\CP2013_WordOfMouthGUI\CP2013_WordOfMouthGUI.csproj", "{E984CEAF-CAB9-43D9-9E15-FB21967E1C4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
