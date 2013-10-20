@@ -54,9 +54,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CP2013-Assignment One\CP2013-Assignment One.csproj">
+    <ProjectReference Include="..\CP2013-WordOfMouth\CP2013-WordOfMouth.csproj">
       <Project>{0478174d-772d-4941-b70c-a9b21dbb7649}</Project>
-      <Name>CP2013-Assignment One</Name>
+      <Name>CP2013-WordOfMouth</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

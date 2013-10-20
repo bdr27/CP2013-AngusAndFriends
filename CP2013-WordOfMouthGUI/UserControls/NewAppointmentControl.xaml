@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="CP2013_WordOfMouthGUI.NewAppointmentControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CP2013_WordOfMouthGUI"
+             mc:Ignorable="d" 
+             d:DesignHeight="497" d:DesignWidth="784" Background="GhostWhite">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="350"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="780"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Label Content="New Appointment" FontFamily="Arial" FontSize="55" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1"/>
+        <Label Content="Filter By:" Grid.Row="2" Grid.Column="1" FontWeight="Bold" Margin="23,0,677,0"/>
+        <Label Content="Dentist:" Grid.Row="2" Grid.Column="1" Margin="37,0,633,0" HorizontalContentAlignment="Right"/>
+        <Label Content="Appointment Type:" Grid.Row="2" Grid.Column="1" Margin="256,0,374,0" HorizontalContentAlignment="Right"/>
+        <ComboBox x:Name="Cmbox_DentistFilter" Grid.Row="2" Grid.Column="1" Margin="152,0,498,0"/>
+        <ComboBox x:Name="Cmbox_AppointmentTypeFilter" Grid.Row="2" Grid.Column="1" Margin="406,0,241,0"/>
+        <local:TableGridControl x:Name="UsrCntrl_TimeSlots" Grid.Row="4" Grid.Column="1"/>
+        <Button x:Name="Btn_FeelingLucky" Content="I'm Feeling Toothy" FontWeight="Bold" Grid.Row="2" Grid.Column="1" Margin="650,0,10,0"/>
+        <Button x:Name="Btn_CreateAppointment" Content="Create Appointment" Grid.Row="6" Grid.Column="1" Margin="316,0,317,0"/>
+        <Button x:Name="Btn_Cancel" Content="Cancel" Grid.Row="6" Grid.Column="1" Margin="680,0,10,0"/>
+    </Grid>
+</UserControl>

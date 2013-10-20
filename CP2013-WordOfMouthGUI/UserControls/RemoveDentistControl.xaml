@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="CP2013_WordOfMouthGUI.UserControls.RemoveDentistControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="497" d:DesignWidth="784" Background="GhostWhite">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="250"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="305"/>
+            <ColumnDefinition Width="445"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Label Content="Remove Dentist" FontFamily="Arial" FontSize="55" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label Content="Select Dentist to Remove:" Grid.Row="2" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Right"/>
+        <Label Content="Appointments Affected by the Removal of the Selected Dentist:" FontWeight="Bold" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="Cmbox_DentistName" Grid.Row="2" Grid.Column="2" Margin="0,0,150,0"/>
+        <ListView x:Name="LstView_AppointmentsList" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Button x:Name="Btn_RemoveDentist" Content="Remove Dentist" Grid.Row="8" Grid.Column="2" Margin="219,0,126,0"/>
+        <Button x:Name="Btn_Cancel" Content="Cancel" Grid.Row="8" Grid.Column="2" Margin="355,0,10,0"/>
+    </Grid>
+</UserControl>
