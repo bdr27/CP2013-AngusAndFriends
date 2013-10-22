@@ -1,18 +1,19 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CP2013_Assignment_One.JSON;
-using CP2013_Assignment_One.Utility;
-using CP2013_Assignment_One.Exceptions;
+using CP2013_WordOfMouth.JSON;
+using CP2013_WordOfMouth.Utility;
+using CP2013_WordOfMouth.Exceptions;
+using CP2013_WordOfMouth.DTO;
 
-namespace CP2013_Assignment_Tests
+namespace CP2013_WordOfMouth_Tests
 {
     [TestClass]
     public class JsonLoginTests
     {
+        private string correctJson = "{\"email\":\"test.user@domain.com\",\"password\":\"Password\"}";
         [TestMethod]
         public void JsonLoginObjectToJsonTest()
         {
-            var correctJson = "{\"email\":\"test.user@domain.com\",\"password\":\"Password\"}";
             TemplateJson tl = new JsonLogin();
             var json = tl.GetJson(new Login("test.user@domain.com", "Password"));
             Assert.AreEqual(correctJson,json);
@@ -21,7 +22,6 @@ namespace CP2013_Assignment_Tests
         [TestMethod]
         public void JsonLoginJsonToObjectTest()
         {
-            var correctJson = "{\"email\":\"test.user@domain.com\",\"password\":\"Password\"}";
             TemplateJson tl = new JsonLogin();
             var o = tl.GetObject(correctJson) as Login;
             Assert.AreEqual("test.user@domain.com", o.GetUsername());

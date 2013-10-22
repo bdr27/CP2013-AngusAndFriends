@@ -1,5 +1,5 @@
 ﻿
-namespace CP2013_Assignment_One.Utility
+namespace CP2013_WordOfMouth.Utility
 {
     public class TimeSlots
     {

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CP2013_Assignment_One.Enum;
-using CP2013_Assignment_One.Interface;
+using CP2013_WordOfMouth.Enum;
+using CP2013_WordOfMouth.Interface;
 
-namespace CP2013_Assignment_One.MOCK
+namespace CP2013_WordOfMouth.MOCK
 {
     public class MOCKUser : User
     {

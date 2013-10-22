@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CP2013_Assignment_One.Interface;
+using CP2013_WordOfMouth.Interface;
 using Newtonsoft.Json;
 
-namespace CP2013_Assignment_One.Utility
+namespace CP2013_WordOfMouth.Utility
 {
     public class OldLogin : ReqJson 
     {

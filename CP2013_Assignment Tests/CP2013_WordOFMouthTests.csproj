@@ -6,7 +6,7 @@
     <ProjectGuid>{40D178DA-4811-4655-AE45-5F1FFFDF54DB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CP2013_Assignment_Tests</RootNamespace>
+    <RootNamespace>CP2013_WordOfMouth_Tests</RootNamespace>
     <AssemblyName>CP2013-Assignment Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -55,6 +55,7 @@
     <Compile Include="JsonLoginTests.cs" />
     <Compile Include="JsonSessionTests.cs" />
     <Compile Include="JsonSignUpTests.cs" />
+    <Compile Include="JsonAppointmentTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CP2013_WordOfMouth\CP2013_WordOfMouth.csproj">

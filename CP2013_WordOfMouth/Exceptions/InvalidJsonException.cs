@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CP2013_Assignment_One.Exceptions
+namespace CP2013_WordOfMouth.Exceptions
 {
     public class InvalidLoginJsonException : Exception
     {

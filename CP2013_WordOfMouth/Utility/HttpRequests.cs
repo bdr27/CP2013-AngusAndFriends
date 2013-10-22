@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
-using CP2013_Assignment_One.Interface;
+using CP2013_WordOfMouth.Interface;
 using Newtonsoft.Json;
 using RestSharp;
 using System.Net;
 using System;
+using CP2013_WordOfMouth.DTO;
 
-namespace CP2013_Assignment_One.Utility
+namespace CP2013_WordOfMouth.Utility
 {
     public class HttpRequests : RequestResponse
     {

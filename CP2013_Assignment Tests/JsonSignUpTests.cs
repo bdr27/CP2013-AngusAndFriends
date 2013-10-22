@@ -1,10 +1,11 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CP2013_Assignment_One.JSON;
-using CP2013_Assignment_One.Utility;
-using CP2013_Assignment_One.Exceptions;
+using CP2013_WordOfMouth.JSON;
+using CP2013_WordOfMouth.Utility;
+using CP2013_WordOfMouth.Exceptions;
+using CP2013_WordOfMouth.DTO;
 
-namespace CP2013_Assignment_Tests
+namespace CP2013_WordOfMouth_Tests
 {
     [TestClass]
     public class JsonSignUpTests

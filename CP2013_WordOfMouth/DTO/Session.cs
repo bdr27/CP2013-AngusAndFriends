@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CP2013_Assignment_One.Utility
+namespace CP2013_WordOfMouth.DTO
 {
     public class Session
     {

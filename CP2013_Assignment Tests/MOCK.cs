@@ -1,10 +1,10 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CP2013_Assignment_One.Enum;
-using CP2013_Assignment_One.MOCK;
-using CP2013_Assignment_One.Interface;
+using CP2013_WordOfMouth.Enum;
+using CP2013_WordOfMouth.MOCK;
+using CP2013_WordOfMouth.Interface;
 
-namespace CP2013_Assignment_Tests
+namespace CP2013_WordOfMouth_Tests
 {
     [TestClass]
     public class MOCK

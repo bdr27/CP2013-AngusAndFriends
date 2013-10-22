@@ -7,7 +7,7 @@
     <ProjectGuid>{0478174D-772D-4941-B70C-A9B21DBB7649}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CP2013_Assignment_One</RootNamespace>
+    <RootNamespace>CP2013_WordOfMouth</RootNamespace>
     <AssemblyName>CP2013-Assignment One</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -51,16 +51,18 @@
     <Compile Include="Enum\UserType.cs" />
     <Compile Include="Exceptions\InvalidJsonException.cs" />
     <Compile Include="Exceptions\InvalidObjectException.cs" />
+    <Compile Include="JSON\JsonAppointment.cs" />
     <Compile Include="JSON\JsonLogin.cs" />
     <Compile Include="JSON\JsonSession.cs" />
     <Compile Include="JSON\JsonSignUp.cs" />
     <Compile Include="JSON\TemplateJson.cs" />
+    <Compile Include="DTO\Appointment.cs" />
     <Compile Include="Utility\Dentist.cs" />
     <Compile Include="Utility\HttpRequests.cs" />
-    <Compile Include="Utility\Login.cs" />
+    <Compile Include="DTO\Login.cs" />
     <Compile Include="Utility\OldLogin.cs" />
-    <Compile Include="Utility\Session.cs" />
-    <Compile Include="Utility\SignUp.cs" />
+    <Compile Include="DTO\Session.cs" />
+    <Compile Include="DTO\SignUp.cs" />
     <Compile Include="Utility\TimeSlots.cs" />
     <Compile Include="Interface\Booking.cs" />
     <Compile Include="Interface\ReqJson.cs" />

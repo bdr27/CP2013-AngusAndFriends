@@ -1,13 +1,7 @@
-﻿using CP2013_Assignment_One.Exceptions;
-using CP2013_Assignment_One.Utility;
+﻿using CP2013_WordOfMouth.DTO;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CP2013_Assignment_One.JSON
+namespace CP2013_WordOfMouth.JSON
 {
     public class JsonLogin : TemplateJson
     {

@@ -2,39 +2,41 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CP2013_WordOfMouth.JSON;
 using CP2013_WordOfMouth.Exceptions;
-using CP2013_WordOfMouth.Utility;
 using CP2013_WordOfMouth.DTO;
 
 namespace CP2013_WordOfMouth_Tests
 {
     [TestClass]
-    public class JsonSessionTests
+    public class JsonAppointmentTests
     {
-        private string correctJson = "{\"seshID\":40,\"user_name\":\"Johnathan\",\"admin\":false}";
+        private string correctJson = "{\"id\":123,\"description\":\"Check Up or whatever\",\"cost\":49.99}";
+        private int id = 123;
+        private string desc = "Check Up or whatever";
+        private double cost = 49.99;
 
         [TestMethod]
-        public void JsonSessionObjectToJsonTest()
+        public void JsonAppointmentObjectToJsonTest()
         {
-            TemplateJson tl = new JsonSession();
-            var json = tl.GetJson(new Session(40, "Johnathan", false));
+            TemplateJson tl = new JsonAppointment();
+            var json = tl.GetJson(new Appointment(id, desc, cost));
             Assert.AreEqual(correctJson, json);
         }
 
         [TestMethod]
-        public void JsonSessionJsonToObjectTest()
+        public void JsonAppointmentJsonToObjectTest()
         {
-            TemplateJson tl = new JsonSession();
-            var o = tl.GetObject(correctJson) as Session;
-            Assert.AreEqual("Johnathan", o.GetUsername());
-            Assert.AreEqual(false, o.GetAdmin());
-            Assert.AreEqual(40, o.GetSessionID());
+            TemplateJson tl = new JsonAppointment();
+            var o = tl.GetObject(correctJson) as Appointment;
+            Assert.AreEqual(id, o.GetID());
+            Assert.AreEqual(desc, o.GetDescription());
+            Assert.AreEqual(cost, o.GetCost());
         }
 
         [TestMethod]
-        public void JsonSessionObjectToJsonInvalidTest()
+        public void JsonAppointmentObjectToJsonInvalidTest()
         {
             bool exception = false;
-            TemplateJson tl = new JsonSession();
+            TemplateJson tl = new JsonAppointment();
             try
             {
                 var json = tl.GetJson("I am the wrong object");
@@ -48,14 +50,14 @@ namespace CP2013_WordOfMouth_Tests
         }
 
         [TestMethod]
-        public void JsonSessionJsonToObjectInvalidTest()
+        public void JsonAppointmentJsonToObjectInvalidTest()
         {
             bool exception = false;
             var incorrect = "{\"emails\":\"test.user@domain.com\",\"password\":\"Password\"}";
-            TemplateJson tl = new JsonSession();
+            TemplateJson tl = new JsonAppointment();
             try
             {
-                var o = tl.GetObject(incorrect) as Session;
+                var o = tl.GetObject(incorrect) as Appointment;
             }
             catch (InvalidLoginJsonException)
             {

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CP2013_Assignment_One.Enum;
-using CP2013_Assignment_One.Utility;
-using CP2013_Assignment_One.Interface;
-using CP2013_Assignment_One.MOCK;
+using CP2013_WordOfMouth.Enum;
+using CP2013_WordOfMouth.Utility;
+using CP2013_WordOfMouth.Interface;
+using CP2013_WordOfMouth.MOCK;
 
-namespace CP2013_Assignment_One
+namespace CP2013_WordOfMouth
 {
     class Program
     {
