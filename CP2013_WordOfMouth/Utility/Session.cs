@@ -3,31 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CP2013_Assignment_One.Interface;
-using Newtonsoft.Json;
 
 namespace CP2013_Assignment_One.Utility
 {
-    public class Session : ReqJson
+    public class Session
     {
-        public bool admin { get; set; }
-        public int seshID { get; set; }
-        public string user_name { get; set; }
+        private int sessionID;
+        private string username;
+        private bool admin;
 
-        public Session(bool admin, int seshID, string user_name)
+        public Session(int sessionID, string username, bool admin)
         {
+            this.sessionID = sessionID;
+            this.username = username;
             this.admin = admin;
-            this.seshID = seshID;
-            this.user_name = user_name;
         }
-
-        #region ReqJson Members
-
-        public string GetJson()
+        
+        public int GetSessionID()
         {
-            return JsonConvert.SerializeObject(this);
+            return sessionID;
         }
 
-        #endregion
+        public string GetUsername()
+        {
+            return username;
+        }
+
+        public bool GetAdmin()
+        {
+            return admin;
+        }
     }
 }

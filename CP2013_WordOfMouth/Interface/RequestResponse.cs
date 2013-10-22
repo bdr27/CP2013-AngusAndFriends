@@ -15,6 +15,6 @@ namespace CP2013_Assignment_One.Interface
         void DeleteDentist(int id);
         List<TimeSlots> GetAllTimeSlots();
         List<TimeSlots> GetTimeSlotsForDentist(int id);
-        Session Login(Login login);
+        Session Login(OldLogin login);
     }
 }

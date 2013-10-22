@@ -3,30 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CP2013_Assignment_One.Interface;
-using Newtonsoft.Json;
 
 namespace CP2013_Assignment_One.Utility
 {
-    public class Login : ReqJson 
+    public class Login
     {
-        public string email {get; set;}
-        public string password {get; set;}
+        private string username;
+        private string password;
 
-        public Login(string email, string password)
+        public Login(string username, string password)
         {
-            this.email = email;
+            this.username = username;
             this.password = password;
         }
 
-        #region ReqJson Members
-
-        public string GetJson()
-        {            
-            return JsonConvert.SerializeObject(this);
+        public string GetUsername()
+        {
+            return username;
         }
 
-        #endregion
-
+        public string GetPassword()
+        {
+            return password;
+        }
     }
 }

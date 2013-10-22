@@ -52,6 +52,9 @@
   <ItemGroup>
     <Compile Include="MOCK.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="JsonLoginTests.cs" />
+    <Compile Include="JsonSessionTests.cs" />
+    <Compile Include="JsonSignUpTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CP2013_WordOfMouth\CP2013_WordOfMouth.csproj">

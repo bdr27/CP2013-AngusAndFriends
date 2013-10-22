@@ -19,7 +19,7 @@ namespace CP2013_Assignment_One
         private static RequestResponse rr = new HttpRequests("https://fast-taiga-8503.herokuapp.com/");
         public static void Main(string[] args)
         {
-            var login = new Login("test.user@domain.com", "Password");
+            var login = new OldLogin("test.user@domain.com", "Password");
             var session = rr.Login(login);
             var dentists = rr.GetAllDentists();
             var dentist = rr.GetDentist(dentists[0].id);

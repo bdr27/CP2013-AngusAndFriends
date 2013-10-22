@@ -53,10 +53,11 @@ namespace CP2013_Assignment_One.Utility
             PostRequest("set/times/for/dentist/" + id);
         }
 
-        public Session Login(Login login)
+        public Session Login(OldLogin login)
         {
             var response = PostRequest(login, "/secure/login");
-            return JsonConvert.DeserializeObject<Session>(response);
+            return null;
+         //   return JsonConvert.DeserializeObject<Session>(response);
         }
 
         #endregion
@@ -73,7 +74,8 @@ namespace CP2013_Assignment_One.Utility
             var http = GetHttp(location);
             http.RequestBody = objSend.GetJson();
             var response = http.Post();
-            return response.Content;
+            return null;
+           // return response.Content;
         }
 
         private string GetRequest(string location)
