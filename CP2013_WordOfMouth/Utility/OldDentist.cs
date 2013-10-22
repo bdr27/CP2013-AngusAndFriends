@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace CP2013_WordOfMouth.Utility
 {
-    public class Dentist : ReqJson
+    public class OldDentist : ReqJson
     {
         public int id { get; set; }
         public string name { get; set; }

@@ -19,17 +19,17 @@ namespace CP2013_WordOfMouth.Utility
             
         #region RequestResponse Members
 
-        public List<Dentist> GetAllDentists()
+        public List<OldDentist> GetAllDentists()
         {
-            return JsonConvert.DeserializeObject<List<Dentist>>(GetRequest("get/all/dentists"));
+            return JsonConvert.DeserializeObject<List<OldDentist>>(GetRequest("get/all/dentists"));
         }
 
-        public Dentist GetDentist(int id)
+        public OldDentist GetDentist(int id)
         {
-            return JsonConvert.DeserializeObject<Dentist>(GetRequest("get/dentist/" + id));
+            return JsonConvert.DeserializeObject<OldDentist>(GetRequest("get/dentist/" + id));
         }
 
-        public void AddDentist(Dentist dentist)
+        public void AddDentist(OldDentist dentist)
         {
             PostRequest(dentist, "add/dentist");
         }
@@ -39,14 +39,14 @@ namespace CP2013_WordOfMouth.Utility
             PostRequest("delete/dentist/" + id);
         }
 
-        public List<TimeSlots> GetAllTimeSlots()
+        public List<OldTimeSlots> GetAllTimeSlots()
         {
-            return JsonConvert.DeserializeObject<List<TimeSlots>>(GetRequest("/get/all/times"));
+            return JsonConvert.DeserializeObject<List<OldTimeSlots>>(GetRequest("/get/all/times"));
         }
 
-        public List<TimeSlots> GetTimeSlotsForDentist(int id)
+        public List<OldTimeSlots> GetTimeSlotsForDentist(int id)
         {
-            return JsonConvert.DeserializeObject<List<TimeSlots>>(GetRequest("get/all/times/for/dentist/" + id));
+            return JsonConvert.DeserializeObject<List<OldTimeSlots>>(GetRequest("get/all/times/for/dentist/" + id));
         }
 
         public void ResetDentistTimes(int id)

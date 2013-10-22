@@ -23,18 +23,11 @@ namespace CP2013_WordOfMouth
             var session = rr.Login(login);
             var dentists = rr.GetAllDentists();
             var dentist = rr.GetDentist(dentists[0].id);
-            var newDentist = new Dentist
-            {
-                email = "testPerson@hotmail.com",
-                phone = "09090909",
-                name = "Jeb"
-            };
             var timeSlots = rr.GetAllTimeSlots();
 
             Console.WriteLine(timeSlots);
             rr.GetTimeSlotsForDentist(dentists[0].id);
             Console.WriteLine(dentists);
-            rr.AddDentist(newDentist);
 
 
             fileHandler = new MOCKFileHandler();

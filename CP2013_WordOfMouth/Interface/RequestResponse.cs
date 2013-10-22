@@ -10,12 +10,12 @@ namespace CP2013_WordOfMouth.Interface
 {
     public interface RequestResponse
     {
-        List<Dentist> GetAllDentists();
-        Dentist GetDentist(int id);
-        void AddDentist(Dentist dentist);
+        List<OldDentist> GetAllDentists();
+        OldDentist GetDentist(int id);
+        void AddDentist(OldDentist dentist);
         void DeleteDentist(int id);
-        List<TimeSlots> GetAllTimeSlots();
-        List<TimeSlots> GetTimeSlotsForDentist(int id);
+        List<OldTimeSlots> GetAllTimeSlots();
+        List<OldTimeSlots> GetTimeSlotsForDentist(int id);
         Session Login(OldLogin login);
     }
 }

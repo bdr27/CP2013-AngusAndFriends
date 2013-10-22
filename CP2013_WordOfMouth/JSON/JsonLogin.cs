@@ -1,4 +1,5 @@
-﻿using CP2013_WordOfMouth.DTO;
+﻿using CP2013_WordOfMouth.JSON;
+using CP2013_WordOfMouth.DTO;
 using Newtonsoft.Json;
 
 namespace CP2013_WordOfMouth.JSON
