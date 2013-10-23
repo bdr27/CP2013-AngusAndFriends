@@ -54,8 +54,11 @@
     <Compile Include="Exceptions\InvalidJsonException.cs" />
     <Compile Include="Exceptions\InvalidObjectException.cs" />
     <Compile Include="Gather\HttpGetAllDentist.cs" />
+    <Compile Include="Gather\HttpGetDentist.cs" />
+    <Compile Include="Gather\HttpPostDeleteDentist.cs" />
     <Compile Include="Gather\IRequestResponse.cs" />
     <Compile Include="JSON\ConverterDentist.cs" />
+    <Compile Include="JSON\JsonAllDesntits.cs" />
     <Compile Include="JSON\JsonAppointment.cs" />
     <Compile Include="JSON\JsonDentist.cs" />
     <Compile Include="JSON\JsonLogin.cs" />

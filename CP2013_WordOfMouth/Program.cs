@@ -7,6 +7,8 @@ using CP2013_WordOfMouth.Enum;
 using CP2013_WordOfMouth.Utility;
 using CP2013_WordOfMouth.Interface;
 using CP2013_WordOfMouth.MOCK;
+using CP2013_WordOfMouth.Gather;
+using CP2013_WordOfMouth.JSON;
 
 namespace CP2013_WordOfMouth
 {
@@ -19,6 +21,10 @@ namespace CP2013_WordOfMouth
         private static RequestResponse rr = new HttpRequests("https://fast-taiga-8503.herokuapp.com/");
         public static void Main(string[] args)
         {
+            GetRequests(new HttpGetAllDentist(), new JsonAllDentists(), "");
+            GetRequests(new HttpGetDentist(), new JsonDentist(), 1.ToString());
+            PostRequests(new HttpPostDeleteDentist(), 37.ToString());
+            #region OLDMAIN
             var login = new OldLogin("test.user@domain.com", "Password");
             var session = rr.Login(login);
             var dentists = rr.GetAllDentists();
@@ -49,6 +55,37 @@ namespace CP2013_WordOfMouth
                 }
                 key = GetStringFromOutput(MENU);
             }
+            #endregion
+        }
+
+        private static void GetRequests(IRequestResponse irr, TemplateJson ts, string message)
+        {
+            irr.SendRequest(message);
+            var json = irr.GetResponse();
+            var objects = ts.GetObject(json);
+        }
+
+        private static void PostRequests(IRequestResponse irr, string message)
+        {
+            irr.SendRequest(message);
+            var json = irr.GetResponse();
+            var response = irr.GetResponse();
+        }
+        private static void GetAllDentists()
+        {
+            IRequestResponse irr = new HttpGetAllDentist();
+            TemplateJson ts = new JsonAllDentists();
+            var test = irr.GetResponse();
+            var dentistser = ts.GetObject(test);
+        }
+
+        private static void GetDentist(int id)
+        {
+            IRequestResponse irr = new HttpGetDentist();
+            TemplateJson ts = new JsonDentist();
+            irr.SendRequest(id.ToString());
+            var json = irr.GetResponse();
+            var objects = ts.GetObject(json);
         }
 
         private static string GetStringFromOutput(string menu)
