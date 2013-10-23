@@ -33,7 +33,6 @@ namespace CP2013_WordOfMouth_Tests
             var od = o.GetDentist();
             Assert.AreEqual(dentist.GetEmail(), od.GetEmail());
             Assert.AreEqual(dentist.GetID(), od.GetID());
-
             //Will fail if email and phone not included
             Assert.AreEqual(dentist.GetName(), od.GetName());
             Assert.AreEqual(dentist.GetPhone(), od.GetPhone());

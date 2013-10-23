@@ -8,30 +8,30 @@ using System.Threading.Tasks;
 
 namespace CP2013_WordOfMouth.JSON
 {
-    public class JsonAppointment : TemplateJson
+    public class JsonAppointmentType : TemplateJson
     {
 
         public override string GetJson(object o)
         {
-            var a = o as Appointment;
+            var a = o as AppointmentType;
             CheckNull(a);
-            return JsonConvert.SerializeObject(new AppointmentConverter(a.GetID(), a.GetDescription(), a.GetCost()));
+            return JsonConvert.SerializeObject(new AppointmentTypeConverter(a.GetID(), a.GetDescription(), a.GetCost()));
         }
 
         public override object GetObject(string json)
         {
-            var a = JsonConvert.DeserializeObject<AppointmentConverter>(json);
+            var a = JsonConvert.DeserializeObject<AppointmentTypeConverter>(json);
             CheckValidParams(a.id, a.description, a.cost);
-            return new Appointment(a.id, a.description, a.cost);
+            return new AppointmentType(a.id, a.description, a.cost);
         }
 
-        private class AppointmentConverter
+        private class AppointmentTypeConverter
         {
             public int id { set; get; }
             public string description { set; get; }
             public double cost { set; get; }
 
-            public AppointmentConverter(int id, string description, double cost)
+            public AppointmentTypeConverter(int id, string description, double cost)
             {
                 this.id = id;
                 this.description = description;

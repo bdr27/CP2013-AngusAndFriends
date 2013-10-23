@@ -17,16 +17,16 @@ namespace CP2013_WordOfMouth_Tests
         [TestMethod]
         public void JsonAppointmentObjectToJsonTest()
         {
-            TemplateJson tl = new JsonAppointment();
-            var json = tl.GetJson(new Appointment(id, desc, cost));
+            TemplateJson tl = new JsonAppointmentType();
+            var json = tl.GetJson(new AppointmentType(id, desc, cost));
             Assert.AreEqual(correctJson, json);
         }
 
         [TestMethod]
         public void JsonAppointmentJsonToObjectTest()
         {
-            TemplateJson tl = new JsonAppointment();
-            var o = tl.GetObject(correctJson) as Appointment;
+            TemplateJson tl = new JsonAppointmentType();
+            var o = tl.GetObject(correctJson) as AppointmentType;
             Assert.AreEqual(id, o.GetID());
             Assert.AreEqual(desc, o.GetDescription());
             Assert.AreEqual(cost, o.GetCost());
@@ -36,7 +36,7 @@ namespace CP2013_WordOfMouth_Tests
         public void JsonAppointmentObjectToJsonInvalidTest()
         {
             bool exception = false;
-            TemplateJson tl = new JsonAppointment();
+            TemplateJson tl = new JsonAppointmentType();
             try
             {
                 var json = tl.GetJson("I am the wrong object");
@@ -54,10 +54,10 @@ namespace CP2013_WordOfMouth_Tests
         {
             bool exception = false;
             var incorrect = "{\"emails\":\"test.user@domain.com\",\"password\":\"Password\"}";
-            TemplateJson tl = new JsonAppointment();
+            TemplateJson tl = new JsonAppointmentType();
             try
             {
-                var o = tl.GetObject(incorrect) as Appointment;
+                var o = tl.GetObject(incorrect) as AppointmentType;
             }
             catch (InvalidLoginJsonException)
             {
