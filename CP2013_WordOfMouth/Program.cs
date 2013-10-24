@@ -9,6 +9,7 @@ using CP2013_WordOfMouth.Interface;
 using CP2013_WordOfMouth.MOCK;
 using CP2013_WordOfMouth.Gather;
 using CP2013_WordOfMouth.JSON;
+using CP2013_WordOfMouth.DTO;
 
 namespace CP2013_WordOfMouth
 {
@@ -23,6 +24,9 @@ namespace CP2013_WordOfMouth
         {
             GetRequests(new HttpGetAllDentist(), new JsonAllDentists(), "");
             GetRequests(new HttpGetDentist(), new JsonDentist(), 1.ToString());
+            var Login = new Login("test.user@domain.com", "Password");
+            var json = new JsonLogin().GetJson(Login);
+            PostRequests(new HttpPostLogin(), json);
             PostRequests(new HttpPostDeleteDentist(), 37.ToString());
             #region OLDMAIN
             var login = new OldLogin("test.user@domain.com", "Password");
@@ -68,7 +72,6 @@ namespace CP2013_WordOfMouth
         private static void PostRequests(IRequestResponse irr, string message)
         {
             irr.SendRequest(message);
-            var json = irr.GetResponse();
             var response = irr.GetResponse();
         }
         private static void GetAllDentists()
@@ -264,8 +267,8 @@ namespace CP2013_WordOfMouth
                 }
             }
             var userID = GetUserID();
-            var booking = new MOCKBooking(result, userID, AppointmentType.GENERAL);
-            fileHandler.AddNewBooking(booking);
+           // var booking = new MOCKBooking(result, userID, AppointmentType.GENERAL);
+           // fileHandler.AddNewBooking(booking);
         }
 
         private static void ViewBookings()
