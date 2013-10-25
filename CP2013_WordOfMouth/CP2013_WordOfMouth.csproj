@@ -88,6 +88,7 @@
     <Compile Include="MOCK\MOCKFileHandler.cs" />
     <Compile Include="MOCK\MOCKUser.cs" />
     <Compile Include="Interface\User.cs" />
+    <Compile Include="Utility\RequestType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

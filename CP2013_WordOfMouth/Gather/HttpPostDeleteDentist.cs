@@ -18,7 +18,7 @@ namespace CP2013_WordOfMouth.Gather
         public HttpPostDeleteDentist()
         {
             http = new Http();
-            http.RequestContentType = "application/json";
+            http.RequestContentType = RequestType.GetInstance();
         }
         #region IRequestResponse Members
 
