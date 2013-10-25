@@ -18,7 +18,7 @@ namespace CP2013_WordOfMouth.Gather
         {
             http = new Http();
             http.Url = new Uri(baseUrl + location);
-            http.RequestContentType = RequestType.GetInstance();
+            http.RequestContentType = HttpRequestType.GetInstance();
         }
 
         public void SendRequest(string request)

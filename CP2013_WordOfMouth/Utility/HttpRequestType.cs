@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CP2013_WordOfMouth.Utility
 {
-    public class RequestType
+    public class HttpRequestType
     {
         private static string instance = null;
-        public RequestType()
+        public HttpRequestType()
         {
         }
 

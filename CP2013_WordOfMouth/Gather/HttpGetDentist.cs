@@ -18,7 +18,7 @@ namespace CP2013_WordOfMouth.Gather
         public HttpGetDentist()
         {
             http = new Http();
-            http.RequestContentType = RequestType.GetInstance();
+            http.RequestContentType = HttpRequestType.GetInstance();
         }
         #region IRequestResponse Members
 
