@@ -7,14 +7,10 @@ using System.Threading.Tasks;
 
 namespace CP2013_WordOfMouth.Interface
 {
-    public interface IUserController
+    public interface IStateMachine
     {
         StateOfSystem GetSystemState();
 
         bool SetSystemState(UserActions action);
-
-        object GetInformation();
-
-        bool SetInformation(object o);
     }
 }

@@ -1,4 +1,5 @@
-﻿using CP2013_WordOfMouth.Enum;
+﻿using CP2013_WordOfMouth.DTO;
+using CP2013_WordOfMouth.Enum;
 using CP2013_WordOfMouth.Interface;
 using System;
 using System.Collections.Generic;
@@ -8,38 +9,38 @@ using System.Threading.Tasks;
 
 namespace CP2013_WordOfMouth.Controllers
 {
-    public class UserController : IUserController
+    public class StateMachine : IStateMachine
     {
 
-        private StateOfSystem systemState;
+        private StateOfSystem state;
         private LoginStatus loginStatus;
 
-        public UserController()
+        public StateMachine()
         {
-            systemState = StateOfSystem.HOME_PAGE_NLI;
+            state = StateOfSystem.HOME_PAGE_NLI;
             loginStatus = LoginStatus.LOGGED_OUT;
         }
 
         public StateOfSystem GetSystemState()
         {
-            return systemState;
+            return state;
         }
 
-        public bool SetSystemState(Enum.UserActions action)
+        public bool SetSystemState(UserActions action)
         {
             if (action == UserActions.HOME_CLICK)
             {
                 if (loginStatus == LoginStatus.LOGGED_OUT)
                 {
-                    systemState = StateOfSystem.HOME_PAGE_NLI;
+                    state = StateOfSystem.HOME_PAGE_NLI;
                 }
                 else if (loginStatus == LoginStatus.ADMIN)
                 {
-                    systemState = StateOfSystem.HOME_PAGE_ADMIN;
+                    state = StateOfSystem.HOME_PAGE_ADMIN;
                 }
                 else
                 {
-                    systemState = StateOfSystem.HOME_PAGE_USER;
+                    state = StateOfSystem.HOME_PAGE_USER;
                 }
                 return true;
             }
@@ -48,37 +49,27 @@ namespace CP2013_WordOfMouth.Controllers
             {
                 if (loginStatus == LoginStatus.LOGGED_OUT)
                 {
-                    systemState = StateOfSystem.LOGIN_PAGE;
+                    state = StateOfSystem.LOGIN_PAGE;
                 }
                 else
                 {
-                    systemState = StateOfSystem.HOME_PAGE_NLI;
+                    state = StateOfSystem.HOME_PAGE_NLI;
                 }
                 return true;
             }
 
-            if (systemState == StateOfSystem.LOGIN_PAGE && action == UserActions.JOIN_CLICK)
+            if (state == StateOfSystem.LOGIN_PAGE && action == UserActions.JOIN_CLICK)
             {
-                systemState = StateOfSystem.JOIN_PAGE;
+                state = StateOfSystem.JOIN_PAGE;
                 return true;
             }
-            else if (systemState == StateOfSystem.JOIN_PAGE && action == UserActions.CANCEL_CLICK)
+            else if (state == StateOfSystem.JOIN_PAGE && action == UserActions.CANCEL_CLICK)
             {
-                systemState = StateOfSystem.LOGIN_PAGE;
+                state = StateOfSystem.LOGIN_PAGE;
                 return true;
             }
 
             return false;
-        }
-
-        public object GetInformation()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool SetInformation(object o)
-        {
-            throw new NotImplementedException();
         }
     }
 }

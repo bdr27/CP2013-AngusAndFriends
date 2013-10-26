@@ -43,13 +43,13 @@
         <Label Content="Mobile:" FontFamily="Arial" FontWeight="Bold" Grid.Row="10" Grid.Column="1" HorizontalContentAlignment="Right"/>
         <Label Content="Password:" FontFamily="Arial" FontWeight="Bold" Grid.Row="12" Grid.Column="1" HorizontalContentAlignment="Right"/>
         <Label Content="Re-Type Password:" FontFamily="Arial" FontWeight="Bold" Grid.Row="14" Grid.Column="1" HorizontalContentAlignment="Right"/>
-        <TextBox x:Name="TxtBox_LastName" Grid.Row="2" Grid.Column="3"/>
-        <TextBox x:Name="TxtBox_FirstName" Grid.Row="4" Grid.Column="3"/>
-        <TextBox x:Name="TxtBox_Email" Grid.Row="6" Grid.Column="3"/>
-        <TextBox x:Name="TxtBox_EmailConfirm" Grid.Row="8" Grid.Column="3"/>
-        <TextBox x:Name="TxtBox_Mobile" Grid.Row="10" Grid.Column="3"/>
-        <PasswordBox x:Name="PassBox_Password" Grid.Row="12" Grid.Column="3"/>
-        <PasswordBox x:Name="PassBox_PasswordConfirm" Grid.Row="14" Grid.Column="3"/>
+        <TextBox x:Name="TxtBox_LastName" Grid.Row="2" Grid.Column="3" TextChanged="TextField_TextChanged"/>
+        <TextBox x:Name="TxtBox_FirstName" Grid.Row="4" Grid.Column="3" TextChanged="TextField_TextChanged"/>
+        <TextBox x:Name="TxtBox_Email" Grid.Row="6" Grid.Column="3" TextChanged="EmailsChanged"/>
+        <TextBox x:Name="TxtBox_EmailConfirm" Grid.Row="8" Grid.Column="3" TextChanged="EmailsChanged"/>
+        <TextBox x:Name="TxtBox_Mobile" Grid.Row="10" Grid.Column="3" TextChanged="TextField_TextChanged"/>
+        <PasswordBox x:Name="PassBox_Password" Grid.Row="12" Grid.Column="3" PasswordChanged="PasswordChanged" />
+        <PasswordBox x:Name="PassBox_PasswordConfirm" Grid.Row="14" Grid.Column="3" PasswordChanged="PasswordChanged"/>
         <Button x:Name="Btn_Join" Content="Join" Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="4" Margin="180,0,260,0"/>
         <Button x:Name="Btn_Cancel" Content="Cancel" Grid.Row="16" Grid.Column="1" Grid.ColumnSpan="4" Margin="260,0,180,0"/>
         <Label x:Name="Lbl_EmailMatch" Content="" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="8" Grid.Column="4" BorderThickness="1" BorderBrush="LightGray" Margin="5,0,0,0"/>

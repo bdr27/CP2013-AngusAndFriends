@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -17,17 +18,21 @@ namespace CP2013_WordOfMouthGUI
     public partial class App : Application
     {
         private MainWindow window;
-        private IUserController controller;
+        private IStateMachine stateMachine;
+
+        private bool isVolatile;
 
         public App()
             : base()
         {
             window = new MainWindow();
-            controller = new UserController();
+            stateMachine = new StateMachine();
+
+            isVolatile = false;
 
             AssignHandlers();
             window.ResetWindow();
-            ModifyPage(controller.GetSystemState());
+            ModifyPage(stateMachine.GetSystemState());
 
             window.Show();
         }
@@ -67,9 +72,9 @@ namespace CP2013_WordOfMouthGUI
 
         private void CompleteAction(UserActions action)
         {
-            if (controller.SetSystemState(action))
+            if (!isVolatile && stateMachine.SetSystemState(action))
             {
-                ModifyPage(controller.GetSystemState());
+                ModifyPage(stateMachine.GetSystemState());
             }
         }
 
@@ -86,11 +91,39 @@ namespace CP2013_WordOfMouthGUI
         private void HandleBtn_JoinClick(object sender, RoutedEventArgs e)
         {
             CompleteAction(UserActions.JOIN_CLICK);
+            if (!isVolatile && stateMachine.GetSystemState() == StateOfSystem.JOIN_PAGE)
+            {
+
+            }
         }
 
         private void HandleBtn_LogInClick(object sender, RoutedEventArgs e)
         {
             CompleteAction(UserActions.LOGIN_CLICK);
+            if (!isVolatile && stateMachine.GetSystemState() == StateOfSystem.LOGIN_PAGE)
+            {
+                // make thread
+                isVolatile = true;
+                var thread = new Thread(new ThreadStart(loginMethod));
+                thread.Start();
+                // start timer
+            }
+        }
+
+        private void loginMethod()
+        {
+            var i = 5;
+            while (true)
+            {
+                Thread.Sleep(1000);
+                Console.WriteLine("What?");
+                i -= 1;
+                if (i == 0)
+                {
+                    break;
+                }
+            }
+            isVolatile = false;
         }
 
         private void HandleBtn_CancelClick(object sender, RoutedEventArgs e)

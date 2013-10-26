@@ -1,4 +1,5 @@
-﻿using CP2013_WordOfMouthGUI.Interfaces;
+﻿using CP2013_WordOfMouth.DTO;
+using CP2013_WordOfMouthGUI.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +60,11 @@ namespace CP2013_WordOfMouthGUI
         {
             control.IsEnabled = false;
             control.Visibility = Visibility.Hidden;
+        }
+
+        public Login GetLogin()
+        {
+            return new Login(UsrCntrl_LogIn.TxtBox_Email.Text, UsrCntrl_LogIn.PassBox_Password.Password);
         }
     }
 }
