@@ -1,4 +1,5 @@
-﻿using CP2013_WordOfMouthGUI.Interfaces;
+﻿using CP2013_WordOfMouth.DTO;
+using CP2013_WordOfMouthGUI.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,11 @@ namespace CP2013_WordOfMouthGUI.UserControls
         public void AddBtn_JoinHandler(RoutedEventHandler handler)
         {
             Btn_Join.Click += handler;
+        }
+
+        public Login GetLogin()
+        {
+            return new Login(TxtBox_Email.Text, PassBox_Password.Password);
         }
     }
 }

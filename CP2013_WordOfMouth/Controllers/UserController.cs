@@ -54,6 +54,7 @@ namespace CP2013_WordOfMouth.Controllers
                 else
                 {
                     state = StateOfSystem.HOME_PAGE_NLI;
+                    loginStatus = LoginStatus.LOGGED_OUT;
                 }
                 return true;
             }
@@ -61,6 +62,11 @@ namespace CP2013_WordOfMouth.Controllers
             if (state == StateOfSystem.LOGIN_PAGE && action == UserActions.JOIN_CLICK)
             {
                 state = StateOfSystem.JOIN_PAGE;
+                return true;
+            }
+            else if (state == StateOfSystem.LOGIN_PAGE && action == UserActions.LOGIN_CLICK)
+            {
+                state = StateOfSystem.VERIFY_LOGIN;
                 return true;
             }
             else if (state == StateOfSystem.JOIN_PAGE && action == UserActions.JOIN_CLICK)
@@ -83,8 +89,51 @@ namespace CP2013_WordOfMouth.Controllers
                 state = StateOfSystem.JOIN_PAGE;
                 return true;
             }
+            else if (state == StateOfSystem.VERIFY_LOGIN && action == UserActions.SUCCESS)
+            {
+                if (loginStatus == LoginStatus.ADMIN)
+                {
+                    state = StateOfSystem.ADMIN_PAGE;
+                }
+                else if (loginStatus == LoginStatus.USER)
+                {
+                    state = StateOfSystem.APPOINTMENTS_PAGE;
+                }
+                return true;
+            }
+            else if (state == StateOfSystem.VERIFY_LOGIN && action == UserActions.FAILURE)
+            {
+                state = StateOfSystem.LOGIN_PAGE;
+                return true;
+            }
+            else if (state == StateOfSystem.VERIFY_LOGOUT)
+            {
+                state = StateOfSystem.HOME_PAGE_NLI;
+                loginStatus = LoginStatus.LOGGED_OUT;
+            }
 
             return false;
+        }
+
+        public void SetLoginStatus(Session key)
+        {
+            if (key == null)
+            {
+                loginStatus = LoginStatus.LOGGED_OUT;
+            }
+            else if (key.GetAdmin())
+            {
+                loginStatus = LoginStatus.ADMIN;
+            }
+            else
+            {
+                loginStatus = LoginStatus.USER;
+            }
+        }
+
+        public LoginStatus GetLoginStatus()
+        {
+            return loginStatus;
         }
     }
 }

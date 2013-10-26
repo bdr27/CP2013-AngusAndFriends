@@ -1,4 +1,5 @@
 ﻿using CP2013_WordOfMouth.Controllers;
+using CP2013_WordOfMouth.DTO;
 using CP2013_WordOfMouth.Enum;
 using CP2013_WordOfMouth.Gather;
 using CP2013_WordOfMouth.Interface;
@@ -21,6 +22,8 @@ namespace CP2013_WordOfMouthGUI
     {
         private MainWindow window;
         private IStateMachine stateMachine;
+
+        public static Session sessionKey = null;
 
         private bool isVolatile;
 
@@ -58,8 +61,10 @@ namespace CP2013_WordOfMouthGUI
             {
                 case StateOfSystem.HOME_PAGE_NLI:
                     {
-                        window.Btn_LogInOut.Content = "Log In";
                         window.SetPage(window.UsrCntrl_Home);
+                        window.Btn_LogInOut.Content = "Log In";
+                        window.Btn_Admin.IsEnabled = false;
+                        window.Btn_Appointments.IsEnabled = false;
                     } break;
                 case StateOfSystem.LOGIN_PAGE:
                     {
@@ -68,6 +73,26 @@ namespace CP2013_WordOfMouthGUI
                 case StateOfSystem.JOIN_PAGE:
                     {
                         window.SetPage(window.UsrCntrl_Join);
+                    } break;
+                case StateOfSystem.HOME_PAGE_ADMIN:
+                    {
+                        window.SetPage(window.UsrCntrl_Home);
+                    } break;
+                case StateOfSystem.HOME_PAGE_USER:
+                    {
+                        window.SetPage(window.UsrCntrl_Home);
+                    } break;
+                case StateOfSystem.ADMIN_PAGE:
+                    {
+                        window.SetPage(window.UsrCntrl_Admin);
+                        window.Btn_LogInOut.Content = "Log Out";
+                        window.Btn_Admin.IsEnabled = true;
+                    } break;
+                case StateOfSystem.APPOINTMENTS_PAGE:
+                    {
+                        window.SetPage(window.UsrCntrl_MyApps);
+                        window.Btn_LogInOut.Content = "Log Out";
+                        window.Btn_Appointments.IsEnabled = true;
                     } break;
             }
         }
@@ -88,6 +113,10 @@ namespace CP2013_WordOfMouthGUI
         private void HandleBtn_LogInOutClick(object sender, RoutedEventArgs e)
         {
             CompleteAction(UserActions.LOGIN_LOGOUT_CLICK);
+            if (stateMachine.GetLoginStatus() == LoginStatus.LOGGED_OUT && sessionKey != null)
+            {
+                sessionKey = null;
+            }
         }
 
         private void HandleBtn_JoinClick(object sender, RoutedEventArgs e)
@@ -126,7 +155,6 @@ namespace CP2013_WordOfMouthGUI
             }
         }
 
-
         //This will be the thread
         private string Response(TemplateJson tj, IRequestResponse irr, object o)
         {
@@ -137,31 +165,33 @@ namespace CP2013_WordOfMouthGUI
 
         private void HandleBtn_LogInClick(object sender, RoutedEventArgs e)
         {
-            CompleteAction(UserActions.LOGIN_CLICK);
             if (!isVolatile && stateMachine.GetSystemState() == StateOfSystem.LOGIN_PAGE)
             {
-                // make thread
+                CompleteAction(UserActions.LOGIN_CLICK);
                 isVolatile = true;
-                var thread = new Thread(new ThreadStart(loginMethod));
-                thread.Start();
-                // start timer
-            }
-        }
-
-        private void loginMethod()
-        {
-            var i = 5;
-            while (true)
-            {
-                Thread.Sleep(1000);
-                Console.WriteLine("What?");
-                i -= 1;
-                if (i == 0)
+                var login = window.UsrCntrl_LogIn.GetLogin();
+                var response = Response(new JsonLogin(), new HttpPostLogin(), login);
+                isVolatile = false;
+                var sessionJson = new JsonSession();
+                try
                 {
-                    break;
+                    sessionKey = sessionJson.GetObject(response) as Session;
+                    stateMachine.SetLoginStatus(sessionKey);
+                    stateMachine.SetSystemState(UserActions.SUCCESS);
                 }
+                catch (Exception ex)
+                {
+                    sessionKey = null;
+                    stateMachine.SetLoginStatus(sessionKey);
+                    stateMachine.SetSystemState(UserActions.FAILURE);
+                    MessageBox.Show(response);
+                }
+                ModifyPage(stateMachine.GetSystemState());
             }
-            isVolatile = false;
+            else
+            {
+                CompleteAction(UserActions.LOGIN_CLICK);
+            }
         }
 
         private void HandleBtn_CancelClick(object sender, RoutedEventArgs e)

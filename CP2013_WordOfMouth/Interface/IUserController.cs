@@ -1,4 +1,5 @@
-﻿using CP2013_WordOfMouth.Enum;
+﻿using CP2013_WordOfMouth.DTO;
+using CP2013_WordOfMouth.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,9 @@ namespace CP2013_WordOfMouth.Interface
         StateOfSystem GetSystemState();
 
         bool SetSystemState(UserActions action);
+
+        void SetLoginStatus(Session key);
+
+        LoginStatus GetLoginStatus();
     }
 }
