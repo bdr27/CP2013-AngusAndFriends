@@ -1,6 +1,8 @@
 ﻿using CP2013_WordOfMouth.Controllers;
 using CP2013_WordOfMouth.Enum;
+using CP2013_WordOfMouth.Gather;
 using CP2013_WordOfMouth.Interface;
+using CP2013_WordOfMouth.JSON;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -90,11 +92,45 @@ namespace CP2013_WordOfMouthGUI
 
         private void HandleBtn_JoinClick(object sender, RoutedEventArgs e)
         {
-            CompleteAction(UserActions.JOIN_CLICK);
             if (!isVolatile && stateMachine.GetSystemState() == StateOfSystem.JOIN_PAGE)
             {
+                CompleteAction(UserActions.JOIN_CLICK);
+                isVolatile = true;
+                //I sign up here right? YES stop asking me that.
+                var signup = window.UsrCntrl_Join.GetSignUp();
+                var response = Response(new JsonSignUp(), new HttpPostSignUp(), signup);
+                isVolatile = false;
+                if (response.Equals(""))
+                {
+                    stateMachine.SetSystemState(UserActions.SUCCESS);
+                }
+                else
+                {
+                    stateMachine.SetSystemState(UserActions.FAILURE);
+                }
 
+                ModifyPage(stateMachine.GetSystemState());
+
+                if (response.Equals(""))
+                {
+                    MessageBox.Show("You have successfully signed up!");
+                }
+                else
+                {
+                    MessageBox.Show(response);
+                }
             }
+            else
+            {
+                CompleteAction(UserActions.JOIN_CLICK);
+            }
+        }
+
+        private string Response(TemplateJson tj, IRequestResponse irr, object o)
+        {
+            var json = tj.GetJson(o);
+            irr.SendRequest(json);
+            return irr.GetResponse();
         }
 
         private void HandleBtn_LogInClick(object sender, RoutedEventArgs e)

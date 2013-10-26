@@ -13,6 +13,7 @@ namespace CP2013_WordOfMouth.Utility
         private static string dentist = "get/dentist/";
         private static string deleteDentist = "/delete/dentist/";
         private static string login = "/secure/login";
+        private static string signUp = "/secure/signup";
 
         public static string GetUrlBase()
         {
@@ -37,6 +38,11 @@ namespace CP2013_WordOfMouth.Utility
         public static string GetLogin()
         {
             return login;
+        }
+
+        public static string GetSignUp()
+        {
+            return signUp;
         }
     }
 }

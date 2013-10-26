@@ -61,6 +61,7 @@
     <Compile Include="Gather\HttpGetDentist.cs" />
     <Compile Include="Gather\HttpPostLogin.cs" />
     <Compile Include="Gather\HttpPostDeleteDentist.cs" />
+    <Compile Include="Gather\HttpPostSignUp.cs" />
     <Compile Include="Gather\IRequestResponse.cs" />
     <Compile Include="Interface\IUserController.cs" />
     <Compile Include="JSON\ConverterDentist.cs" />

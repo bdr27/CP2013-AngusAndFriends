@@ -63,9 +63,24 @@ namespace CP2013_WordOfMouth.Controllers
                 state = StateOfSystem.JOIN_PAGE;
                 return true;
             }
+            else if (state == StateOfSystem.JOIN_PAGE && action == UserActions.JOIN_CLICK)
+            {
+                state = StateOfSystem.VERIFY_JOIN;
+                return true;
+            }
             else if (state == StateOfSystem.JOIN_PAGE && action == UserActions.CANCEL_CLICK)
             {
                 state = StateOfSystem.LOGIN_PAGE;
+                return true;
+            }
+            else if (state == StateOfSystem.VERIFY_JOIN && action == UserActions.SUCCESS)
+            {
+                state = StateOfSystem.LOGIN_PAGE;
+                return true;
+            }
+            else if (state == StateOfSystem.VERIFY_JOIN && action == UserActions.FAILURE)
+            {
+                state = StateOfSystem.JOIN_PAGE;
                 return true;
             }
 

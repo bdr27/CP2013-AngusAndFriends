@@ -1,4 +1,5 @@
-﻿using CP2013_WordOfMouthGUI.Interfaces;
+﻿using CP2013_WordOfMouth.DTO;
+using CP2013_WordOfMouthGUI.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -147,6 +148,12 @@ namespace CP2013_WordOfMouthGUI.UserControls
                 Lbl_EmailMatch.Foreground = Brushes.Red;
                 Lbl_EmailMatch.Content = "Email Not Valid";
             }
+        }
+
+        public SignUp GetSignUp()
+        {
+            return new SignUp(TxtBox_Email.Text, PassBox_Password.Password,TxtBox_EmailConfirm.Text, 
+                PassBox_PasswordConfirm.Password, TxtBox_Mobile.Text, TxtBox_FirstName.Text, TxtBox_LastName.Text);
         }
     }
 }
