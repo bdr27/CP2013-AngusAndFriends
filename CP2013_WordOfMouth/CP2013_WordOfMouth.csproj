@@ -47,9 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DTO\Dentist.cs" />
     <Compile Include="DTO\TimeSlot.cs" />
     <Compile Include="Enum\AppointmentType.cs" />
+    <Compile Include="Enum\LoginStatus.cs" />
+    <Compile Include="Enum\StateOfSystem.cs" />
+    <Compile Include="Enum\UserActions.cs" />
     <Compile Include="Enum\UserType.cs" />
     <Compile Include="Exceptions\InvalidJsonException.cs" />
     <Compile Include="Exceptions\InvalidObjectException.cs" />
@@ -58,6 +62,7 @@
     <Compile Include="Gather\HttpPostLogin.cs" />
     <Compile Include="Gather\HttpPostDeleteDentist.cs" />
     <Compile Include="Gather\IRequestResponse.cs" />
+    <Compile Include="Interface\IUserController.cs" />
     <Compile Include="JSON\ConverterDentist.cs" />
     <Compile Include="JSON\JsonAllDesntits.cs" />
     <Compile Include="JSON\JsonAppointment.cs" />
@@ -88,7 +93,6 @@
     <Compile Include="MOCK\MOCKFileHandler.cs" />
     <Compile Include="MOCK\MOCKUser.cs" />
     <Compile Include="Interface\User.cs" />
-    <Compile Include="Utility\RequestType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

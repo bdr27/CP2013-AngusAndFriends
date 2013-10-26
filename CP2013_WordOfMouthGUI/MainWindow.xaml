@@ -27,10 +27,10 @@
         <Rectangle Fill="LightGray" Grid.ColumnSpan="11" Grid.RowSpan="3"/>
         <Rectangle Fill="Gray" Grid.ColumnSpan="11" Grid.Row="3"/>
         <Button x:Name="Btn_Home" Content="Home" FontSize="20" FontWeight="Bold" Grid.Row="1" Grid.Column="1"/>
-        <Button x:Name="Btn_Appointments" Content="Appointments" IsEnabled="False" Visibility="Hidden" FontSize="20" FontWeight="Bold" Grid.Row="1" Grid.Column="3"/>
-        <Button x:Name="Btn_Admin"  Content="Admin" IsEnabled="False" Visibility="Hidden" FontSize="20" FontWeight="Bold" Grid.Row="1" Grid.Column="5"/>
+        <Button x:Name="Btn_Appointments" Content="Appointments" IsEnabled="False" FontSize="20" FontWeight="Bold" Grid.Row="1" Grid.Column="3"/>
+        <Button x:Name="Btn_Admin"  Content="Admin" IsEnabled="False" FontSize="20" FontWeight="Bold" Grid.Row="1" Grid.Column="5"/>
         <Label x:Name="Lbl_LogInDetails" Grid.Row="1" Grid.Column="7" BorderThickness="1" BorderBrush="LightGray"/>
-        <Button x:Name="Btn_LogIn" Content="Log In" FontSize="20" FontWeight="Bold" Grid.Row="1" Grid.Column="9"/>
+        <Button x:Name="Btn_LogInOut" Content="Log In" FontSize="20" FontWeight="Bold" Grid.Row="1" Grid.Column="9"/>
         <local:HomeControl x:Name="UsrCntrl_Home"  Grid.Row="4" Grid.ColumnSpan="11"/>
         <local:LogInControl x:Name="UsrCntrl_LogIn" Grid.Row="4" Grid.ColumnSpan="11" IsEnabled="False" Visibility ="Hidden"/>
         <local:JoinControl x:Name="UsrCntrl_Join" Grid.Row="4" Grid.ColumnSpan="11" IsEnabled="False" Visibility="Hidden"/>

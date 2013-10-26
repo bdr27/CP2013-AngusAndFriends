@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Interfaces\IControl.cs" />
     <Compile Include="UserControls\AddAppointmentTypeControl.xaml.cs">
       <DependentUpon>AddAppointmentTypeControl.xaml</DependentUpon>
     </Compile>
@@ -181,6 +182,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\hJbm6G2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CP2013_WordOfMouth\CP2013_WordOfMouth.csproj">
+      <Project>{0478174d-772d-4941-b70c-a9b21dbb7649}</Project>
+      <Name>CP2013_WordOfMouth</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

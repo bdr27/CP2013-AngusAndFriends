@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CP2013_WordOfMouthGUI.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,41 @@ namespace CP2013_WordOfMouthGUI
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        public void ResetWindow()
+        {
+            Btn_Home.IsEnabled = true;
+            Btn_LogInOut.IsEnabled = true;
+            Btn_Appointments.IsEnabled = false;
+            Btn_Admin.IsEnabled = false;
+
+            DisablePage(UsrCntrl_Home);
+            DisablePage(UsrCntrl_Join);
+            DisablePage(UsrCntrl_LogIn);
+        }
+
+        public void AddBtn_HomeHandler(RoutedEventHandler handler)
+        {
+            Btn_Home.Click += handler;
+        }
+
+        public void AddBtn_LogInOutHandler(RoutedEventHandler handler)
+        {
+            Btn_LogInOut.Click += handler;
+        }
+
+        public void SetPage(UserControl control)
+        {
+            control.IsEnabled = true;
+            control.Visibility = Visibility.Visible;
+            ((IControl) control).Reset();
+        }
+
+        private void DisablePage(UserControl control)
+        {
+            control.IsEnabled = false;
+            control.Visibility = Visibility.Hidden;
         }
     }
 }

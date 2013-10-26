@@ -16,13 +16,14 @@ namespace CP2013_WordOfMouth.Enum
         JOIN_FAIL_PAGE,
 
         // User is logged in and is not an admin states
-        HOME_PAGE_LI,
+        HOME_PAGE_USER,
         APPOINTMENTS_PAGE,
         APPOINTMENTS_FAIL_PAGE,
         CREATE_APPOINT_PAGE,
         CREATE_APPOINT_FAIL_PAGE,
 
         // Admin states
+        HOME_PAGE_ADMIN,
         ADMIN_PAGE,
         ADD_DENTIST_PAGE,
         ADD_DENTIST_SUCCESS_PAGE,
