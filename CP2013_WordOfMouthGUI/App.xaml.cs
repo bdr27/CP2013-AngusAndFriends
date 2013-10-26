@@ -22,8 +22,9 @@ namespace CP2013_WordOfMouthGUI
     {
         private MainWindow window;
         private IStateMachine stateMachine;
-
-        public static Session sessionKey = null;
+        private Session sessionKey = null;
+        private Thread sessionThread;
+        private System.Timers.Timer timeoutTimer;
 
         private bool isVolatile;
 
@@ -178,6 +179,7 @@ namespace CP2013_WordOfMouthGUI
                     sessionKey = sessionJson.GetObject(response) as Session;
                     stateMachine.SetLoginStatus(sessionKey);
                     stateMachine.SetSystemState(UserActions.SUCCESS);
+                    LauchThread();
                 }
                 catch (Exception ex)
                 {
@@ -192,6 +194,44 @@ namespace CP2013_WordOfMouthGUI
             {
                 CompleteAction(UserActions.LOGIN_CLICK);
             }
+        }
+
+        private void LauchThread()
+        {
+            sessionThread = new Thread(SessionThread_Run);
+            sessionThread.IsBackground = true;            
+            sessionThread.Start();            
+        }
+
+        private void SessionThread_Run()
+        {
+            while (true)
+            {
+                timeoutTimer = new System.Timers.Timer(5000);
+                timeoutTimer.Elapsed += new System.Timers.ElapsedEventHandler(TimeoutTimer_Tick);
+                timeoutTimer.Enabled = true;
+                var response = Response(new JsonSession(), new HttpPostSession(), sessionKey).ToLower();
+                if(response.Equals("ok"))
+                {
+                    timeoutTimer.Enabled = false;
+                }
+                Thread.Sleep(10000);
+            }
+        }
+
+        private void TimeoutTimer_Tick(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            //I am a time :P
+            sessionThread = null;
+            sessionKey = null;
+            timeoutTimer.Enabled = false;
+            MessageBox.Show("You have been logged out");
+            stateMachine.SetLoginStatus(sessionKey);
+            stateMachine.SetSystemState(UserActions.HOME_CLICK);
+            Dispatcher.Invoke(() =>
+            {
+                ModifyPage(stateMachine.GetSystemState());
+            });
         }
 
         private void HandleBtn_CancelClick(object sender, RoutedEventArgs e)

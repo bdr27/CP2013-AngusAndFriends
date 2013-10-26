@@ -14,6 +14,7 @@ namespace CP2013_WordOfMouth.Utility
         private static string deleteDentist = "/delete/dentist/";
         private static string login = "/secure/login";
         private static string signUp = "/secure/signup";
+        private static string poll = "/secure/poll";
 
         public static string GetUrlBase()
         {
@@ -43,6 +44,11 @@ namespace CP2013_WordOfMouth.Utility
         public static string GetSignUp()
         {
             return signUp;
+        }
+
+        public static string GetPoll()
+        {
+            return poll;
         }
     }
 }
