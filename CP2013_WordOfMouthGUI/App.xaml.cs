@@ -13,5 +13,16 @@ namespace CP2013_WordOfMouthGUI
     /// </summary>
     public partial class App : Application
     {
+        private MainWindow window;
+
+        public App()
+            : base()
+        {
+            window = new MainWindow();
+
+
+
+            window.Show();
+        }
     }
 }

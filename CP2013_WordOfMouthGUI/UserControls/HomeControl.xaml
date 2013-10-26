@@ -1,5 +1,5 @@
-﻿<UserControl x:Class="CP2013_WordOfMouthGUI.HomeControl"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl x:Class="CP2013_WordOfMouthGUI.UserControls.HomeControl"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
@@ -31,6 +31,6 @@
         <Label Content="About Us" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="20" Grid.Row="4" Grid.Column="1" />
         <Label Content="Contact/Find Us" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="20" Grid.Row="4" Grid.Column="3" />
         <Rectangle Fill="LightGray" Grid.Row="4" Grid.Column="2" Grid.RowSpan="2"/>
-        
+
     </Grid>
 </UserControl>
