@@ -28,11 +28,11 @@ namespace CP2013_WordOfMouth.JSON
 
         private class SessionConvert
         {
-            public int seshID { get; set; }
+            public long seshID { get; set; }
             public string user_name { get; set; }
             public bool admin { get; set; }
 
-            public SessionConvert(int seshID, string user_name, bool admin)
+            public SessionConvert(long seshID, string user_name, bool admin)
             {
                 this.seshID = seshID;
                 this.user_name = user_name;

@@ -8,18 +8,18 @@ namespace CP2013_WordOfMouth.DTO
 {
     public class Session
     {
-        private int sessionID;
+        private long sessionID;
         private string username;
         private bool admin;
 
-        public Session(int sessionID, string username, bool admin)
+        public Session(long sessionID, string username, bool admin)
         {
             this.sessionID = sessionID;
             this.username = username;
             this.admin = admin;
         }
-        
-        public int GetSessionID()
+
+        public long GetSessionID()
         {
             return sessionID;
         }

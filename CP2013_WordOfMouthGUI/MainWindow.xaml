@@ -34,5 +34,7 @@
         <local:HomeControl x:Name="UsrCntrl_Home"  Grid.Row="4" Grid.ColumnSpan="11"/>
         <local:LogInControl x:Name="UsrCntrl_LogIn" Grid.Row="4" Grid.ColumnSpan="11" IsEnabled="False" Visibility ="Hidden"/>
         <local:JoinControl x:Name="UsrCntrl_Join" Grid.Row="4" Grid.ColumnSpan="11" IsEnabled="False" Visibility="Hidden"/>
+        
+        <local:PleaseWaitControl x:Name="UsrCntrl_PleaseWait" Grid.Row="4" Grid.ColumnSpan="11" IsEnabled="False" Visibility="Hidden"/>
     </Grid>
 </Window>

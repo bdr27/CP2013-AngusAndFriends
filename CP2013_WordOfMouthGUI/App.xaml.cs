@@ -126,6 +126,8 @@ namespace CP2013_WordOfMouthGUI
             }
         }
 
+
+        //This will be the thread
         private string Response(TemplateJson tj, IRequestResponse irr, object o)
         {
             var json = tj.GetJson(o);
