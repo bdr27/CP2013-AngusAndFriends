@@ -164,6 +164,7 @@ namespace CP2013_WordOfMouthGUI.UserControls
                     {
                         while (!startTime.Equals(time.ToString()))
                         {
+                            Console.WriteLine(startTime);
                             listofcontrols.ElementAt(i).Items.Add("-");
                             startTime = GetNextTimeSlot(startTime);
                             if (startTime.Equals(endTime))
@@ -177,6 +178,15 @@ namespace CP2013_WordOfMouthGUI.UserControls
                         {
                             break;
                         }
+                    }
+                }
+                while (!startTime.Equals(endTime))
+                {
+                    listofcontrols.ElementAt(i).Items.Add("-");
+                    startTime = GetNextTimeSlot(startTime);
+                    if (startTime.Equals(endTime))
+                    {
+                        break;
                     }
                 }
             }
@@ -197,7 +207,12 @@ namespace CP2013_WordOfMouthGUI.UserControls
             Int32.TryParse(time.Split(':')[1], out minutes);
 
             var mins = minutes + 30;
-            var hrs = minutes >= 60 ? hours + 1 : hours;
+            var hrs = hours;
+            if (mins > 59)
+            {
+                mins = mins - 60;
+                hrs = hours + 1;
+            }
             var retTime = hrs + ":";
             if (mins < 10)
                 retTime += "0" + mins;
