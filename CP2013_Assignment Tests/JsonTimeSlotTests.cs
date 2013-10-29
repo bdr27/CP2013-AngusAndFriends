@@ -19,7 +19,7 @@ namespace CP2013_WordOfMouth_Tests
         [TestMethod]
         public void JsonAppointmentObjectToJsonTest()
         {
-            TemplateJson tl = new JsonTimeSlot();
+            TemplateJson tl = new JsonEveryTimeSlot();
             var json = tl.GetJson(new TimeSlot(id, dentist, hour, min, day));
             Assert.AreEqual(correctJson, json);
         }
@@ -27,7 +27,7 @@ namespace CP2013_WordOfMouth_Tests
         [TestMethod]
         public void JsonAppointmentJsonToObjectTest()
         {
-            TemplateJson tl = new JsonTimeSlot();
+            TemplateJson tl = new JsonEveryTimeSlot();
             var o = tl.GetObject(correctJson) as TimeSlot;
             Assert.AreEqual(id, o.GetID());
             var od = o.GetDentist();
@@ -45,7 +45,7 @@ namespace CP2013_WordOfMouth_Tests
         public void JsonAppointmentObjectToJsonInvalidTest()
         {
             bool exception = false;
-            TemplateJson tl = new JsonTimeSlot();
+            TemplateJson tl = new JsonEveryTimeSlot();
             try
             {
                 var json = tl.GetJson("I am the wrong object");
@@ -63,7 +63,7 @@ namespace CP2013_WordOfMouth_Tests
         {
             bool exception = false;
             var incorrect = "{\"emails\":\"test.user@domain.com\",\"password\":\"Password\"}";
-            TemplateJson tl = new JsonTimeSlot();
+            TemplateJson tl = new JsonEveryTimeSlot();
             try
             {
                 var o = tl.GetObject(incorrect) as TimeSlot;

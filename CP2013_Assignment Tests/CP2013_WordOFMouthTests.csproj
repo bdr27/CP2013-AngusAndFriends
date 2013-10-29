@@ -60,6 +60,7 @@
     <Compile Include="JsonDentistTests.cs" />
     <Compile Include="JsonTimeSlotTests.cs" />
     <Compile Include="JsonAllDentistsTests.cs" />
+    <Compile Include="JsonDentistTimeSlotTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CP2013_WordOfMouth\CP2013_WordOfMouth.csproj">

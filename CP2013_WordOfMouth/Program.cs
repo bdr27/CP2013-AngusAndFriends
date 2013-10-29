@@ -26,9 +26,12 @@ namespace CP2013_WordOfMouth
             var json = new JsonLogin().GetJson(Login);
             var something = PostRequests(new HttpPostLogin(), json);
             var newSession = new JsonSession().GetObject(something) as Session;
-            GetRequests(new HttpGetAllDentist(), new JsonAllDentists(), "");
+            var dentistser = GetRequests(new HttpGetAllDentist(), new JsonAllDentists(), "") as List<Dentist>;
+            
             GetRequests(new HttpGetDentist(), new JsonDentist(), 1.ToString());
             GetRequests(new HttpGetAppointments(), new JsonAppointments(), newSession.GetSessionID().ToString());
+            var timeSlots = GetRequests(new HttpGetDentistTimeSlots(), new JsonDentistTimeSlots(), dentistser[0].GetID().ToString());
+
             //var Login = new Login("test.user@domain.com", "Password");
             //var json = new JsonLogin().GetJson(Login);
 
@@ -39,7 +42,7 @@ namespace CP2013_WordOfMouth
             var session = rr.Login(login);
             var dentists = rr.GetAllDentists();
             var dentist = rr.GetDentist(dentists[0].id);
-            var timeSlots = rr.GetAllTimeSlots();
+           // var timeSlots = rr.GetAllTimeSlots();
 
             Console.WriteLine(timeSlots);
             rr.GetTimeSlotsForDentist(dentists[0].id);
@@ -68,11 +71,11 @@ namespace CP2013_WordOfMouth
             #endregion
         }
 
-        private static void GetRequests(IRequestResponse irr, TemplateJson ts, string message)
+        private static object GetRequests(IRequestResponse irr, TemplateJson ts, string message)
         {
             irr.SendRequest(message);
             var json = irr.GetResponse();
-            var objects = ts.GetObject(json);
+            return ts.GetObject(json);
         }
 
         private static string PostRequests(IRequestResponse irr, string message)

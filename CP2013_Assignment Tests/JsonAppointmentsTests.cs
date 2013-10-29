@@ -19,8 +19,8 @@ namespace CP2013_WordOfMouth_Tests
         private Dentist den;
         private long ed;
         private Appointment app;
-        private string testJson = "{\"id\":1,\"type\":{\"id\":1,\"description\":\"Check Up\",\"cost\":50.0},\"timeSlot\":{\"id\":19,\"dentist\":{\"id\":1,\"name\":\"Dr. Smile\",\"email\":\"smile@wordofmouth.com\",\"phone\":\"04 2977 9888\"},\"hour\":9,\"minute\":0,\"day\":3},\"expectedDate\":1383184800861}";
-        private string correctJson = "{\"id\":1,\"type\":{\"id\":1,\"description\":\"Check Up\",\"cost\":50.0},\"timeSlot\":{\"id\":19,\"dentist\":{\"id\":1,\"name\":\"Dr. Smile\",\"email\":\"smile@wordofmouth.com\",\"phone\":\"04 2977 9888\"},\"hour\":9,\"minute\":0,\"day\":3},\"expectedDate\":1383346800000}";
+        private string testJson = "{\"id\":1,\"type\":{\"id\":1,\"description\":\"Check Up\",\"cost\":50.0},\"timeSlot\":{\"id\":19,\"dentist\":{\"id\":1,\"name\":\"Dr. Smile\",\"email\":\"smile@wordofmouth.com\",\"phone\":\"04 2977 9888\"},\"hour\":9,\"minute\":0,\"day\":3},\"expectedDate\":1383346800000}";
+        private string correctJson = "[{\"id\":1,\"type\":{\"id\":1,\"description\":\"Check Up\",\"cost\":50.0},\"timeSlot\":{\"id\":19,\"dentist\":{\"id\":1,\"name\":\"Dr. Smile\",\"email\":\"smile@wordofmouth.com\",\"phone\":\"04 2977 9888\"},\"hour\":9,\"minute\":0,\"day\":3},\"expectedDate\":1383346800000}]";
 
         public JsonAppointmentsTests()
         {
@@ -37,16 +37,16 @@ namespace CP2013_WordOfMouth_Tests
         {
             TemplateJson tl = new JsonAppointments();
             var json = tl.GetJson(app);
-            Assert.AreEqual(correctJson, json);
+            Assert.AreEqual(testJson, json);
         }
 
         [TestMethod]
         public void JsonAppointmentsJsonToObjectTest()
         {
             TemplateJson tl = new JsonAppointments();
-            var o = tl.GetObject(correctJson) as Appointment;
-            Assert.AreEqual(idJson, o.GetID());
-            Assert.AreEqual(ed, o.GetExpectedDate());
+            var o = tl.GetObject(correctJson) as List<Appointment>;
+            Assert.AreEqual(idJson, o[0].GetID());
+            Assert.AreEqual(ed, o[0].GetExpectedDate());
         }
 
         [TestMethod]
@@ -74,9 +74,9 @@ namespace CP2013_WordOfMouth_Tests
             TemplateJson tl = new JsonAppointments();
             try
             {
-                var o = tl.GetObject(incorrect) as Appointment;
+                var o = tl.GetObject(incorrect) as List<Appointment>;
             }
-            catch (InvalidLoginJsonException)
+            catch (Exception)
             {
                 exception = true;
             }

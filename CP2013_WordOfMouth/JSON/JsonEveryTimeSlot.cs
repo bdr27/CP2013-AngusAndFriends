@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CP2013_WordOfMouth.JSON
 {
-    public class JsonTimeSlot : TemplateJson
+    public class JsonEveryTimeSlot : TemplateJson
     {
         public override string GetJson(object o)
         {
