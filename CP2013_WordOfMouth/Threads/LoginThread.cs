@@ -1,4 +1,5 @@
-﻿using CP2013_WordOfMouth.Enum;
+﻿using CP2013_WordOfMouth.DTO;
+using CP2013_WordOfMouth.Enum;
 using CP2013_WordOfMouth.Gather;
 using CP2013_WordOfMouth.JSON;
 using System;
@@ -9,13 +10,15 @@ using System.Threading.Tasks;
 
 namespace CP2013_WordOfMouth.Threads
 {
-    public class JoinThread : ThreadTemplate
+    public class LoginThread : ThreadTemplate
     {
-        public JoinThread(int timerAmount, object o)
+        private Session sessionKey;
+
+        public LoginThread(int timerAmount, object o)
             : base(timerAmount, o)
         {
-            acceptedResponse = "http://cdn.theatlantic.com/static/mt/assets/international/mission%20accomplished%20banner%2023423423.jpg";
-            successMessage = "You have successfully joined! :)";
+            acceptedResponse = "Good Response";
+            successMessage = "You have successfully logged in! :)";
             failureMessage = "Oops! Something went wrong, try again. :(";
             timeoutMessage = "Your request has timed out, please try again. :(";
         }
@@ -24,17 +27,20 @@ namespace CP2013_WordOfMouth.Threads
         {
             try
             {
-                var response = Response(new JsonSignUp(), new HttpPostSignUp(), information);
-                ThreadComplete(response);
+                var response = Response(new JsonLogin(), new HttpPostLogin(), information);
+                var sessionJson = new JsonSession();
+                sessionKey = sessionJson.GetObject(response) as Session;
+                ThreadComplete(acceptedResponse);
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.StackTrace);
-                ThreadComplete("Exception occurred.");
+                sessionKey = null;
+                ThreadComplete("Bad Response");
             }
         }
 
-        protected override void CreateEvent(Enum.UserActions action, CompleteType type)
+        protected override void CreateEvent(UserActions action, CompleteType type)
         {
             var args = new RequestCompleteArgs();
             args.Action = action;
@@ -45,8 +51,9 @@ namespace CP2013_WordOfMouth.Threads
             if (type == CompleteType.THREAD && action == UserActions.SUCCESS)
             {
                 args.Response = successMessage;
-                args.DisplayResponse = true;
                 args.RefreshUI = true;
+                args.LoggedIn = true;
+                args.SessionID = sessionKey;
             }
             else if (type == CompleteType.THREAD && action == UserActions.FAILURE)
             {

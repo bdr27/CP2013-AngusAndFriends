@@ -172,7 +172,15 @@ namespace CP2013_WordOfMouthGUI
         {
             Dispatcher.Invoke(() =>
             {
+                if (e.LoggedIn)
+                {
+                    stateMachine.SetLoginStatus(e.SessionID);
+                    sessionKey = e.SessionID;
+                    LauchThread();
+                }
+
                 stateMachine.SetSystemState(e.Action);
+
                 if (e.RefreshUI)
                 {
                     ModifyPage(stateMachine.GetSystemState());
@@ -195,35 +203,23 @@ namespace CP2013_WordOfMouthGUI
 
         private void HandleBtn_LogInClick(object sender, RoutedEventArgs e)
         {
-            if (!isVolatile && stateMachine.GetSystemState() == StateOfSystem.LOGIN_PAGE)
+            if (stateMachine.GetSystemState() == StateOfSystem.LOGIN_PAGE)
             {
-                CompleteAction(UserActions.LOGIN_CLICK);
-                isVolatile = true;
+                stateMachine.SetSystemState(UserActions.LOGIN_CLICK);
                 var login = window.UsrCntrl_LogIn.GetLogin();
-                var response = Response(new JsonLogin(), new HttpPostLogin(), login);
-                isVolatile = false;
-                var sessionJson = new JsonSession();
-                try
-                {
-                    sessionKey = sessionJson.GetObject(response) as Session;
-                    stateMachine.SetLoginStatus(sessionKey);
-                    stateMachine.SetSystemState(UserActions.SUCCESS);
-                    LauchThread();
-                }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine(ex.StackTrace);
-                    sessionKey = null;
-                    stateMachine.SetLoginStatus(sessionKey);
-                    stateMachine.SetSystemState(UserActions.FAILURE);
-                    MessageBox.Show(response);
-                }
-                ModifyPage(stateMachine.GetSystemState());
+                var thread = new LoginThread(5000, login);
+                thread.eventHandler += HandleRequestComplete;
+                thread.Start();
             }
             else
             {
                 CompleteAction(UserActions.LOGIN_CLICK);
             }
+        }
+
+        private void HandleBtn_CancelClick(object sender, RoutedEventArgs e)
+        {
+            CompleteAction(UserActions.CANCEL_CLICK);
         }
 
         private void LauchThread()
@@ -270,11 +266,6 @@ namespace CP2013_WordOfMouthGUI
             {
                 ModifyPage(stateMachine.GetSystemState());
             });
-        }
-
-        private void HandleBtn_CancelClick(object sender, RoutedEventArgs e)
-        {
-            CompleteAction(UserActions.CANCEL_CLICK);
         }
     }
 }

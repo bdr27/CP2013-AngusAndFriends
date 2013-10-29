@@ -1,4 +1,5 @@
-﻿using CP2013_WordOfMouth.Enum;
+﻿using CP2013_WordOfMouth.DTO;
+using CP2013_WordOfMouth.Enum;
 using CP2013_WordOfMouth.Gather;
 using CP2013_WordOfMouth.JSON;
 using System;
@@ -93,6 +94,8 @@ namespace CP2013_WordOfMouth.Threads
         public String Response { get; set; }
         public bool DisplayResponse { get; set; }
         public bool RefreshUI { get; set; }
+        public Session SessionID { get; set; }
+        public bool LoggedIn { get; set; }
     }
 
     public delegate void RequestEventHandler(object sender, RequestCompleteArgs e);
