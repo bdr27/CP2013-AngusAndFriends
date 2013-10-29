@@ -27,7 +27,7 @@ namespace CP2013_WordOfMouth.Threads
         {
             try
             {
-                var response = Response(new JsonLogin(), new HttpPostLogin(), information);
+                var response = ResponsePost(new JsonLogin(), new HttpPostLogin(), information);
                 var sessionJson = new JsonSession();
                 sessionKey = sessionJson.GetObject(response) as Session;
                 ThreadComplete(acceptedResponse);

@@ -15,6 +15,7 @@ namespace CP2013_WordOfMouth.Utility
         private static string login = "/secure/login";
         private static string signUp = "/secure/signup";
         private static string poll = "/secure/poll";
+        private static string appointments = "/get/bookings/for/";
 
         public static string GetUrlBase()
         {
@@ -49,6 +50,11 @@ namespace CP2013_WordOfMouth.Utility
         public static string GetPoll()
         {
             return poll;
+        }
+
+        internal static string GetAppointments()
+        {
+            throw new NotImplementedException();
         }
     }
 }

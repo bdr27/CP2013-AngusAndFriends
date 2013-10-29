@@ -48,10 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="DTO\Appointment.cs" />
     <Compile Include="DTO\Dentist.cs" />
     <Compile Include="DTO\TimeSlot.cs" />
     <Compile Include="Enum\AppointmentType.cs" />
     <Compile Include="Enum\LoginStatus.cs" />
+    <Compile Include="Enum\RequestReturnType.cs" />
     <Compile Include="Enum\StateOfSystem.cs" />
     <Compile Include="Enum\UserActions.cs" />
     <Compile Include="Enum\UserType.cs" />
@@ -65,16 +67,21 @@
     <Compile Include="Gather\HttpPostSignUp.cs" />
     <Compile Include="Gather\IRequestResponse.cs" />
     <Compile Include="Interface\IUserController.cs" />
+    <Compile Include="JSON\ConverterAppointment.cs" />
+    <Compile Include="JSON\ConverterAppointmentType.cs" />
     <Compile Include="JSON\ConverterDentist.cs" />
+    <Compile Include="JSON\ConverterTimeSlot.cs" />
     <Compile Include="JSON\JsonAllDesntits.cs" />
-    <Compile Include="JSON\JsonAppointment.cs" />
+    <Compile Include="JSON\JsonAppointments.cs" />
+    <Compile Include="JSON\JsonAppointmentType.cs" />
     <Compile Include="JSON\JsonDentist.cs" />
     <Compile Include="JSON\JsonLogin.cs" />
     <Compile Include="JSON\JsonSession.cs" />
     <Compile Include="JSON\JsonSignUp.cs" />
     <Compile Include="JSON\JsonTimeSlot.cs" />
     <Compile Include="JSON\TemplateJson.cs" />
-    <Compile Include="DTO\Appointment.cs" />
+    <Compile Include="DTO\AppointmentType.cs" />
+    <Compile Include="Threads\GetUserAppointments.cs" />
     <Compile Include="Threads\JoinThread.cs" />
     <Compile Include="Threads\LoginThread.cs" />
     <Compile Include="Threads\ThreadTemplate.cs" />

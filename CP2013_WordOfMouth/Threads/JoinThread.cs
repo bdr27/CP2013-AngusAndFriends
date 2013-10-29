@@ -24,7 +24,7 @@ namespace CP2013_WordOfMouth.Threads
         {
             try
             {
-                var response = Response(new JsonSignUp(), new HttpPostSignUp(), information);
+                var response = ResponsePost(new JsonSignUp(), new HttpPostSignUp(), information);
                 ThreadComplete(response);
             }
             catch (Exception ex)

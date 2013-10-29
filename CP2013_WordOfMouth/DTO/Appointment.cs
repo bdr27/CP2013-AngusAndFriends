@@ -6,17 +6,19 @@ using System.Threading.Tasks;
 
 namespace CP2013_WordOfMouth.DTO
 {
-    public class AppointmentType
+    public class Appointment
     {
         private int id;
-        private string description;
-        private double cost;
+        private AppointmentType appointmentType;
+        private TimeSlot timeSlot;
+        private long expectedDate;
 
-        public AppointmentType(int id, string description, double cost)
+        public Appointment(int id, AppointmentType appointmentType, TimeSlot timeSlot, long expectedDate)
         {
             this.id = id;
-            this.description = description;
-            this.cost = cost;
+            this.appointmentType = appointmentType;
+            this.timeSlot = timeSlot;
+            this.expectedDate = expectedDate;
         }
 
         public int GetID()
@@ -24,14 +26,19 @@ namespace CP2013_WordOfMouth.DTO
             return id;
         }
 
-        public string GetDescription()
+        public AppointmentType GetAppointmentType()
         {
-            return description;
+            return appointmentType;
         }
 
-        public double GetCost()
+        public TimeSlot GetTimeSlot()
         {
-            return cost;
+            return timeSlot;
+        }
+
+        public long GetExpectedDate()
+        {
+            return expectedDate;
         }
     }
 }

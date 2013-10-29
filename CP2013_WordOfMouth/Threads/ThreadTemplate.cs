@@ -59,11 +59,19 @@ namespace CP2013_WordOfMouth.Threads
             }
         }
 
-        protected virtual string Response(TemplateJson tj, IRequestResponse irr, object o)
+        protected virtual string ResponsePost(TemplateJson tj, IRequestResponse irr, object o)
         {
             var json = tj.GetJson(o);
             Console.WriteLine("Json in: " + json);
             irr.SendRequest(json);
+            Console.WriteLine("Resposne: " + irr.GetResponse());
+            return irr.GetResponse();
+        }
+
+        protected virtual string ResponseGet(TemplateJson tj, IRequestResponse irr, int id)
+        {
+            Console.WriteLine("Id Sent: " + id);
+            irr.SendRequest(id.ToString());
             Console.WriteLine("Resposne: " + irr.GetResponse());
             return irr.GetResponse();
         }
