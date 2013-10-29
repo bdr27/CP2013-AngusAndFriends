@@ -33,5 +33,10 @@ namespace CP2013_WordOfMouth.DTO
         {
             return cost;
         }
+
+        public override string ToString()
+        {
+            return GetDescription();
+        }
     }
 }

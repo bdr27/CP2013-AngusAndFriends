@@ -196,8 +196,23 @@ namespace CP2013_WordOfMouthGUI
                         var thread = new GetDentistsThread(5000, "");
                         thread.eventHandler += HandleGetAllDentistsUpdate;
                         thread.Start();
+                        var threadTypes = new GetAppointmentTypesThread(5000, 0);
+                        threadTypes.eventHandler += HandleGetAllAppTypesUpdate;
+                        threadTypes.Start();
                     } break;
             }
+        }
+
+        private void HandleGetAllAppTypesUpdate(object sender, RequestCompleteArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (e.RequestType == RequestReturnType.APPOINTMENT_TYPES)
+                {
+                    var types = e.Infomation as List<CP2013_WordOfMouth.DTO.AppointmentType>;
+                    window.UsrCntrl_NewApp.SetAppTypes(types);
+                }
+            });
         }
 
         private void HandleGetAllDentistsUpdate(object sender, RequestCompleteArgs e)

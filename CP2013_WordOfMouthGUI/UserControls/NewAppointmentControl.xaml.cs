@@ -53,6 +53,13 @@ namespace CP2013_WordOfMouthGUI.UserControls
             UsrCntrl_TimeSlots.LstView_DayFive.SelectedIndex = -1;
             UsrCntrl_TimeSlots.LstView_DaySix.SelectedIndex = -1;
             UsrCntrl_TimeSlots.LstView_DaySeven.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayOne.Items.Clear();
+            UsrCntrl_TimeSlots.LstView_DayTwo.Items.Clear();
+            UsrCntrl_TimeSlots.LstView_DayThree.Items.Clear();
+            UsrCntrl_TimeSlots.LstView_DayFour.Items.Clear();
+            UsrCntrl_TimeSlots.LstView_DayFive.Items.Clear();
+            UsrCntrl_TimeSlots.LstView_DaySix.Items.Clear();
+            UsrCntrl_TimeSlots.LstView_DaySeven.Items.Clear();
         }
 
         public void AddBtn_CreateHandler(RoutedEventHandler handler)
@@ -352,6 +359,16 @@ namespace CP2013_WordOfMouthGUI.UserControls
             UsrCntrl_TimeSlots.LstView_DayFour.SelectedIndex = -1;
             UsrCntrl_TimeSlots.LstView_DayFive.SelectedIndex = -1;
             UsrCntrl_TimeSlots.LstView_DaySix.SelectedIndex = -1;
+        }
+
+        public void SetAppTypes(List<AppointmentType> types)
+        {
+            Cmbox_AppointmentTypeFilter.Items.Clear();
+            foreach (var type in types)
+            {
+                Cmbox_AppointmentTypeFilter.Items.Add(type);
+            }
+            Cmbox_AppointmentTypeFilter.SelectedIndex = 0;
         }
     }
 }

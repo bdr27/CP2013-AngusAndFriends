@@ -22,7 +22,6 @@ namespace CP2013_WordOfMouthGUI.UserControls
     /// </summary>
     public partial class MyAppointmentsControl : UserControl, IControl
     {
-        private List<Appointment> mAppointments;
 
         public MyAppointmentsControl()
         {
@@ -50,8 +49,6 @@ namespace CP2013_WordOfMouthGUI.UserControls
 
         internal void SetAppointments(List<Appointment> appointments)
         {
-            mAppointments = new List<Appointment>(appointments);
-
             LstView_AppointmentsList.Items.Clear();
             foreach (var app in appointments)
             {
