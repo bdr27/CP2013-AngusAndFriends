@@ -26,6 +26,13 @@ namespace CP2013_WordOfMouthGUI.UserControls
         public NewAppointmentControl()
         {
             InitializeComponent();
+            UsrCntrl_TimeSlots.AddLstOneHandler(HandleLstOneChange);
+            UsrCntrl_TimeSlots.AddLstTwoHandler(HandleLstTwoChange);
+            UsrCntrl_TimeSlots.AddLstThreeHandler(HandleLstThreeChange);
+            UsrCntrl_TimeSlots.AddLstFourHandler(HandleLstFourChange);
+            UsrCntrl_TimeSlots.AddLstFiveHandler(HandleLstFiveChange);
+            UsrCntrl_TimeSlots.AddLstSixHandler(HandleLstSixChange);
+            UsrCntrl_TimeSlots.AddLstSevenHandler(HandleLstSevenChange);
         }
 
         public void Reset()
@@ -268,6 +275,76 @@ namespace CP2013_WordOfMouthGUI.UserControls
                 retTime += mins;
 
             return retTime;
+        }
+
+        private void HandleLstOneChange(object sender, SelectionChangedEventArgs e)
+        {
+            UsrCntrl_TimeSlots.LstView_DayTwo.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayThree.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayFour.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayFive.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DaySix.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DaySeven.SelectedIndex = -1;
+        }
+
+        private void HandleLstTwoChange(object sender, SelectionChangedEventArgs e)
+        {
+            UsrCntrl_TimeSlots.LstView_DayOne.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayThree.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayFour.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayFive.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DaySix.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DaySeven.SelectedIndex = -1;
+        }
+
+        private void HandleLstThreeChange(object sender, SelectionChangedEventArgs e)
+        {
+            UsrCntrl_TimeSlots.LstView_DayOne.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayTwo.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayFour.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayFive.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DaySix.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DaySeven.SelectedIndex = -1;
+        }
+
+        private void HandleLstFourChange(object sender, SelectionChangedEventArgs e)
+        {
+            UsrCntrl_TimeSlots.LstView_DayOne.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayTwo.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayThree.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayFive.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DaySix.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DaySeven.SelectedIndex = -1;
+        }
+
+        private void HandleLstFiveChange(object sender, SelectionChangedEventArgs e)
+        {
+            UsrCntrl_TimeSlots.LstView_DayOne.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayTwo.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayThree.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayFour.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DaySix.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DaySeven.SelectedIndex = -1;
+        }
+
+        private void HandleLstSixChange(object sender, SelectionChangedEventArgs e)
+        {
+            UsrCntrl_TimeSlots.LstView_DayOne.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayTwo.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayThree.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayFour.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayFive.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DaySeven.SelectedIndex = -1;
+        }
+
+        private void HandleLstSevenChange(object sender, SelectionChangedEventArgs e)
+        {
+            UsrCntrl_TimeSlots.LstView_DayOne.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayTwo.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayThree.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayFour.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayFive.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DaySix.SelectedIndex = -1;
         }
     }
 }

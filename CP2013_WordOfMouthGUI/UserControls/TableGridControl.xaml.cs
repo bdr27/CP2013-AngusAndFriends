@@ -24,5 +24,40 @@ namespace CP2013_WordOfMouthGUI
         {
             InitializeComponent();
         }
+
+        public void AddLstOneHandler(SelectionChangedEventHandler handler)
+        {
+            LstView_DayOne.SelectionChanged += handler;
+        }
+
+        public void AddLstTwoHandler(SelectionChangedEventHandler handler)
+        {
+            LstView_DayTwo.SelectionChanged += handler;
+        }
+
+        public void AddLstThreeHandler(SelectionChangedEventHandler handler)
+        {
+            LstView_DayThree.SelectionChanged += handler;
+        }
+
+        public void AddLstFourHandler(SelectionChangedEventHandler handler)
+        {
+            LstView_DayFour.SelectionChanged += handler;
+        }
+
+        public void AddLstFiveHandler(SelectionChangedEventHandler handler)
+        {
+            LstView_DayFive.SelectionChanged += handler;
+        }
+
+        public void AddLstSixHandler(SelectionChangedEventHandler handler)
+        {
+            LstView_DaySix.SelectionChanged += handler;
+        }
+
+        public void AddLstSevenHandler(SelectionChangedEventHandler handler)
+        {
+            LstView_DaySeven.SelectionChanged += handler;
+        }
     }
 }
