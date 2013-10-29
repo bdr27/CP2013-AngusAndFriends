@@ -4,6 +4,7 @@ using CP2013_WordOfMouth.Enum;
 using CP2013_WordOfMouth.Gather;
 using CP2013_WordOfMouth.Interface;
 using CP2013_WordOfMouth.JSON;
+using CP2013_WordOfMouth.Threads;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -95,6 +96,10 @@ namespace CP2013_WordOfMouthGUI
                         window.Btn_LogInOut.Content = "Log Out";
                         window.Btn_Appointments.IsEnabled = true;
                     } break;
+                case StateOfSystem.VERIFY_JOIN:
+                    {
+                        window.SetPage(window.UsrCntrl_Join);
+                    } break;
             }
         }
 
@@ -121,14 +126,20 @@ namespace CP2013_WordOfMouthGUI
             }
         }
 
+
+
         private void HandleBtn_JoinClick(object sender, RoutedEventArgs e)
         {
             if (!isVolatile && stateMachine.GetSystemState() == StateOfSystem.JOIN_PAGE)
             {
-                CompleteAction(UserActions.JOIN_CLICK);
-                isVolatile = true;
+                //CompleteAction(UserActions.JOIN_CLICK);
+                stateMachine.SetSystemState(UserActions.JOIN_CLICK);
                 //I sign up here right? YES stop asking me that.
                 var signup = window.UsrCntrl_Join.GetSignUp();
+                var thread = new JoinThread(5000, signup);
+                thread.eventHandler += HandleRequestComplete;
+                thread.Start();
+                /*
                 var response = Response(new JsonSignUp(), new HttpPostSignUp(), signup);
                 isVolatile = false;
                 if (response.Equals(""))
@@ -149,11 +160,28 @@ namespace CP2013_WordOfMouthGUI
                 else
                 {
                     MessageBox.Show(response);
-                }
+                }*/
             }
             else
             {
                 CompleteAction(UserActions.JOIN_CLICK);
+            }
+        }
+
+        private void HandleRequestComplete(object sender, RequestCompleteArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                stateMachine.SetSystemState(e.Action);
+                if (e.RefreshUI)
+                {
+                    ModifyPage(stateMachine.GetSystemState());
+                }
+            });
+
+            if (e.DisplayResponse)
+            {
+                MessageBox.Show(e.Response);
             }
         }
 

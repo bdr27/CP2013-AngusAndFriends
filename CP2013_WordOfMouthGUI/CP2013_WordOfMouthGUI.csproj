@@ -83,9 +83,6 @@
     <Compile Include="UserControls\NewAppointmentControl.xaml.cs">
       <DependentUpon>NewAppointmentControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\PleaseWaitControl.xaml.cs">
-      <DependentUpon>PleaseWaitControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\RemoveAppointmentTypeControl.xaml.cs">
       <DependentUpon>RemoveAppointmentTypeControl.xaml</DependentUpon>
     </Compile>
@@ -140,10 +137,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\NewAppointmentControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\PleaseWaitControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

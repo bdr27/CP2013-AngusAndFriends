@@ -36,7 +36,5 @@
         <local:JoinControl x:Name="UsrCntrl_Join" Grid.Row="4" Grid.ColumnSpan="11" IsEnabled="False" Visibility="Hidden"/>
         <local:AdminPanelControl x:Name="UsrCntrl_Admin" Grid.Row="4" Grid.ColumnSpan="11" IsEnabled="False" Visibility="Hidden"/>
         <local:MyAppointmentsControl x:Name="UsrCntrl_MyApps" Grid.Row="4" Grid.ColumnSpan="11" IsEnabled="False" Visibility="Hidden"/>
-        
-        <local:PleaseWaitControl x:Name="UsrCntrl_PleaseWait" Grid.Row="4" Grid.ColumnSpan="11" IsEnabled="False" Visibility="Hidden"/>
     </Grid>
 </Window>
