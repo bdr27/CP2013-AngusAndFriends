@@ -46,14 +46,32 @@ namespace CP2013_WordOfMouthGUI.UserControls
             public string AppointmentType { get; set; }
         }
 
-        internal void SetAppointments(Appointment app)
+        internal void SetAppointments(List<Appointment> appointments)
         {
-            var id = app.GetID();
-            var start = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            var completeDate = start.AddMilliseconds(app.GetExpectedDate());
-            var day = completeDate.Day + "/" + completeDate.Month + "/" + completeDate.Year;
-            var time = completeDate.Hour + ":" + completeDate.Minute;
-            LstView_AppointmentsList.Items.Add(new AppointmentItem { AppointmentID = id, Date = day, StartTime = time, DentistName = app.GetTimeSlot().GetDentist().GetName(), AppointmentType = app.GetAppointmentType().GetType().ToString() });
+            LstView_AppointmentsList.Items.Clear();
+            foreach (var app in appointments)
+            {
+                var id = app.GetID();
+                var start = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+                var completeDate = start.AddMilliseconds(app.GetExpectedDate()).ToLocalTime();
+                var day = completeDate.Day + "/" + completeDate.Month + "/" + completeDate.Year;
+                var time = completeDate.Hour + ":";
+                if (completeDate.Minute < 10)
+                    time += "0" + completeDate.Minute;
+                else
+                    time += completeDate.Minute;
+                LstView_AppointmentsList.Items.Add(new AppointmentItem { AppointmentID = id, Date = day, StartTime = time, DentistName = app.GetTimeSlot().GetDentist().GetName(), AppointmentType = app.GetAppointmentType().GetDescription() });
+            }
+        }
+
+        public void AddBtn_CreateNewHandler(RoutedEventHandler handler)
+        {
+            Btn_CreateNew.Click += handler;
+        }
+
+        public void AddBtn_CancelHandler(RoutedEventHandler handler)
+        {
+            Btn_CancelAppointments.Click += handler;
         }
     }
 }

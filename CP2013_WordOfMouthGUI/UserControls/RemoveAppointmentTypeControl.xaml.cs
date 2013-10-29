@@ -30,5 +30,15 @@ namespace CP2013_WordOfMouthGUI.UserControls
         {
             Cmbox_TypeName.SelectedIndex = -1;
         }
+
+        public void AddBtn_RemoveHandler(RoutedEventHandler handler)
+        {
+            Btn_Remove.Click += handler;
+        }
+
+        public void AddBtn_CancelHandler(RoutedEventHandler handler)
+        {
+            Btn_Cancel.Click += handler;
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace CP2013_WordOfMouth.Threads
 {
     public class GetUserAppointments : ThreadTemplate
     {
-        private Appointment appointment;
+        private List<Appointment> appointment;
 
         public GetUserAppointments(int timerAmount, object o)
             : base(timerAmount, o)
@@ -30,7 +30,7 @@ namespace CP2013_WordOfMouth.Threads
                 var id = Int32.Parse(information.ToString());
                 var response = ResponseGet(new JsonAppointments(), new HttpGetAppointments(), id);
                 var appointmentJson = new JsonAppointments();
-                appointment = appointmentJson.GetObject(response) as Appointment;
+                appointment = appointmentJson.GetObject(response) as List<Appointment>;
                 ThreadComplete(acceptedResponse);
             }
             catch (Exception ex)
@@ -46,6 +46,8 @@ namespace CP2013_WordOfMouth.Threads
             var args = new RequestCompleteArgs();
             args.RequestType = RequestReturnType.APPOINTMENTS;
             args.Infomation = appointment;
+
+            OnRequestComplete(args);
         }
     }
 }

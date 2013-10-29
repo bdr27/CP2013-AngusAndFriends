@@ -56,6 +56,68 @@ namespace CP2013_WordOfMouthGUI
 
             window.UsrCntrl_Join.AddBtn_JoinHandler(HandleBtn_JoinClick);
             window.UsrCntrl_Join.AddBtn_CancelHandler(HandleBtn_CancelClick);
+
+            window.UsrCntrl_AddAppType.AddBtn_CancelHandler(HandleBtn_CancelClick);
+            window.UsrCntrl_AddAppType.AddBtn_CreateHandler(HandleBtn_CreateClick);
+
+            window.UsrCntrl_AddDentist.AddBtn_CreateHandler(HandleBtn_CreateClick);
+            window.UsrCntrl_AddDentist.AddBtn_CancelHandler(HandleBtn_CancelClick);
+
+            window.UsrCntrl_Admin.AddBtn_NewDentistHandler(HandleBtn_NewDentistClick);
+            window.UsrCntrl_Admin.AddBtn_EditDentistHandler(HandleBtn_EditDentistClick);
+            window.UsrCntrl_Admin.AddBtn_RemoveDentistHandler(HandleBtn_RemoveDentistClick);
+            window.UsrCntrl_Admin.AddBtn_NewAppTypeHandler(HandleBtn_NewAppTypeClick);
+            window.UsrCntrl_Admin.AddBtn_RemoveAppTypeHandler(HandleBtn_RemoveAppTypeClick);
+
+            window.UsrCntrl_EditDentist.AddBtn_UpdateHandler(HandleBtn_UpdateClick);
+            window.UsrCntrl_EditDentist.AddBtn_CancelHandler(HandleBtn_CancelClick);
+
+            window.UsrCntrl_MyApps.AddBtn_CreateNewHandler(HandleBtn_CreateClick);
+            window.UsrCntrl_MyApps.AddBtn_CancelHandler(HandleBtn_RemoveClick);
+
+            window.UsrCntrl_NewApp.AddBtn_CreateHandler(HandleBtn_CreateClick);
+            window.UsrCntrl_NewApp.AddBtn_CancelHandler(HandleBtn_CancelClick);
+
+            window.UsrCntrl_RemoveAppType.AddBtn_RemoveHandler(HandleBtn_RemoveClick);
+            window.UsrCntrl_RemoveAppType.AddBtn_CancelHandler(HandleBtn_CancelClick);
+
+            window.UsrCntrl_RemoveDentist.AddBtn_RemoveHandler(HandleBtn_RemoveClick);
+            window.UsrCntrl_RemoveDentist.AddBtn_CancelHandler(HandleBtn_CancelClick);
+        }
+
+        private void HandleBtn_RemoveClick(object sender, RoutedEventArgs e)
+        {
+            CompleteAction(UserActions.REMOVE_CLICK);
+        }
+
+        private void HandleBtn_UpdateClick(object sender, RoutedEventArgs e)
+        {
+            CompleteAction(UserActions.UPDATE_CLICK);
+        }
+
+        private void HandleBtn_NewDentistClick(object sender, RoutedEventArgs e)
+        {
+            CompleteAction(UserActions.ADD_DEN_CLICK);
+        }
+
+        private void HandleBtn_EditDentistClick(object sender, RoutedEventArgs e)
+        {
+            CompleteAction(UserActions.EDIT_DEN_CLICK);
+        }
+
+        private void HandleBtn_RemoveDentistClick(object sender, RoutedEventArgs e)
+        {
+            CompleteAction(UserActions.REMOVE_DEN_CLICK);
+        }
+
+        private void HandleBtn_NewAppTypeClick(object sender, RoutedEventArgs e)
+        {
+            CompleteAction(UserActions.ADD_APP_TYPE_CLICK);
+        }
+
+        private void HandleBtn_RemoveAppTypeClick(object sender, RoutedEventArgs e)
+        {
+            CompleteAction(UserActions.REMOVE_APP_TYPE_CLICK);
         }
 
         private void ModifyPage(StateOfSystem systemState)
@@ -105,6 +167,30 @@ namespace CP2013_WordOfMouthGUI
                     {
                         window.SetPage(window.UsrCntrl_Join);
                     } break;
+                case StateOfSystem.ADD_DENTIST_PAGE:
+                    {
+                        window.SetPage(window.UsrCntrl_AddDentist);
+                    } break;
+                case StateOfSystem.EDIT_DENTIST_PAGE:
+                    {
+                        window.SetPage(window.UsrCntrl_EditDentist);
+                    } break;
+                case StateOfSystem.REMOVE_DENTIST_PAGE:
+                    {
+                        window.SetPage(window.UsrCntrl_RemoveDentist);
+                    } break;
+                case StateOfSystem.ADD_APPOINT_TYPE_PAGE:
+                    {
+                        window.SetPage(window.UsrCntrl_AddAppType);
+                    } break;
+                case StateOfSystem.REMOVE_APPOINT_TYPE_PAGE:
+                    {
+                        window.SetPage(window.UsrCntrl_RemoveAppType);
+                    } break;
+                case StateOfSystem.CREATE_APPOINT_PAGE:
+                    {
+                        window.SetPage(window.UsrCntrl_NewApp);
+                    } break;
             }
         }
 
@@ -114,7 +200,7 @@ namespace CP2013_WordOfMouthGUI
             {
                 if (e.RequestType == RequestReturnType.APPOINTMENTS)
                 {
-                    var app = e.Infomation as Appointment;
+                    var app = e.Infomation as List<Appointment>;
                     window.UsrCntrl_MyApps.SetAppointments(app);
                 }
             });
@@ -147,35 +233,12 @@ namespace CP2013_WordOfMouthGUI
         {
             if (!isVolatile && stateMachine.GetSystemState() == StateOfSystem.JOIN_PAGE)
             {
-                //CompleteAction(UserActions.JOIN_CLICK);
                 stateMachine.SetSystemState(UserActions.JOIN_CLICK);
                 //I sign up here right? YES stop asking me that.
                 var signup = window.UsrCntrl_Join.GetSignUp();
                 var thread = new JoinThread(5000, signup);
                 thread.eventHandler += HandleRequestComplete;
                 thread.Start();
-                /*
-                var response = Response(new JsonSignUp(), new HttpPostSignUp(), signup);
-                isVolatile = false;
-                if (response.Equals(""))
-                {
-                    stateMachine.SetSystemState(UserActions.SUCCESS);
-                }
-                else
-                {
-                    stateMachine.SetSystemState(UserActions.FAILURE);
-                }
-
-                ModifyPage(stateMachine.GetSystemState());
-
-                if (response.Equals(""))
-                {
-                    MessageBox.Show("You have successfully signed up!");
-                }
-                else
-                {
-                    MessageBox.Show(response);
-                }*/
             }
             else
             {
@@ -235,6 +298,11 @@ namespace CP2013_WordOfMouthGUI
         private void HandleBtn_CancelClick(object sender, RoutedEventArgs e)
         {
             CompleteAction(UserActions.CANCEL_CLICK);
+        }
+
+        private void HandleBtn_CreateClick(object sender, RoutedEventArgs e)
+        {
+            CompleteAction(UserActions.CREATE_CLICK);
         }
 
         private void HandleBtn_AppointmentsClick(object sender, RoutedEventArgs e)

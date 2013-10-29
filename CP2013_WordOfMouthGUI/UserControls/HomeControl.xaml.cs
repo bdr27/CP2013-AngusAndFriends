@@ -24,6 +24,7 @@ namespace CP2013_WordOfMouthGUI.UserControls
         public HomeControl()
         {
             InitializeComponent();
+            //wbMain.Navigate(new Uri("http://www.google.com.au/", UriKind.RelativeOrAbsolute));
         }
 
         public void Reset()

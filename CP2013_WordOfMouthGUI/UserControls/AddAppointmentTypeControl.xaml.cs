@@ -31,5 +31,15 @@ namespace CP2013_WordOfMouthGUI.UserControls
             TxtBox_TypeCost.Text = "";
             TxtBox_TypeName.Text = "";
         }
+
+        public void AddBtn_CancelHandler(RoutedEventHandler handler)
+        {
+            Btn_Cancel.Click += handler;
+        }
+
+        public void AddBtn_CreateHandler(RoutedEventHandler handler)
+        {
+            Btn_Create.Click += handler;
+        }
     }
 }

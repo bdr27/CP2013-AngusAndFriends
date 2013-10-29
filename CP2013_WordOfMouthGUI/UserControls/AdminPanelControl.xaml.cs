@@ -30,5 +30,30 @@ namespace CP2013_WordOfMouthGUI.UserControls
         {
             //
         }
+
+        public void AddBtn_NewDentistHandler(RoutedEventHandler handler)
+        {
+            Btn_NewDentist.Click += handler;
+        }
+
+        public void AddBtn_EditDentistHandler(RoutedEventHandler handler)
+        {
+            Btn_EditDentist.Click += handler;
+        }
+
+        public void AddBtn_RemoveDentistHandler(RoutedEventHandler handler)
+        {
+            Btn_RemoveDentist.Click += handler;
+        }
+
+        public void AddBtn_NewAppTypeHandler(RoutedEventHandler handler)
+        {
+            Btn_NewAppType.Click += handler;
+        }
+
+        public void AddBtn_RemoveAppTypeHandler(RoutedEventHandler handler)
+        {
+            Btn_RemoveAppType.Click += handler;
+        }
     }
 }

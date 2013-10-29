@@ -31,5 +31,15 @@ namespace CP2013_WordOfMouthGUI.UserControls
             Cmbox_DentistName.SelectedIndex = -1;
             LstView_AppointmentsList.Items.Clear();
         }
+
+        public void AddBtn_RemoveHandler(RoutedEventHandler handler)
+        {
+            Btn_RemoveDentist.Click += handler;
+        }
+
+        public void AddBtn_CancelHandler(RoutedEventHandler handler)
+        {
+            Btn_Cancel.Click += handler;
+        }
     }
 }

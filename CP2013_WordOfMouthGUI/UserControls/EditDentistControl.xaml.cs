@@ -37,5 +37,15 @@ namespace CP2013_WordOfMouthGUI.UserControls
             UsrCntrl_TimeSlots.LstView_DaySix.SelectedIndex = -1;
             UsrCntrl_TimeSlots.LstView_DaySeven.SelectedIndex = -1;
         }
+
+        public void AddBtn_UpdateHandler(RoutedEventHandler handler)
+        {
+            Btn_Update.Click += handler;
+        }
+
+        public void AddBtn_CancelHandler(RoutedEventHandler handler)
+        {
+            Btn_Cancel.Click += handler;
+        }
     }
 }
