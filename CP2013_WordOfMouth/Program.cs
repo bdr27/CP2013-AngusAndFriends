@@ -32,6 +32,9 @@ namespace CP2013_WordOfMouth
             GetRequests(new HttpGetAppointments(), new JsonAppointments(), newSession.GetSessionID().ToString());
             var timeSlots = GetRequests(new HttpGetDentistTimeSlots(), new JsonDentistTimeSlots(), dentistser[0].GetID().ToString());
             var apps = GetRequests(new HttpGetAllAppointmentTypes(), new JsonAllAppointmentTypes(), "");
+            var deleteAppointment = new HttpPostDeleteAppointment();
+            deleteAppointment.SendRequest(1.ToString());
+            var response = deleteAppointment.GetResponse();
 
             //var Login = new Login("test.user@domain.com", "Password");
             //var json = new JsonLogin().GetJson(Login);
