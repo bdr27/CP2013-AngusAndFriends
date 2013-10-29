@@ -117,6 +117,7 @@ namespace CP2013_WordOfMouthGUI
             if (stateMachine.GetLoginStatus() == LoginStatus.LOGGED_OUT && sessionKey != null)
             {
                 sessionKey = null;
+                MessageBox.Show("You have been logged out.");
             }
         }
 
@@ -183,6 +184,7 @@ namespace CP2013_WordOfMouthGUI
                 }
                 catch (Exception ex)
                 {
+                    System.Diagnostics.Debug.WriteLine(ex.StackTrace);
                     sessionKey = null;
                     stateMachine.SetLoginStatus(sessionKey);
                     stateMachine.SetSystemState(UserActions.FAILURE);
@@ -207,25 +209,33 @@ namespace CP2013_WordOfMouthGUI
         {
             while (true)
             {
-                timeoutTimer = new System.Timers.Timer(5000);
-                timeoutTimer.Elapsed += new System.Timers.ElapsedEventHandler(TimeoutTimer_Tick);
-                timeoutTimer.Enabled = true;
-                var response = Response(new JsonSession(), new HttpPostSession(), sessionKey).ToLower();
-                if(response.Equals("ok"))
+                if (sessionKey != null)
                 {
-                    timeoutTimer.Enabled = false;
+                    timeoutTimer = new System.Timers.Timer(5000);
+                    timeoutTimer.Elapsed += new System.Timers.ElapsedEventHandler(TimeoutTimer_Tick);
+                    timeoutTimer.Enabled = true;
+                    var response = Response(new JsonSession(), new HttpPostSession(), sessionKey).ToLower();
+                    if (response.Equals("ok"))
+                    {
+                        timeoutTimer.Enabled = false;
+                    }
+                    Thread.Sleep(10000);
                 }
-                Thread.Sleep(10000);
+                else
+                {
+                    break;
+                }
+                
             }
         }
 
         private void TimeoutTimer_Tick(object sender, System.Timers.ElapsedEventArgs e)
         {
             //I am a time :P
-            sessionThread = null;
+            sessionThread.Abort();
             sessionKey = null;
             timeoutTimer.Enabled = false;
-            MessageBox.Show("You have been logged out");
+            MessageBox.Show("You have been logged out.");
             stateMachine.SetLoginStatus(sessionKey);
             stateMachine.SetSystemState(UserActions.HOME_CLICK);
             Dispatcher.Invoke(() =>

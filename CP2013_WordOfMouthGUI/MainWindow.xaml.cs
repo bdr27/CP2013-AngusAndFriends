@@ -29,10 +29,10 @@ namespace CP2013_WordOfMouthGUI
 
         public void ResetWindow()
         {
-            Btn_Home.IsEnabled = true;
-            Btn_LogInOut.IsEnabled = true;
-            Btn_Appointments.IsEnabled = false;
-            Btn_Admin.IsEnabled = false;
+            //Btn_Home.IsEnabled = true;
+            //Btn_LogInOut.IsEnabled = true;
+            //Btn_Appointments.IsEnabled = false;
+            //Btn_Admin.IsEnabled = false;
 
             DisablePage(UsrCntrl_Home);
             DisablePage(UsrCntrl_Join);
