@@ -30,5 +30,19 @@ namespace CP2013_WordOfMouthGUI.UserControls
         {
             //
         }
+
+        private void HowItWorks()
+        {
+            LstView_AppointmentsList.Items.Add(new Appointment {AppointmentID = 1, Date = "12/2/12", StartTime = "9:00am", DentistName = "Bob", AppointmentType="Teeth Clean"}); 
+        }
+
+        private class Appointment
+        {
+            public int AppointmentID { get; set; }
+            public string Date { get; set; }
+            public string StartTime { get; set; }
+            public string DentistName { get; set; }
+            public string AppointmentType { get; set; }
+        }
     }
 }

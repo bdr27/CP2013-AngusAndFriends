@@ -25,7 +25,16 @@
         </Grid.RowDefinitions>
         <Label Content="My Appointments" FontFamily="Arial" FontSize="55" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"/>
         <Label Content="Details of your current Appointments are as follows:" FontWeight="Bold" VerticalContentAlignment="Bottom" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>
-        <ListView x:Name="LstView_AppointmentsList" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <ListView x:Name="LstView_AppointmentsList" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="50" Header="Date" DisplayMemberBinding="{Binding Date}"/>
+                    <GridViewColumn Width="50" Header="Start" DisplayMemberBinding="{Binding StartTime}"/>
+                    <GridViewColumn Width="90" Header="Dentist Name" DisplayMemberBinding="{Binding DentistName}"/>
+                    <GridViewColumn Width="150" Header="Appointment Type" DisplayMemberBinding="{Binding AppointmentType}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
         <Button x:Name="Btn_CancelAppointments" Content="Cancel Selected" Grid.Row="3" Grid.Column="3" Margin="70,10,10,0"/>
         <Label Grid.Row="4" Grid.Column="2" Grid.RowSpan="3" BorderBrush="LightGray" BorderThickness="1"/>
         <Label Content=" Wish to Create a&#x0a;New Appointment?" Grid.Row="5" Grid.Column="2" FontFamily="Arial" FontSize="15" FontStyle="Italic" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,50"/>
