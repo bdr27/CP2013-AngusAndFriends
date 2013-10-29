@@ -33,6 +33,13 @@ namespace CP2013_WordOfMouthGUI.UserControls
             UsrCntrl_TimeSlots.AddLstFiveHandler(HandleLstFiveChange);
             UsrCntrl_TimeSlots.AddLstSixHandler(HandleLstSixChange);
             UsrCntrl_TimeSlots.AddLstSevenHandler(HandleLstSevenChange);
+            UsrCntrl_TimeSlots.LstView_DayOne.SelectionMode = SelectionMode.Single;
+            UsrCntrl_TimeSlots.LstView_DayTwo.SelectionMode = SelectionMode.Single;
+            UsrCntrl_TimeSlots.LstView_DayThree.SelectionMode = SelectionMode.Single;
+            UsrCntrl_TimeSlots.LstView_DayFour.SelectionMode = SelectionMode.Single;
+            UsrCntrl_TimeSlots.LstView_DayFive.SelectionMode = SelectionMode.Single;
+            UsrCntrl_TimeSlots.LstView_DaySix.SelectionMode = SelectionMode.Single;
+            UsrCntrl_TimeSlots.LstView_DaySeven.SelectionMode = SelectionMode.Single;
         }
 
         public void Reset()
