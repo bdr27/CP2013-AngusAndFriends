@@ -18,6 +18,8 @@ namespace CP2013_WordOfMouth.Utility
         private static string appointments = "/get/bookings/for/";
         private static string timeSlotsBegining = "/get/times/for/dentist/";
         private static string timeSlotsEnding = "/which/are/avaliable";
+        private static string addDentist = "/add/dentist";
+        private static string addBooking = "/add/bookings";
 
         public static string GetUrlBase()
         {
@@ -67,6 +69,16 @@ namespace CP2013_WordOfMouth.Utility
         public static string GetTimeSlotsEnd()
         {
             return timeSlotsEnding;
+        }
+
+        public static string GetAddDentist()
+        {
+            return addDentist;
+        }
+
+        public static string GetAddBooking()
+        {
+            return addBooking;
         }
     }
 }

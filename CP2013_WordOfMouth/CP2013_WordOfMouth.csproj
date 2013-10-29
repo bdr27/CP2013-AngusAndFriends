@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DTO\Appointment.cs" />
+    <Compile Include="DTO\Booking.cs" />
     <Compile Include="DTO\Dentist.cs" />
     <Compile Include="DTO\TimeSlot.cs" />
     <Compile Include="Enum\AppointmentType.cs" />
@@ -61,8 +62,10 @@
     <Compile Include="Exceptions\InvalidObjectException.cs" />
     <Compile Include="Gather\HttpGetAllDentist.cs" />
     <Compile Include="Gather\HttpGetAppointments.cs" />
-    <Compile Include="Gather\HttpGetAvaliableTimeSlots.cs" />
+    <Compile Include="Gather\HttpGetDentistTimeSlots.cs" />
     <Compile Include="Gather\HttpGetDentist.cs" />
+    <Compile Include="Gather\HttpPostAddBooking.cs" />
+    <Compile Include="Gather\HttpPostDentist.cs" />
     <Compile Include="Gather\HttpPostLogin.cs" />
     <Compile Include="Gather\HttpPostDeleteDentist.cs" />
     <Compile Include="Gather\HttpPostSession.cs" />
@@ -71,8 +74,10 @@
     <Compile Include="Interface\IUserController.cs" />
     <Compile Include="JSON\ConverterAppointment.cs" />
     <Compile Include="JSON\ConverterAppointmentType.cs" />
+    <Compile Include="JSON\ConverterBooking.cs" />
     <Compile Include="JSON\ConverterDentist.cs" />
     <Compile Include="JSON\ConverterTimeSlot.cs" />
+    <Compile Include="JSON\JsonAddBooking.cs" />
     <Compile Include="JSON\JsonAllDesntits.cs" />
     <Compile Include="JSON\JsonAppointments.cs" />
     <Compile Include="JSON\JsonAppointmentType.cs" />
@@ -80,8 +85,8 @@
     <Compile Include="JSON\JsonLogin.cs" />
     <Compile Include="JSON\JsonSession.cs" />
     <Compile Include="JSON\JsonSignUp.cs" />
-    <Compile Include="JSON\JsonTimeSlot.cs" />
-    <Compile Include="JSON\JsonTimeSlots.cs" />
+    <Compile Include="JSON\JsonEveryTimeSlot.cs" />
+    <Compile Include="JSON\JsonDentistTimeSlots.cs" />
     <Compile Include="JSON\TemplateJson.cs" />
     <Compile Include="DTO\AppointmentType.cs" />
     <Compile Include="Threads\GetUserAppointments.cs" />
