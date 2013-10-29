@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CP2013_WordOfMouthGUI.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,17 @@ namespace CP2013_WordOfMouthGUI.UserControls
     /// <summary>
     /// Interaction logic for AddAppointmentTypeControl.xaml
     /// </summary>
-    public partial class AddAppointmentTypeControl : UserControl
+    public partial class AddAppointmentTypeControl : UserControl, IControl
     {
         public AddAppointmentTypeControl()
         {
             InitializeComponent();
+        }
+
+        public void Reset()
+        {
+            TxtBox_TypeCost.Text = "";
+            TxtBox_TypeName.Text = "";
         }
     }
 }

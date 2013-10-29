@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CP2013_WordOfMouthGUI.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,16 @@ namespace CP2013_WordOfMouthGUI.UserControls
     /// <summary>
     /// Interaction logic for RemoveAppointmentTypeControl.xaml
     /// </summary>
-    public partial class RemoveAppointmentTypeControl : UserControl
+    public partial class RemoveAppointmentTypeControl : UserControl, IControl
     {
         public RemoveAppointmentTypeControl()
         {
             InitializeComponent();
+        }
+
+        public void Reset()
+        {
+            Cmbox_TypeName.SelectedIndex = -1;
         }
     }
 }

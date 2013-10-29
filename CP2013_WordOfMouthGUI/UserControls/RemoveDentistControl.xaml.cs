@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CP2013_WordOfMouthGUI.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,17 @@ namespace CP2013_WordOfMouthGUI.UserControls
     /// <summary>
     /// Interaction logic for RemoveDentistControl.xaml
     /// </summary>
-    public partial class RemoveDentistControl : UserControl
+    public partial class RemoveDentistControl : UserControl, IControl
     {
         public RemoveDentistControl()
         {
             InitializeComponent();
+        }
+
+        public void Reset()
+        {
+            Cmbox_DentistName.SelectedIndex = -1;
+            LstView_AppointmentsList.Items.Clear();
         }
     }
 }

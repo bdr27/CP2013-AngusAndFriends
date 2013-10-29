@@ -39,6 +39,12 @@ namespace CP2013_WordOfMouthGUI
             DisablePage(UsrCntrl_LogIn);
             DisablePage(UsrCntrl_MyApps);
             DisablePage(UsrCntrl_Admin);
+            DisablePage(UsrCntrl_AddAppType);
+            DisablePage(UsrCntrl_AddDentist);
+            DisablePage(UsrCntrl_EditDentist);
+            DisablePage(UsrCntrl_NewApp);
+            DisablePage(UsrCntrl_RemoveAppType);
+            DisablePage(UsrCntrl_RemoveDentist);
         }
 
         public void AddBtn_HomeHandler(RoutedEventHandler handler)
