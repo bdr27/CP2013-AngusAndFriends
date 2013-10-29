@@ -48,6 +48,8 @@ namespace CP2013_WordOfMouthGUI
         {
             window.AddBtn_HomeHandler(HandleBtn_HomeClick);
             window.AddBtn_LogInOutHandler(HandleBtn_LogInOutClick);
+            window.AddBtn_AppointmentsHandler(HandleBtn_AppointmentsClick);
+            window.AddBtn_AdminHandler(HandleBtn_AdminClick);
 
             window.UsrCntrl_LogIn.AddBtn_LoginHandler(HandleBtn_LogInClick);
             window.UsrCntrl_LogIn.AddBtn_JoinHandler(HandleBtn_JoinClick);
@@ -95,12 +97,27 @@ namespace CP2013_WordOfMouthGUI
                         window.SetPage(window.UsrCntrl_MyApps);
                         window.Btn_LogInOut.Content = "Log Out";
                         window.Btn_Appointments.IsEnabled = true;
+                        var thread = new GetUserAppointments(5000, sessionKey.GetSessionID());
+                        thread.eventHandler += HandleAppointmentsUpdate;
+                        thread.Start();
                     } break;
                 case StateOfSystem.VERIFY_JOIN:
                     {
                         window.SetPage(window.UsrCntrl_Join);
                     } break;
             }
+        }
+
+        private void HandleAppointmentsUpdate(object sender, RequestCompleteArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (e.RequestType == RequestReturnType.APPOINTMENTS)
+                {
+                    var app = e.Infomation as Appointment;
+                    window.UsrCntrl_MyApps.SetAppointments(app);
+                }
+            });
         }
 
         private void CompleteAction(UserActions action)
@@ -125,8 +142,6 @@ namespace CP2013_WordOfMouthGUI
                 MessageBox.Show("You have been logged out.");
             }
         }
-
-
 
         private void HandleBtn_JoinClick(object sender, RoutedEventArgs e)
         {
@@ -220,6 +235,16 @@ namespace CP2013_WordOfMouthGUI
         private void HandleBtn_CancelClick(object sender, RoutedEventArgs e)
         {
             CompleteAction(UserActions.CANCEL_CLICK);
+        }
+
+        private void HandleBtn_AppointmentsClick(object sender, RoutedEventArgs e)
+        {
+            CompleteAction(UserActions.APPOINTMENTS_CLICK);
+        }
+
+        private void HandleBtn_AdminClick(object sender, RoutedEventArgs e)
+        {
+            CompleteAction(UserActions.ADMIN_CLICK);
         }
 
         private void LauchThread()

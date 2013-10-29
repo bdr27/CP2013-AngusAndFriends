@@ -52,9 +52,9 @@ namespace CP2013_WordOfMouth.Utility
             return poll;
         }
 
-        internal static string GetAppointments()
+        public static string GetAppointments()
         {
-            throw new NotImplementedException();
+            return appointments;
         }
     }
 }

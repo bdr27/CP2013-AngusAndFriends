@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CP2013_WordOfMouthGUI.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,25 @@ namespace CP2013_WordOfMouthGUI.UserControls
     /// <summary>
     /// Interaction logic for CreateDentistControl.xaml
     /// </summary>
-    public partial class CreateDentistControl : UserControl
+    public partial class CreateDentistControl : UserControl, IControl
     {
         public CreateDentistControl()
         {
             InitializeComponent();
+        }
+
+        public void Reset()
+        {
+            TxtBox_DentistName.Text = "";
+            TxtBox_DentistAddress.Text = "";
+            TxtBox_DentistPhone.Text = "";
+            UsrCntrl_TimeSlots.LstView_DayOne.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayTwo.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayThree.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayFour.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DayFive.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DaySix.SelectedIndex = -1;
+            UsrCntrl_TimeSlots.LstView_DaySeven.SelectedIndex = -1;
         }
     }
 }
