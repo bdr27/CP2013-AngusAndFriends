@@ -60,6 +60,7 @@
     <Compile Include="Enum\UserType.cs" />
     <Compile Include="Exceptions\InvalidJsonException.cs" />
     <Compile Include="Exceptions\InvalidObjectException.cs" />
+    <Compile Include="Gather\HttpGetAllAppointmentTypes.cs" />
     <Compile Include="Gather\HttpGetAllDentist.cs" />
     <Compile Include="Gather\HttpGetAppointments.cs" />
     <Compile Include="Gather\HttpGetDentist.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="JSON\ConverterDentist.cs" />
     <Compile Include="JSON\ConverterTimeSlot.cs" />
     <Compile Include="JSON\JsonAddBooking.cs" />
+    <Compile Include="JSON\JsonAllAppointmentTypes.cs" />
     <Compile Include="JSON\JsonAllDesntits.cs" />
     <Compile Include="JSON\JsonAppointments.cs" />
     <Compile Include="JSON\JsonAppointmentType.cs" />
