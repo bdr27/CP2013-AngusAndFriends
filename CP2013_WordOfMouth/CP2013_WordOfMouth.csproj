@@ -64,8 +64,6 @@
     <Compile Include="Gather\HttpGetAppointments.cs" />
     <Compile Include="Gather\HttpGetDentist.cs" />
     <Compile Include="Gather\HttpGetDentistTimeSlots.cs" />
-    <Compile Include="Gather\HttpGetDentistTimeSlots.cs" />
-    <Compile Include="Gather\HttpGetDentist.cs" />
     <Compile Include="Gather\HttpPostAddBooking.cs" />
     <Compile Include="Gather\HttpPostDentist.cs" />
     <Compile Include="Gather\HttpPostLogin.cs" />
@@ -89,8 +87,6 @@
     <Compile Include="JSON\JsonLogin.cs" />
     <Compile Include="JSON\JsonSession.cs" />
     <Compile Include="JSON\JsonSignUp.cs" />
-    <Compile Include="JSON\JsonEveryTimeSlot.cs" />
-    <Compile Include="JSON\JsonDentistTimeSlots.cs" />
     <Compile Include="JSON\TemplateJson.cs" />
     <Compile Include="DTO\AppointmentType.cs" />
     <Compile Include="Threads\GetDentistsThread.cs" />
