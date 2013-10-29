@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DTO\Appointment.cs" />
+    <Compile Include="DTO\Booking.cs" />
     <Compile Include="DTO\Dentist.cs" />
     <Compile Include="DTO\TimeSlot.cs" />
     <Compile Include="Enum\AppointmentType.cs" />
@@ -63,6 +64,8 @@
     <Compile Include="Gather\HttpGetAppointments.cs" />
     <Compile Include="Gather\HttpGetDentist.cs" />
     <Compile Include="Gather\HttpGetDentistTimeSlots.cs" />
+    <Compile Include="Gather\HttpPostAddBooking.cs" />
+    <Compile Include="Gather\HttpPostDentist.cs" />
     <Compile Include="Gather\HttpPostLogin.cs" />
     <Compile Include="Gather\HttpPostDeleteDentist.cs" />
     <Compile Include="Gather\HttpPostSession.cs" />
@@ -71,8 +74,10 @@
     <Compile Include="Interface\IUserController.cs" />
     <Compile Include="JSON\ConverterAppointment.cs" />
     <Compile Include="JSON\ConverterAppointmentType.cs" />
+    <Compile Include="JSON\ConverterBooking.cs" />
     <Compile Include="JSON\ConverterDentist.cs" />
     <Compile Include="JSON\ConverterTimeSlot.cs" />
+    <Compile Include="JSON\JsonAddBooking.cs" />
     <Compile Include="JSON\JsonAllDesntits.cs" />
     <Compile Include="JSON\JsonAppointments.cs" />
     <Compile Include="JSON\JsonAppointmentType.cs" />
