@@ -40,5 +40,10 @@ namespace CP2013_WordOfMouth.DTO
         {
             return phone;
         }
+
+        public override string ToString()
+        {
+            return GetName();
+        }
     }
 }

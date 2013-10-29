@@ -1,4 +1,5 @@
-﻿using CP2013_WordOfMouthGUI.Interfaces;
+﻿using CP2013_WordOfMouth.DTO;
+using CP2013_WordOfMouthGUI.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace CP2013_WordOfMouthGUI.UserControls
     /// </summary>
     public partial class NewAppointmentControl : UserControl, IControl
     {
+
         public NewAppointmentControl()
         {
             InitializeComponent();
@@ -47,6 +49,162 @@ namespace CP2013_WordOfMouthGUI.UserControls
         public void AddBtn_CancelHandler(RoutedEventHandler handler)
         {
             Btn_Cancel.Click += handler;
+        }
+
+        public void AddCmbox_DentistFilterChangedHandler(SelectionChangedEventHandler handler)
+        {
+            Cmbox_DentistFilter.SelectionChanged += handler;
+        }
+
+        public void SetDentists(List<Dentist> dentists)
+        {
+            Cmbox_DentistFilter.Items.Clear();
+            foreach (var dentist in dentists)
+            {
+                Cmbox_DentistFilter.Items.Add(dentist);
+            }
+            Cmbox_DentistFilter.SelectedIndex = 0;
+        }
+
+        private List<ListView> GetControlList(DayOfWeek day)
+        {
+            var listofcontrols = new List<ListView>();
+            if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
+            {
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySeven);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayOne);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayTwo);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayThree);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFour);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFive);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySix);
+            }
+            else if (DateTime.Now.DayOfWeek == DayOfWeek.Tuesday)
+            {
+                ;
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySix);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySeven);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayOne);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayTwo);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayThree);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFour);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFive);
+            }
+            else if (DateTime.Now.DayOfWeek == DayOfWeek.Wednesday)
+            {
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFive);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySix);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySeven);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayOne);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayTwo);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayThree);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFour);
+            }
+            else if (DateTime.Now.DayOfWeek == DayOfWeek.Thursday)
+            {
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFour);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFive);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySix);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySeven);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayOne);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayTwo);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayThree);
+            }
+            else if (DateTime.Now.DayOfWeek == DayOfWeek.Friday)
+            {
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayThree);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFour);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFive);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySix);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySeven);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayOne);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayTwo);
+            }
+            else if (DateTime.Now.DayOfWeek == DayOfWeek.Saturday)
+            {
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayTwo);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayThree);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFour);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFive);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySix);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySeven);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayOne);
+            }
+            else
+            {
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayOne);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayTwo);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayThree);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFour);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFive);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySix);
+                listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySeven);
+            }
+            return listofcontrols;
+        }
+
+        public void SetTimeSlots(List<TimeSlot> times)
+        {
+            UsrCntrl_TimeSlots.LstView_DayOne.Items.Clear();
+            UsrCntrl_TimeSlots.LstView_DayTwo.Items.Clear();
+            UsrCntrl_TimeSlots.LstView_DayThree.Items.Clear();
+            UsrCntrl_TimeSlots.LstView_DayFour.Items.Clear();
+            UsrCntrl_TimeSlots.LstView_DayFive.Items.Clear();
+            UsrCntrl_TimeSlots.LstView_DaySix.Items.Clear();
+            UsrCntrl_TimeSlots.LstView_DaySeven.Items.Clear();
+            var listofcontrols = GetControlList(DateTime.Now.DayOfWeek);
+            
+            for (int i = 0; i < 7; ++i)
+            {
+                var startTime = "8:00";
+                var endTime = "18:00";
+                foreach (var time in times)
+                {
+                    if (time.GetDay() == i)
+                    {
+                        while (!startTime.Equals(time.ToString()))
+                        {
+                            listofcontrols.ElementAt(i).Items.Add("-");
+                            startTime = GetNextTimeSlot(startTime);
+                            if (startTime.Equals(endTime))
+                            {
+                                break;
+                            }
+                        }
+                        listofcontrols.ElementAt(i).Items.Add(time);
+                        startTime = GetNextTimeSlot(startTime);
+                        if (startTime.Equals(endTime))
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            /*
+            foreach (var time in times)
+            {
+                
+                listofcontrols.ElementAt(time.GetDay()).Items.Add(time);
+            }*/
+            
+        }
+
+        private string GetNextTimeSlot(string time)
+        {
+            var minutes = 0;
+            var hours = 0;
+            Int32.TryParse(time.Split(':')[0], out hours);
+            Int32.TryParse(time.Split(':')[1], out minutes);
+
+            var mins = minutes + 30;
+            var hrs = minutes >= 60 ? hours + 1 : hours;
+            var retTime = hrs + ":";
+            if (mins < 10)
+                retTime += "0" + mins;
+            else
+                retTime += mins;
+
+            return retTime;
         }
     }
 }

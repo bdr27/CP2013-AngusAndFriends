@@ -47,5 +47,15 @@ namespace CP2013_WordOfMouth.DTO
         {
             return this.day;
         }
+
+        public override string ToString()
+        {
+            var returnString = GetHour() + ":";
+            if (GetMin() < 10)
+                returnString += "0" + GetMin();
+            else
+                returnString += GetMin();
+            return returnString;
+        }
     }
 }
