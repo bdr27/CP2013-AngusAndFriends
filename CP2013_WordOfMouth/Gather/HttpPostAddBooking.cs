@@ -26,7 +26,7 @@ namespace CP2013_WordOfMouth.Gather
         public void SendRequest(string request)
         {
             http.RequestBody = request;
-            var response = http.Post();
+            response = http.Post();
         }
 
         public string GetResponse()

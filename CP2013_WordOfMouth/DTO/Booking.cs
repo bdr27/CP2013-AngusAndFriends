@@ -8,13 +8,13 @@ namespace CP2013_WordOfMouth.DTO
 {
     public class Booking
     {
-        private int sessionID;
+        private long sessionID;
         private int appointmentType;
         private int dentist;
         private int day;
         private string time;
 
-        public Booking(int sessionID, int appointmentType, int dentist, int day, string time)
+        public Booking(long sessionID, int appointmentType, int dentist, int day, string time)
         {
             this.sessionID = sessionID;
             this.appointmentType = appointmentType;
@@ -23,7 +23,7 @@ namespace CP2013_WordOfMouth.DTO
             this.time = time;
         }
 
-        public int GetSessionID()
+        public long GetSessionID()
         {
             return sessionID;
         }

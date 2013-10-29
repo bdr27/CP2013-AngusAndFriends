@@ -370,5 +370,56 @@ namespace CP2013_WordOfMouthGUI.UserControls
             }
             Cmbox_AppointmentTypeFilter.SelectedIndex = 0;
         }
+
+        public Booking GetBooking(long ID)
+        {
+            if (Cmbox_AppointmentTypeFilter.SelectedItem is AppointmentType && Cmbox_DentistFilter.SelectedItem is Dentist)
+            {
+                var appType = (Cmbox_AppointmentTypeFilter.SelectedItem as AppointmentType).GetID();
+                var dentist = (Cmbox_DentistFilter.SelectedItem as Dentist).GetID();
+                var timeslot = GetSelectedTimeSlot();
+                if (timeslot != null)
+                {
+                    var day = timeslot.GetDay();
+                    var time = timeslot.ToString();
+                    var booking = new Booking(ID, appType, dentist, day, time);
+                    return booking;
+                }
+            }
+            return null;
+        }
+
+        public TimeSlot GetSelectedTimeSlot()
+        {
+            if (UsrCntrl_TimeSlots.LstView_DayOne.SelectedItem is TimeSlot)
+            {
+                return (UsrCntrl_TimeSlots.LstView_DayOne.SelectedItem as TimeSlot);
+            }
+            else if (UsrCntrl_TimeSlots.LstView_DayTwo.SelectedItem is TimeSlot)
+            {
+                return (UsrCntrl_TimeSlots.LstView_DayTwo.SelectedItem as TimeSlot);
+            }
+            else if (UsrCntrl_TimeSlots.LstView_DayThree.SelectedItem is TimeSlot)
+            {
+                return (UsrCntrl_TimeSlots.LstView_DayThree.SelectedItem as TimeSlot);
+            }
+            else if (UsrCntrl_TimeSlots.LstView_DayFour.SelectedItem is TimeSlot)
+            {
+                return (UsrCntrl_TimeSlots.LstView_DayFour.SelectedItem as TimeSlot);
+            }
+            else if (UsrCntrl_TimeSlots.LstView_DayFive.SelectedItem is TimeSlot)
+            {
+                return (UsrCntrl_TimeSlots.LstView_DayFive.SelectedItem as TimeSlot);
+            }
+            else if (UsrCntrl_TimeSlots.LstView_DaySix.SelectedItem is TimeSlot)
+            {
+                return (UsrCntrl_TimeSlots.LstView_DaySix.SelectedItem as TimeSlot);
+            }
+            else if (UsrCntrl_TimeSlots.LstView_DaySeven.SelectedItem is TimeSlot)
+            {
+                return (UsrCntrl_TimeSlots.LstView_DaySeven.SelectedItem as TimeSlot);
+            }
+            return null;
+        }
     }
 }

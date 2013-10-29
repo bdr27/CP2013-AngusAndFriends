@@ -90,7 +90,21 @@ namespace CP2013_WordOfMouthGUI
 
         private void HandleBtn_RemoveClick(object sender, RoutedEventArgs e)
         {
-            CompleteAction(UserActions.REMOVE_CLICK);
+            if (stateMachine.GetSystemState() == StateOfSystem.APPOINTMENTS_PAGE)
+            {
+                var appSel = window.UsrCntrl_MyApps.GetSelectedAppID();
+                if (appSel != -1)
+                {
+                    stateMachine.SetSystemState(UserActions.REMOVE_CLICK);
+                    var thread = new RemoveAppointmentThread(5000, appSel);
+                    thread.eventHandler += HandleRequestComplete;
+                    thread.Start();
+                }
+            }
+            else
+            {
+                CompleteAction(UserActions.REMOVE_CLICK);
+            }
         }
 
         private void HandleBtn_UpdateClick(object sender, RoutedEventArgs e)
@@ -335,7 +349,25 @@ namespace CP2013_WordOfMouthGUI
 
         private void HandleBtn_CreateClick(object sender, RoutedEventArgs e)
         {
-            CompleteAction(UserActions.CREATE_CLICK);
+            if (stateMachine.GetSystemState() == StateOfSystem.CREATE_APPOINT_PAGE)
+            {
+                var booking = window.UsrCntrl_NewApp.GetBooking(sessionKey.GetSessionID());
+                if (booking != null)
+                {
+                    stateMachine.SetSystemState(UserActions.CREATE_CLICK);
+                    var thread = new MakeAppointmentThread(5000, booking);
+                    thread.eventHandler += HandleRequestComplete;
+                    thread.Start();
+                }
+                else
+                {
+                    MessageBox.Show("Please select a valid time slot.");
+                }
+            }
+            else
+            {
+                CompleteAction(UserActions.CREATE_CLICK);
+            }
         }
 
         private void HandleBtn_AppointmentsClick(object sender, RoutedEventArgs e)

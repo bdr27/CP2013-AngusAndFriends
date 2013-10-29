@@ -26,11 +26,12 @@ namespace CP2013_WordOfMouthGUI.UserControls
         public MyAppointmentsControl()
         {
             InitializeComponent();
+            LstView_AppointmentsList.SelectionMode = SelectionMode.Single;
         }
 
         public void Reset()
         {
-            //
+            LstView_AppointmentsList.SelectedIndex = -1;
         }
 
         private void HowItWorks()
@@ -73,6 +74,16 @@ namespace CP2013_WordOfMouthGUI.UserControls
         public void AddBtn_CancelHandler(RoutedEventHandler handler)
         {
             Btn_CancelAppointments.Click += handler;
+        }
+
+        public int GetSelectedAppID()
+        {
+            if (LstView_AppointmentsList.SelectedItem is AppointmentItem)
+            {
+                var appSel = LstView_AppointmentsList.SelectedItem as AppointmentItem;
+                return appSel.AppointmentID;
+            }
+            return -1;
         }
     }
 }

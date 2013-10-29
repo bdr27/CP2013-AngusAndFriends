@@ -25,11 +25,12 @@ namespace CP2013_WordOfMouth.Gather
         public void SendRequest(string request)
         {
             http.Url = new Uri(baseUrl + location + request);
+            response = http.Post();
         }
 
         public string GetResponse()
         {
-            response = http.Post();
+            
             return response.Content;
         }
 
