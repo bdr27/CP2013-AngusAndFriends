@@ -71,6 +71,13 @@ namespace CP2013_WordOfMouthGUI.UserControls
             var listofcontrols = new List<ListView>();
             if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
             {
+                UsrCntrl_TimeSlots.Lbl_DayOne.Content = "Monday";
+                UsrCntrl_TimeSlots.Lbl_DayTwo.Content = "Tuesday";
+                UsrCntrl_TimeSlots.Lbl_DayThree.Content = "Wednesday";
+                UsrCntrl_TimeSlots.Lbl_DayFour.Content = "Thursday";
+                UsrCntrl_TimeSlots.Lbl_DayFive.Content = "Friday";
+                UsrCntrl_TimeSlots.Lbl_DaySix.Content = "Saturday";
+                UsrCntrl_TimeSlots.Lbl_DaySeven.Content = "Sunday";
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySeven);
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayOne);
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayTwo);
@@ -81,7 +88,13 @@ namespace CP2013_WordOfMouthGUI.UserControls
             }
             else if (DateTime.Now.DayOfWeek == DayOfWeek.Tuesday)
             {
-                ;
+                UsrCntrl_TimeSlots.Lbl_DayOne.Content = "Tuesday";
+                UsrCntrl_TimeSlots.Lbl_DayTwo.Content = "Wednesday";
+                UsrCntrl_TimeSlots.Lbl_DayThree.Content = "Thursday";
+                UsrCntrl_TimeSlots.Lbl_DayFour.Content = "Friday";
+                UsrCntrl_TimeSlots.Lbl_DayFive.Content = "Saturday";
+                UsrCntrl_TimeSlots.Lbl_DaySix.Content = "Sunday";
+                UsrCntrl_TimeSlots.Lbl_DaySeven.Content = "Monday";
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySix);
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySeven);
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayOne);
@@ -92,6 +105,13 @@ namespace CP2013_WordOfMouthGUI.UserControls
             }
             else if (DateTime.Now.DayOfWeek == DayOfWeek.Wednesday)
             {
+                UsrCntrl_TimeSlots.Lbl_DayOne.Content = "Wednesday";
+                UsrCntrl_TimeSlots.Lbl_DayTwo.Content = "Thursday";
+                UsrCntrl_TimeSlots.Lbl_DayThree.Content = "Friday";
+                UsrCntrl_TimeSlots.Lbl_DayFour.Content = "Saturday";
+                UsrCntrl_TimeSlots.Lbl_DayFive.Content = "Sunday";
+                UsrCntrl_TimeSlots.Lbl_DaySix.Content = "Monday";
+                UsrCntrl_TimeSlots.Lbl_DaySeven.Content = "Tuesday";
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFive);
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySix);
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySeven);
@@ -102,6 +122,13 @@ namespace CP2013_WordOfMouthGUI.UserControls
             }
             else if (DateTime.Now.DayOfWeek == DayOfWeek.Thursday)
             {
+                UsrCntrl_TimeSlots.Lbl_DayOne.Content = "Thursday";
+                UsrCntrl_TimeSlots.Lbl_DayTwo.Content = "Friday";
+                UsrCntrl_TimeSlots.Lbl_DayThree.Content = "Saturday";
+                UsrCntrl_TimeSlots.Lbl_DayFour.Content = "Sunday";
+                UsrCntrl_TimeSlots.Lbl_DayFive.Content = "Monday";
+                UsrCntrl_TimeSlots.Lbl_DaySix.Content = "Tuesday";
+                UsrCntrl_TimeSlots.Lbl_DaySeven.Content = "Wednesday";
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFour);
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFive);
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DaySix);
@@ -112,6 +139,13 @@ namespace CP2013_WordOfMouthGUI.UserControls
             }
             else if (DateTime.Now.DayOfWeek == DayOfWeek.Friday)
             {
+                UsrCntrl_TimeSlots.Lbl_DayOne.Content = "Friday";
+                UsrCntrl_TimeSlots.Lbl_DayTwo.Content = "Saturday";
+                UsrCntrl_TimeSlots.Lbl_DayThree.Content = "Sunday";
+                UsrCntrl_TimeSlots.Lbl_DayFour.Content = "Monday";
+                UsrCntrl_TimeSlots.Lbl_DayFive.Content = "Tuesday";
+                UsrCntrl_TimeSlots.Lbl_DaySix.Content = "Wednesday";
+                UsrCntrl_TimeSlots.Lbl_DaySeven.Content = "Thursday";
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayThree);
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFour);
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFive);
@@ -122,6 +156,13 @@ namespace CP2013_WordOfMouthGUI.UserControls
             }
             else if (DateTime.Now.DayOfWeek == DayOfWeek.Saturday)
             {
+                UsrCntrl_TimeSlots.Lbl_DayOne.Content = "Saturday";
+                UsrCntrl_TimeSlots.Lbl_DayTwo.Content = "Sunday";
+                UsrCntrl_TimeSlots.Lbl_DayThree.Content = "Monday";
+                UsrCntrl_TimeSlots.Lbl_DayFour.Content = "Tuesday";
+                UsrCntrl_TimeSlots.Lbl_DayFive.Content = "Wednesday";
+                UsrCntrl_TimeSlots.Lbl_DaySix.Content = "Thursday";
+                UsrCntrl_TimeSlots.Lbl_DaySeven.Content = "Friday";
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayTwo);
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayThree);
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayFour);
@@ -132,6 +173,13 @@ namespace CP2013_WordOfMouthGUI.UserControls
             }
             else
             {
+                UsrCntrl_TimeSlots.Lbl_DayOne.Content = "Sunday";
+                UsrCntrl_TimeSlots.Lbl_DayTwo.Content = "Monday";
+                UsrCntrl_TimeSlots.Lbl_DayThree.Content = "Tuesday";
+                UsrCntrl_TimeSlots.Lbl_DayFour.Content = "Wednesday";
+                UsrCntrl_TimeSlots.Lbl_DayFive.Content = "Thursday";
+                UsrCntrl_TimeSlots.Lbl_DaySix.Content = "Friday";
+                UsrCntrl_TimeSlots.Lbl_DaySeven.Content = "Saturday";
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayOne);
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayTwo);
                 listofcontrols.Add(UsrCntrl_TimeSlots.LstView_DayThree);
