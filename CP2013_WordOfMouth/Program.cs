@@ -22,11 +22,17 @@ namespace CP2013_WordOfMouth
         private static RequestResponse rr = new HttpRequests("https://fast-taiga-8503.herokuapp.com/");
         public static void Main(string[] args)
         {
-            GetRequests(new HttpGetAllDentist(), new JsonAllDentists(), "");
-            GetRequests(new HttpGetDentist(), new JsonDentist(), 1.ToString());
             var Login = new Login("test.user@domain.com", "Password");
             var json = new JsonLogin().GetJson(Login);
-            PostRequests(new HttpPostLogin(), json);
+            var something = PostRequests(new HttpPostLogin(), json);
+            var newSession = new JsonSession().GetObject(something) as Session;
+            GetRequests(new HttpGetAllDentist(), new JsonAllDentists(), "");
+            GetRequests(new HttpGetDentist(), new JsonDentist(), 1.ToString());
+            GetRequests(new HttpGetAppointments(), new JsonAppointments(), newSession.GetSessionID().ToString());
+            //var Login = new Login("test.user@domain.com", "Password");
+            //var json = new JsonLogin().GetJson(Login);
+
+            
             PostRequests(new HttpPostDeleteDentist(), 37.ToString());
             #region OLDMAIN
             var login = new OldLogin("test.user@domain.com", "Password");
@@ -69,10 +75,11 @@ namespace CP2013_WordOfMouth
             var objects = ts.GetObject(json);
         }
 
-        private static void PostRequests(IRequestResponse irr, string message)
+        private static string PostRequests(IRequestResponse irr, string message)
         {
             irr.SendRequest(message);
             var response = irr.GetResponse();
+            return response;
         }
         private static void GetAllDentists()
         {

@@ -25,17 +25,22 @@ namespace CP2013_WordOfMouth.JSON
 
         public override object GetObject(string json)
         {
-            var a = JsonConvert.DeserializeObject<ConverterAppointment>(json);
-            CheckValidParams(a.id, a.type, a.timeSlot, a.expectedDate);
-            var dentist = a.timeSlot.dentist;
-            var type = a.type;
-            var timeSlot = a.timeSlot;
+            var ls = JsonConvert.DeserializeObject<List<ConverterAppointment>>(json);
+            var appointments = new List<Appointment>();
+            foreach(var a in ls)
+            {
+                CheckValidParams(a.id, a.type, a.timeSlot, a.expectedDate);
+                var dentist = a.timeSlot.dentist;
+                var type = a.type;
+                var timeSlot = a.timeSlot;
 
-            var den = new Dentist(dentist.id, dentist.name, dentist.email, dentist.phone);
-            var app = new AppointmentType(type.id, type.description, type.cost);
-            var time = new TimeSlot(timeSlot.id, den, timeSlot.hour, timeSlot.minute, timeSlot.day);
+                    var den = new Dentist(dentist.id, dentist.name, dentist.email, dentist.phone);
+                var app = new AppointmentType(type.id, type.description, type.cost);
+                var time = new TimeSlot(timeSlot.id, den, timeSlot.hour, timeSlot.minute, timeSlot.day);
 
-            return new Appointment(a.id, app, time, a.expectedDate);
+                appointments.Add(new Appointment(a.id, app, time, a.expectedDate));
+            }
+            return appointments;
         }
     }
 }
