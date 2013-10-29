@@ -7,7 +7,7 @@ using CP2013_WordOfMouth.DTO;
 namespace CP2013_WordOfMouth_Tests
 {
     [TestClass]
-    public class JsonAppointmentTests
+    public class JsonAppointmentTypeTests
     {
         private string correctJson = "{\"id\":123,\"description\":\"Check Up or whatever\",\"cost\":49.99}";
         private int id = 123;

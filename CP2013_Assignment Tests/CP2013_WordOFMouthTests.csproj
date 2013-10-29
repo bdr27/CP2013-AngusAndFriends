@@ -50,12 +50,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="JsonAppointmentsTests.cs" />
     <Compile Include="MOCK.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="JsonLoginTests.cs" />
     <Compile Include="JsonSessionTests.cs" />
     <Compile Include="JsonSignUpTests.cs" />
-    <Compile Include="JsonAppointmentTests.cs" />
+    <Compile Include="JsonAppointmentTypeTests.cs" />
     <Compile Include="JsonDentistTests.cs" />
     <Compile Include="JsonTimeSlotTests.cs" />
     <Compile Include="JsonAllDentistsTests.cs" />

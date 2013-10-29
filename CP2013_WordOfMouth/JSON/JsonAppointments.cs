@@ -8,30 +8,34 @@ using System.Threading.Tasks;
 
 namespace CP2013_WordOfMouth.JSON
 {
-    class JsonAppointments : TemplateJson
+    public class JsonAppointments : TemplateJson
     {
         public override string GetJson(object o)
         {
             var a = o as Appointment;
             CheckNull(a);
-            return JsonConvert.SerializeObject(new ConverterAppointment(a.GetID(), a.GetAppointmentType(), a.GetTimeSlot(), a.GetExpectedDate()));
+            var at = a.GetAppointmentType();
+            var cat = new ConverterAppointmentType(at.GetID(), at.GetDescription(), at.GetCost());
+            var ts = a.GetTimeSlot();
+            var den = ts.GetDentist();
+            var cDen = new ConverterDentist(den.GetID(), den.GetName(), den.GetEmail(), den.GetPhone());
+            var cts = new ConverterTimeSlot(ts.GetID(), cDen, ts.GetHour(), ts.GetMin(), ts.GetDay());
+            return JsonConvert.SerializeObject(new ConverterAppointment(a.GetID(), cat, cts, a.GetExpectedDate()));
         }
 
         public override object GetObject(string json)
         {
             var a = JsonConvert.DeserializeObject<ConverterAppointment>(json);
-            CheckValidParams(a.id, a.cDentist, a.cAppointmentType, a.cTimeSlot, a.expectedDate);
-            var cDen = a.cDentist;
-            var cApp = a.cAppointmentType;
-            var cTim = a.cTimeSlot;
+            CheckValidParams(a.id, a.type, a.timeSlot, a.expectedDate);
+            var dentist = a.timeSlot.dentist;
+            var type = a.type;
+            var timeSlot = a.timeSlot;
 
-            var den = new Dentist(cDen.id, cDen.name, cDen.email, cDen.phone);
-            var app = new AppointmentType(cApp.id, cApp.description, cApp.cost);
-            var time = new TimeSlot(cTim.id, den, cTim.hour, cTim.minute, cTim.day);
+            var den = new Dentist(dentist.id, dentist.name, dentist.email, dentist.phone);
+            var app = new AppointmentType(type.id, type.description, type.cost);
+            var time = new TimeSlot(timeSlot.id, den, timeSlot.hour, timeSlot.minute, timeSlot.day);
 
             return new Appointment(a.id, app, time, a.expectedDate);
         }
-
-
     }
 }
