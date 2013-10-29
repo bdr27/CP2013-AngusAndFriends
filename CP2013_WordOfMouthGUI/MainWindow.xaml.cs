@@ -68,5 +68,15 @@ namespace CP2013_WordOfMouthGUI
         {
             return new Login(UsrCntrl_LogIn.TxtBox_Email.Text, UsrCntrl_LogIn.PassBox_Password.Password);
         }
+
+        public void AddBtn_AppointmentsHandler(RoutedEventHandler handler)
+        {
+            Btn_Appointments.Click += handler;
+        }
+
+        public void AddBtn_AdminHandler(RoutedEventHandler handler)
+        {
+            Btn_Admin.Click += handler;
+        }
     }
 }

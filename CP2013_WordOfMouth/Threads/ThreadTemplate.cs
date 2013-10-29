@@ -104,6 +104,8 @@ namespace CP2013_WordOfMouth.Threads
         public bool RefreshUI { get; set; }
         public Session SessionID { get; set; }
         public bool LoggedIn { get; set; }
+        public RequestReturnType RequestType { get; set; }
+        public object Infomation { get; set; }
     }
 
     public delegate void RequestEventHandler(object sender, RequestCompleteArgs e);
