@@ -108,6 +108,8 @@
     <Compile Include="MOCK\MOCKFileHandler.cs" />
     <Compile Include="MOCK\MOCKTimeSlot.cs" />
     <Compile Include="MOCK\MOCKUser.cs" />
+    <Compile Include="Threads\AddDentistThread.cs" />
+    <Compile Include="Threads\EditDentistThread.cs" />
     <Compile Include="Threads\EditDentistTimeSlotThread.cs" />
     <Compile Include="Threads\GetAppointmentTypesThread.cs" />
     <Compile Include="Threads\GetDentistsThread.cs" />

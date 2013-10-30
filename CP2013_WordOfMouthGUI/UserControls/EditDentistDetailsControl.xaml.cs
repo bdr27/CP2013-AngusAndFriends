@@ -108,5 +108,14 @@ namespace CP2013_WordOfMouthGUI.UserControls
             }
             return true;
         }
+
+        public Dentist GetDentist()
+        {
+            if (Cmbox_DentistFilter.SelectedItem is Dentist) {
+                var dentist = Cmbox_DentistFilter.SelectedItem as Dentist;
+                return new Dentist(dentist.GetID(), TxtBox_DentistName.Text, TxtBox_DentistAddress.Text, TxtBox_DentistPhone.Text);
+            }
+            return null;
+        }
     }
 }

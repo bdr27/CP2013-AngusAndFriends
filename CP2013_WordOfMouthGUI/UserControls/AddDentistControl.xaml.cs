@@ -86,5 +86,10 @@ namespace CP2013_WordOfMouthGUI.UserControls
         {
             CheckEnabledState();
         }
+
+        public Dentist GetDentist()
+        {
+            return new Dentist(0, TxtBox_DentistName.Text, TxtBox_DentistAddress.Text, TxtBox_DentistPhone.Text);
+        }
     }
 }

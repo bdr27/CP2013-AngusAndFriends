@@ -147,11 +147,22 @@ namespace CP2013_WordOfMouthGUI
                 if (information != null)
                 {
                     stateMachine.SetSystemState(UserActions.UPDATE_CLICK);
-
                     var thread = new EditDentistTimeSlotThread(5000, information);
                     thread.eventHandler += HandleRequestComplete;
                     thread.Start();
                 }
+            }
+            else if (stateMachine.GetSystemState() == StateOfSystem.EDIT_DENTIST_DETAILS_PAGE)
+            {
+                var dentist = window.UsrCntrl_EditDentistDetails.GetDentist();
+                if (dentist != null)
+                {
+                    stateMachine.SetSystemState(UserActions.UPDATE_CLICK);
+                    var thread = new EditDentistThread(5000, dentist);
+                    thread.eventHandler += HandleRequestComplete;
+                    thread.Start();
+                }
+                
             }
             else
             {
@@ -505,6 +516,14 @@ namespace CP2013_WordOfMouthGUI
                 {
                     MessageBox.Show("Please select a valid time slot.");
                 }
+            }
+            else if (stateMachine.GetSystemState() == StateOfSystem.ADD_DENTIST_PAGE)
+            {
+                var dentist = window.UsrCntrl_AddDentist.GetDentist();
+                stateMachine.SetSystemState(UserActions.CREATE_CLICK);
+                var thread = new AddDentistThread(5000, dentist);
+                thread.eventHandler += HandleRequestComplete;
+                thread.Start();
             }
             else
             {
