@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCE6gI2_b70jAcK1F-mIpAz5CxdtdUPoSY&amp;sensor=false"></script>
+    <script type="text/javascript">
+      var LoadGoogleMaps, seconds;
+      LoadGoogleMaps = function() {
+        var map, mapProp, marker, myCenter;
+        myCenter = new google.maps.LatLng(-19.329200, 146.759612);
+        mapProp = {
+          center: myCenter,
+          zoom: 14,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("target"), mapProp);
+        marker = new google.maps.Marker({
+          position: myCenter,
+          title: 'Click to zoom'
+        });
+        marker.setMap(map);
+        return google.maps.event.addListener(marker, 'click', function() {
+          map.setZoom(16);
+          return map.setCenter(marker.getPosition());
+        });
+      };
+      seconds = function(n) {
+        return n * 1000;
+      };
+    </script>
+  </head>
+  <body>
+    <div id="target" style="width:300px;height:300px;"></div>
+  </body>
+</html>
+<script type="text/javascript">LoadGoogleMaps();</script>
