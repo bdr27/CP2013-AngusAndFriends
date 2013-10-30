@@ -34,7 +34,7 @@ namespace CP2013_WordOfMouth.JSON
                 var type = a.type;
                 var timeSlot = a.timeSlot;
 
-                    var den = new Dentist(dentist.id, dentist.name, dentist.email, dentist.phone);
+                var den = new Dentist(dentist.dentistID, dentist.name, dentist.email, dentist.phone);
                 var app = new AppointmentType(type.id, type.description, type.cost);
                 var time = new TimeSlot(timeSlot.id, den, timeSlot.hour, timeSlot.minute, timeSlot.day);
 
