@@ -8,7 +8,7 @@ namespace CP2013_WordOfMouth.Utility
 {
     public static class HTTP_INFO
     {
-        private static string urlBase = "http://infinite-eyrie-6084.herokuapp.com/";
+        private static string urlBase = "http://whispering-beach-8725.herokuapp.com/";
         private static string allDentists = "get/all/dentists";
         private static string dentist = "get/dentist/";
         private static string deleteDentist = "/delete/dentist/";
