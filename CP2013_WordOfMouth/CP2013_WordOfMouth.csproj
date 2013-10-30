@@ -47,7 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\LoginStatusController.cs" />
+    <Compile Include="Controllers\StateMachine.cs" />
+    <Compile Include="Controllers\StateController.cs" />
     <Compile Include="DTO\Appointment.cs" />
     <Compile Include="DTO\Booking.cs" />
     <Compile Include="DTO\Dentist.cs" />
@@ -85,7 +87,9 @@
     <Compile Include="Gather\HttpPostSetDentistTimes.cs" />
     <Compile Include="Gather\HttpPostSignUp.cs" />
     <Compile Include="Gather\IRequestResponse.cs" />
-    <Compile Include="Interface\IUserController.cs" />
+    <Compile Include="Interface\ILoginStatusController.cs" />
+    <Compile Include="Interface\IStateController.cs" />
+    <Compile Include="Interface\IStateMachine.cs" />
     <Compile Include="JSON\JsonAppointmentAddType.cs" />
     <Compile Include="JSON\ConverterAppointment.cs" />
     <Compile Include="JSON\ConverterAppointmentType.cs" />
@@ -116,6 +120,7 @@
     <Compile Include="Threads\EditDentistThread.cs" />
     <Compile Include="Threads\EditDentistTimeSlotThread.cs" />
     <Compile Include="Threads\GetAppointmentTypesThread.cs" />
+    <Compile Include="Threads\GetBookingsForDentistThread.cs" />
     <Compile Include="Threads\GetDentistsThread.cs" />
     <Compile Include="Threads\GetUserAppointments.cs" />
     <Compile Include="Threads\IGetJsonResponse.cs" />

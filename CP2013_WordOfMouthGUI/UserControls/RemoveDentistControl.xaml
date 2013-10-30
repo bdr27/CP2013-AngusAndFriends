@@ -27,7 +27,7 @@
         <Label Content="Remove Dentist" FontFamily="Arial" FontSize="55" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
         <Label Content="Select Dentist to Remove:" Grid.Row="2" Grid.Column="1" FontWeight="Bold" HorizontalContentAlignment="Right"/>
         <Label Content="Appointments Affected by the Removal of the Selected Dentist:" FontWeight="Bold" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <ComboBox x:Name="Cmbox_DentistName" Grid.Row="2" Grid.Column="2" Margin="0,0,150,0"/>
+        <ComboBox x:Name="Cmbox_DentistName" Grid.Row="2" Grid.Column="2" Margin="0,0,150,0" Height="25" VerticalAlignment="Top"/>
         <ListView x:Name="LstView_AppointmentsList" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"/>
         <Button x:Name="Btn_RemoveDentist" Content="Remove Dentist" Grid.Row="8" Grid.Column="2" Margin="219,0,126,0"/>
         <Button x:Name="Btn_Cancel" Content="Cancel" Grid.Row="8" Grid.Column="2" Margin="355,0,10,0"/>

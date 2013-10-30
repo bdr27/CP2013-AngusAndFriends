@@ -56,5 +56,22 @@ namespace CP2013_WordOfMouthGUI.UserControls
 
             Cmbox_DentistName.SelectedIndex = 0;
         }
+
+        public void AddCmboxDentistNameHandler(SelectionChangedEventHandler handler)
+        {
+            Cmbox_DentistName.SelectionChanged += handler;
+        }
+
+        public void SetAppointments(List<Appointment> appointments)
+        {
+            if (appointments == null)
+                return;
+
+            LstView_AppointmentsList.Items.Clear();
+            foreach (var appointment in appointments)
+            {
+                LstView_AppointmentsList.Items.Add(appointment);
+            }
+        }
     }
 }

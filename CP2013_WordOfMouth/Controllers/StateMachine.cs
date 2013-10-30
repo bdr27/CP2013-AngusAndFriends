@@ -1,5 +1,4 @@
-﻿using CP2013_WordOfMouth.DTO;
-using CP2013_WordOfMouth.Enum;
+﻿using CP2013_WordOfMouth.Enum;
 using CP2013_WordOfMouth.Interface;
 using System;
 using System.Collections.Generic;
@@ -11,14 +10,11 @@ namespace CP2013_WordOfMouth.Controllers
 {
     public class StateMachine : IStateMachine
     {
-
         private StateOfSystem state;
-        private LoginStatus loginStatus;
 
         public StateMachine()
         {
             state = StateOfSystem.HOME_PAGE_NLI;
-            loginStatus = LoginStatus.LOGGED_OUT;
         }
 
         public StateOfSystem GetSystemState()
@@ -26,7 +22,7 @@ namespace CP2013_WordOfMouth.Controllers
             return state;
         }
 
-        public bool SetSystemState(UserActions action)
+        public bool SetSystemState(UserActions action, LoginStatus login)
         {
             var prevState = state;
 
@@ -36,11 +32,11 @@ namespace CP2013_WordOfMouth.Controllers
                 // NAV home page clicks >> returns user to home page
                 if (action == UserActions.HOME_CLICK && !IsInVerifingState())
                 {
-                    if (loginStatus == LoginStatus.LOGGED_OUT)
+                    if (login == LoginStatus.LOGGED_OUT)
                     {
                         state = StateOfSystem.HOME_PAGE_NLI;
                     }
-                    else if (loginStatus == LoginStatus.ADMIN)
+                    else if (login == LoginStatus.ADMIN)
                     {
                         state = StateOfSystem.HOME_PAGE_ADMIN;
                     }
@@ -53,25 +49,24 @@ namespace CP2013_WordOfMouth.Controllers
                 // NAV logout button clicks >> logs user out
                 if (action == UserActions.LOGIN_LOGOUT_CLICK && !IsInVerifingState())
                 {
-                    if (loginStatus == LoginStatus.LOGGED_OUT)
+                    if (login == LoginStatus.LOGGED_OUT)
                     {
                         state = StateOfSystem.LOGIN_PAGE;
                     }
                     else
                     {
                         state = StateOfSystem.HOME_PAGE_NLI;
-                        loginStatus = LoginStatus.LOGGED_OUT;
                     }
                 }
 
                 // NAV admin button clicks >> takes user to admin panel if user is an admin
-                if (action == UserActions.ADMIN_CLICK && loginStatus == LoginStatus.ADMIN)
+                if (action == UserActions.ADMIN_CLICK && login == LoginStatus.ADMIN)
                 {
                     state = StateOfSystem.ADMIN_PAGE;
                 }
 
                 // NAV appointments button clicks >> takes user to appointments page if user is not an admin
-                if (action == UserActions.APPOINTMENTS_CLICK && loginStatus == LoginStatus.USER)
+                if (action == UserActions.APPOINTMENTS_CLICK && login == LoginStatus.USER)
                 {
                     state = StateOfSystem.APPOINTMENTS_PAGE;
                 }
@@ -202,7 +197,7 @@ namespace CP2013_WordOfMouth.Controllers
                     state = StateOfSystem.ADMIN_PAGE;
                 }
             }
-            
+
             // verify join states | Possible actions >> Success, Failure
             if (state == StateOfSystem.VERIFY_JOIN && action == UserActions.SUCCESS)
             {
@@ -216,11 +211,11 @@ namespace CP2013_WordOfMouth.Controllers
             // verify login states | Possible actions >> Success, Failure
             else if (state == StateOfSystem.VERIFY_LOGIN && action == UserActions.SUCCESS)
             {
-                if (loginStatus == LoginStatus.ADMIN)
+                if (login == LoginStatus.ADMIN)
                 {
                     state = StateOfSystem.ADMIN_PAGE;
                 }
-                else if (loginStatus == LoginStatus.USER)
+                else if (login == LoginStatus.USER)
                 {
                     state = StateOfSystem.APPOINTMENTS_PAGE;
                 }
@@ -234,7 +229,6 @@ namespace CP2013_WordOfMouth.Controllers
             else if (state == StateOfSystem.VERIFY_LOGOUT)
             {
                 state = StateOfSystem.HOME_PAGE_NLI;
-                loginStatus = LoginStatus.LOGGED_OUT;
             }
 
             // verify creating appointments | Possible actions >> Success, Failure
@@ -290,27 +284,6 @@ namespace CP2013_WordOfMouth.Controllers
             }
 
             return prevState != state;
-        }
-
-        public void SetLoginStatus(Session key)
-        {
-            if (key == null)
-            {
-                loginStatus = LoginStatus.LOGGED_OUT;
-            }
-            else if (key.GetAdmin())
-            {
-                loginStatus = LoginStatus.ADMIN;
-            }
-            else
-            {
-                loginStatus = LoginStatus.USER;
-            }
-        }
-
-        public LoginStatus GetLoginStatus()
-        {
-            return loginStatus;
         }
 
         private bool IsInVerifingState()

@@ -23,7 +23,7 @@ namespace CP2013_WordOfMouthGUI
     public partial class App : Application
     {
         private MainWindow window;
-        private IStateMachine stateMachine;
+        private IStateController stateMachine;
         private Session sessionKey = null;
         private Thread sessionThread;
         private System.Timers.Timer timeoutTimer;
@@ -34,7 +34,7 @@ namespace CP2013_WordOfMouthGUI
             : base()
         {
             window = new MainWindow();
-            stateMachine = new StateMachine();
+            stateMachine = new StateController();
 
             isVolatile = false;
 
@@ -91,6 +91,31 @@ namespace CP2013_WordOfMouthGUI
 
             window.UsrCntrl_EditDentistDetails.AddBtn_UpdateHandler(HandleBtn_UpdateClick);
             window.UsrCntrl_EditDentistDetails.AddBtn_CancelHandler(HandleBtn_CancelClick);
+
+            window.UsrCntrl_RemoveDentist.AddCmboxDentistNameHandler(HandleCmbox_DentistNameRemChange);
+        }
+
+        private void HandleCmbox_DentistNameRemChange(object sender, SelectionChangedEventArgs e)
+        {
+            if (window.UsrCntrl_RemoveDentist.Cmbox_DentistName.SelectedItem is Dentist)
+            {
+                var dentistID = (window.UsrCntrl_RemoveDentist.Cmbox_DentistName.SelectedItem as Dentist).GetID();
+                var thread = new GetBookingsForDentistThread(5000, dentistID);
+                thread.eventHandler += HandleAppointmentsRemoveDentistUpdate;
+                thread.Start();
+            }
+        }
+
+        private void HandleAppointmentsRemoveDentistUpdate(object sender, RequestCompleteArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (e.RequestType == RequestReturnType.APPOINTMENTS)
+                {
+                    var appointments = e.Infomation as List<Appointment>;
+                    window.UsrCntrl_RemoveDentist.SetAppointments(appointments);
+                }
+            });
         }
 
         private void HandleBtn_EditDentistDetailsClick(object sender, RoutedEventArgs e)
