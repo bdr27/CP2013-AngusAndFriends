@@ -137,8 +137,12 @@ namespace CP2013_WordOfMouth.Controllers
                 {
                     state = StateOfSystem.REMOVE_APPOINT_TYPE_PAGE;
                 }
+                else if (state == StateOfSystem.ADMIN_PAGE && action == UserActions.EDIT_DEN_DETAILS_CLICK)
+                {
+                    state = StateOfSystem.EDIT_DENTIST_DETAILS_PAGE;
+                }
 
-                // add dentist page state | Possible actions >> Create, Cancel
+              // add dentist page state | Possible actions >> Create, Cancel
                 else if (state == StateOfSystem.ADD_DENTIST_PAGE && action == UserActions.CREATE_CLICK)
                 {
                     state = StateOfSystem.VERIFY_ADD_DENTIST;

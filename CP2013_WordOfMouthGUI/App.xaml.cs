@@ -69,6 +69,7 @@ namespace CP2013_WordOfMouthGUI
             window.UsrCntrl_Admin.AddBtn_RemoveDentistHandler(HandleBtn_RemoveDentistClick);
             window.UsrCntrl_Admin.AddBtn_NewAppTypeHandler(HandleBtn_NewAppTypeClick);
             window.UsrCntrl_Admin.AddBtn_RemoveAppTypeHandler(HandleBtn_RemoveAppTypeClick);
+            window.UsrCntrl_Admin.AddBtn_EditDentistDetailsHandler(HandleBtn_EditDentistDetailsClick);
 
             window.UsrCntrl_EditDentist.AddBtn_UpdateHandler(HandleBtn_UpdateClick);
             window.UsrCntrl_EditDentist.AddBtn_CancelHandler(HandleBtn_CancelClick);
@@ -90,6 +91,11 @@ namespace CP2013_WordOfMouthGUI
 
             window.UsrCntrl_EditDentistDetails.AddBtn_UpdateHandler(HandleBtn_UpdateClick);
             window.UsrCntrl_EditDentistDetails.AddBtn_CancelHandler(HandleBtn_CancelClick);
+        }
+
+        private void HandleBtn_EditDentistDetailsClick(object sender, RoutedEventArgs e)
+        {
+            CompleteAction(UserActions.EDIT_DEN_DETAILS_CLICK);
         }
 
         private void HandleBtn_RemoveClick(object sender, RoutedEventArgs e)
@@ -272,7 +278,26 @@ namespace CP2013_WordOfMouthGUI
                     {
                         window.SetPage(window.UsrCntrl_RemoveDentist);
                     } break;
+                case StateOfSystem.EDIT_DENTIST_DETAILS_PAGE:
+                    {
+                        window.SetPage(window.UsrCntrl_EditDentistDetails);
+                        var thread = new GetDentistsThread(5000, "");
+                        thread.eventHandler += HandleGetAllDentistsEditDenDetailsUpdate;
+                        thread.Start();
+                    } break;
             }
+        }
+
+        private void HandleGetAllDentistsEditDenDetailsUpdate(object sender, RequestCompleteArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (e.RequestType == RequestReturnType.DENTISTS)
+                {
+                    var dentists = e.Infomation as List<Dentist>;
+                    window.UsrCntrl_EditDentistDetails.SetDentists(dentists);
+                }
+            });
         }
 
         private void HandleGetAllAppTypesRemAppUpdate(object sender, RequestCompleteArgs e)

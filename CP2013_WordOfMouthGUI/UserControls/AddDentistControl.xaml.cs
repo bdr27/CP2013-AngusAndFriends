@@ -1,8 +1,10 @@
-﻿using CP2013_WordOfMouthGUI.Interfaces;
+﻿using CP2013_WordOfMouth.DTO;
+using CP2013_WordOfMouthGUI.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,16 +30,10 @@ namespace CP2013_WordOfMouthGUI.UserControls
 
         public void Reset()
         {
+            Btn_Create.IsEnabled = false;
             TxtBox_DentistName.Text = "";
             TxtBox_DentistAddress.Text = "";
             TxtBox_DentistPhone.Text = "";
-            UsrCntrl_TimeSlots.LstView_DayOne.SelectedIndex = -1;
-            UsrCntrl_TimeSlots.LstView_DayTwo.SelectedIndex = -1;
-            UsrCntrl_TimeSlots.LstView_DayThree.SelectedIndex = -1;
-            UsrCntrl_TimeSlots.LstView_DayFour.SelectedIndex = -1;
-            UsrCntrl_TimeSlots.LstView_DayFive.SelectedIndex = -1;
-            UsrCntrl_TimeSlots.LstView_DaySix.SelectedIndex = -1;
-            UsrCntrl_TimeSlots.LstView_DaySeven.SelectedIndex = -1;
         }
 
         public void AddBtn_CreateHandler(RoutedEventHandler handler)
@@ -48,6 +44,47 @@ namespace CP2013_WordOfMouthGUI.UserControls
         public void AddBtn_CancelHandler(RoutedEventHandler handler)
         {
             Btn_Cancel.Click += handler;
+        }
+
+        private void CheckEnabledState()
+        {
+            if (CheckEmpty(TxtBox_DentistAddress.Text, TxtBox_DentistName.Text, TxtBox_DentistPhone.Text) &&
+                Regex.Match(TxtBox_DentistPhone.Text, @"^04([0-9]{8})$").Success &&
+                Regex.Match(TxtBox_DentistAddress.Text, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$").Success)
+            {
+                Btn_Create.IsEnabled = true;
+            }
+            else
+            {
+                Btn_Create.IsEnabled = false;
+            }
+        }
+
+        private bool CheckEmpty(params string[] strs)
+        {
+            foreach (var str in strs)
+            {
+                if (str == null || str.Trim().Equals(""))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private void TxtBox_DentistName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CheckEnabledState();
+        }
+
+        private void TxtBox_DentistPhone_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CheckEnabledState();
+        }
+
+        private void TxtBox_DentistAddress_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CheckEnabledState();
         }
     }
 }

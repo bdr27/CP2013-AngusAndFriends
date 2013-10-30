@@ -9,35 +9,31 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>
-            <RowDefinition Height="5"/>
+            <RowDefinition Height="15"/>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="5"/>
-            <RowDefinition Height="350"/>
-            <RowDefinition Height="5"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="25"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition Width="50"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="190"/>
+            <ColumnDefinition Width="300"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Label Content="Add Dentist" FontFamily="Arial" FontSize="55" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="8"/>
-        <Label Content="Name:" Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Right"/>
-        <Label Content="Phone:" Grid.Row="2" Grid.Column="4" HorizontalContentAlignment="Right"/>
-        <Label Content="Email Address:" Grid.Row="2" Grid.Column="7" HorizontalContentAlignment="Right"/>
-        <TextBox x:Name="TxtBox_DentistName" Grid.Row="2" Grid.Column="2"/>
-        <TextBox x:Name="TxtBox_DentistPhone" Grid.Row="2" Grid.Column="5"/>
-        <TextBox x:Name="TxtBox_DentistAddress" Grid.Row="2" Grid.Column="8"/>
-        <Button x:Name="Btn_Create" Content="Create" Grid.Row="6" Grid.Column="7" Margin="84,0,126,0" Grid.ColumnSpan="2"/>
-        <Button x:Name="Btn_Cancel" Content="Cancel" Grid.Row="6" Grid.Column="8" Margin="100,0,10,0"/>
-        <local:TableGridControl x:Name="UsrCntrl_TimeSlots" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="8"/>
+        <Label Content="Add New Dentist" FontFamily="Arial" FontSize="55" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"/>
+        <Label Content="Name:" FontWeight="Bold" Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Right"/>
+        <Label Content="Phone:" FontWeight="Bold" Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Right"/>
+        <Label Content="Email Address:" FontWeight="Bold" Grid.Row="6" Grid.Column="1" HorizontalContentAlignment="Right"/>
+        <TextBox x:Name="TxtBox_DentistName" Grid.Row="2" Grid.Column="2" Margin="0,0,75,0" TextChanged="TxtBox_DentistName_TextChanged"/>
+        <TextBox x:Name="TxtBox_DentistPhone" Grid.Row="4" Grid.Column="2" Margin="0,0,75,0" HorizontalAlignment="Right" Width="225" TextChanged="TxtBox_DentistPhone_TextChanged"/>
+        <TextBox x:Name="TxtBox_DentistAddress" Grid.Row="6" Grid.Column="2" Margin="0,0,75,0" TextChanged="TxtBox_DentistAddress_TextChanged"/>
+        <Button x:Name="Btn_Create" Content="Create" Grid.Row="9" Grid.Column="2" Margin="0,0,200,0"/>
+        <Button x:Name="Btn_Cancel" Content="Cancel" Grid.Row="9" Grid.Column="2" Margin="125,0,75,0"/>
     </Grid>
 </UserControl>

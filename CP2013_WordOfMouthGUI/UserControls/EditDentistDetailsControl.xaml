@@ -32,11 +32,11 @@
         <Label Content="Phone:" Grid.Row="6" Grid.Column="1" HorizontalContentAlignment="Right"/>
         <Label Content="Email Address:" Grid.Row="8" Grid.Column="1" HorizontalContentAlignment="Right"/>
         <Label Content="Dentist To Edit:" FontWeight="Bold" Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Right"/>
-        <TextBox x:Name="TxtBox_DentistName" Grid.Row="4" Grid.Column="2" Margin="0,0,75,0"/>
-        <TextBox x:Name="TxtBox_DentistPhone" Grid.Row="6" Grid.Column="2" Margin="0,0,75,0"/>
-        <TextBox x:Name="TxtBox_DentistAddress" Grid.Row="8" Grid.Column="2" Margin="0,0,75,0"/>
+        <TextBox x:Name="TxtBox_DentistName" Grid.Row="4" Grid.Column="2" Margin="0,0,75,0" TextChanged="TxtBox_DentistName_TextChanged"/>
+        <TextBox x:Name="TxtBox_DentistPhone" Grid.Row="6" Grid.Column="2" Margin="0,0,75,0" HorizontalAlignment="Right" Width="225" TextChanged="TxtBox_DentistPhone_TextChanged"/>
+        <TextBox x:Name="TxtBox_DentistAddress" Grid.Row="8" Grid.Column="2" Margin="0,0,75,0" TextChanged="TxtBox_DentistAddress_TextChanged"/>
         <Button x:Name="Btn_Update" Content="Update" Grid.Row="11" Grid.Column="2" Margin="0,0,200,0"/>
         <Button x:Name="Btn_Cancel" Content="Cancel" Grid.Row="11" Grid.Column="2" Margin="125,0,75,0"/>
-        <ComboBox x:Name="Cmbox_DentistFilter" Grid.Row="2" Grid.Column="2" Margin="0,0,75,0"/>
+        <ComboBox x:Name="Cmbox_DentistFilter" Grid.Row="2" Grid.Column="2" Margin="0,0,75,0" SelectionChanged="Cmbox_DentistFilter_SelectionChanged"/>
     </Grid>
 </UserControl>

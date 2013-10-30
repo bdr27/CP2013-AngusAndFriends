@@ -24,6 +24,7 @@ namespace CP2013_WordOfMouth.Enum
         REMOVE_DEN_CLICK,
         ADD_APP_TYPE_CLICK,
         REMOVE_APP_TYPE_CLICK,
+        EDIT_DEN_DETAILS_CLICK,
         SUCCESS,
         FAILURE
     }
