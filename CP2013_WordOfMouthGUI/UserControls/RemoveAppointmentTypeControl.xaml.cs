@@ -40,5 +40,10 @@ namespace CP2013_WordOfMouthGUI.UserControls
         {
             Btn_Cancel.Click += handler;
         }
+
+        internal void SetDentists(List<CP2013_WordOfMouth.DTO.Dentist> dentists)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -86,6 +86,7 @@ namespace CP2013_WordOfMouthGUI
             window.UsrCntrl_RemoveDentist.AddBtn_CancelHandler(HandleBtn_CancelClick);
 
             window.UsrCntrl_NewApp.AddCmbox_DentistFilterChangedHandler(HandleCmbox_DentistFilterChange);
+            window.UsrCntrl_EditDentist.AddCmbox_DentistNameHandler(HandleCmbox_DentistNameChange);
         }
 
         private void HandleBtn_RemoveClick(object sender, RoutedEventArgs e)
@@ -191,6 +192,9 @@ namespace CP2013_WordOfMouthGUI
                 case StateOfSystem.EDIT_DENTIST_PAGE:
                     {
                         window.SetPage(window.UsrCntrl_EditDentist);
+                        var thread = new GetDentistsThread(5000, "");
+                        thread.eventHandler += HandleGetDentistsEditDenUpdate;
+                        thread.Start();
                     } break;
                 case StateOfSystem.REMOVE_DENTIST_PAGE:
                     {
@@ -214,6 +218,53 @@ namespace CP2013_WordOfMouthGUI
                         threadTypes.eventHandler += HandleGetAllAppTypesNewAppUpdate;
                         threadTypes.Start();
                     } break;
+            }
+        }
+
+        private void HandleGetDentistsRemoveDenUpdate(object sender, RequestCompleteArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (e.RequestType == RequestReturnType.DENTISTS)
+                {
+                    var dentists = e.Infomation as List<Dentist>;
+                    window.UsrCntrl_RemoveAppType.SetDentists(dentists);
+                }
+            });
+        }
+
+        private void HandleGetDentistsEditDenUpdate(object sender, RequestCompleteArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (e.RequestType == RequestReturnType.DENTISTS)
+                {
+                    var dentists = e.Infomation as List<Dentist>;
+                    window.UsrCntrl_EditDentist.SetDentists(dentists);
+                }
+            });
+        }
+
+        private void HandleGetDentistTimesEditDenUpdate(object sender, RequestCompleteArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (e.RequestType == RequestReturnType.TIMESLOTS)
+                {
+                    var times = e.Infomation as List<CP2013_WordOfMouth.DTO.TimeSlot>;
+                    window.UsrCntrl_EditDentist.SetTimeSlots(times);
+                }
+            });
+        }
+
+        private void HandleCmbox_DentistNameChange(object sender, SelectionChangedEventArgs e)
+        {
+            if (window.UsrCntrl_EditDentist.Cmbox_DentistName.SelectedItem is Dentist)
+            {
+                var dentist = window.UsrCntrl_EditDentist.Cmbox_DentistName.SelectedItem as Dentist;
+                var thread = new NewAppTimeSlotsThread(5000, dentist.GetID());
+                thread.eventHandler += HandleGetDentistTimesEditDenUpdate;
+                thread.Start();
             }
         }
 
