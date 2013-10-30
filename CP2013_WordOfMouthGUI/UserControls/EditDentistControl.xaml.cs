@@ -101,11 +101,74 @@ namespace CP2013_WordOfMouthGUI.UserControls
 
         public void SetTimeSlots(List<TimeSlot> times)
         {
+            if (times == null)
+                return;
             // set all times to empty
             var listofviews = GetControlList();
             for (int i = 0; i < 7; ++i)
             {
+                listofviews.ElementAt(i).Items.Clear();
+                var startHour = 8;
+                var startMinute = 0;
+                var endHour = 18;
+                var endMinute = 0;
+                if (!(Cmbox_DentistName.SelectionBoxItem is Dentist))
+                    return;
+                var dentist = Cmbox_DentistName.SelectedItem as Dentist;
+                while (startHour != endHour || startMinute != endMinute)
+                {
+                    var timeslot = new TimeSlot(0, dentist, startHour, startMinute, i);
+                    listofviews.ElementAt(i).Items.Add(timeslot);
+                    startMinute += 30;
+                    if (startMinute >= 60)
+                    {
+                        startMinute -= 60;
+                        startHour += 1;
+                    }
+                }
             }
+
+            foreach (var time in times)
+            {
+                for (int i = 0; i < listofviews.ElementAt(time.GetDay()).Items.Count; ++i)
+                {
+                    var ts = listofviews.ElementAt(time.GetDay()).Items[i] as TimeSlot;
+                    if (ts.GetHour() == time.GetHour() && ts.GetMin() == time.GetMin())
+                    {
+                        listofviews.ElementAt(time.GetDay()).SelectedItems.Add(ts);
+                    }
+                }
+            }
+        }
+
+        public string GetSelectedAppointmentsString()
+        {
+            var returnString = @"{";
+            var listofviews = GetControlList();
+            for (int i = 0; i < 7; ++i)
+            {
+                returnString += @"""" + i + @""":[";
+                var count = listofviews.ElementAt(i).SelectedItems.Count;
+                foreach (var item in listofviews.ElementAt(i).SelectedItems)
+                {
+                    if (item is TimeSlot)
+                    {
+                        returnString += @"""" + (item as TimeSlot).ToString() + @"""";
+                        if (count > 1)
+                        {
+                            returnString += ",";
+                        }
+                        count -= 1;
+                    }
+                }
+                returnString += "]";
+                if (i != 6)
+                {
+                    returnString += ",";
+                }
+            }
+            returnString += "}";
+            return returnString;
         }
     }
 }

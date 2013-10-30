@@ -110,6 +110,7 @@ namespace CP2013_WordOfMouthGUI
 
         private void HandleBtn_UpdateClick(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine(window.UsrCntrl_EditDentist.GetSelectedAppointmentsString());
             CompleteAction(UserActions.UPDATE_CLICK);
         }
 
