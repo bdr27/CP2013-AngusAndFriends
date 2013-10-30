@@ -85,6 +85,7 @@
     <Compile Include="Gather\HttpPostSignUp.cs" />
     <Compile Include="Gather\IRequestResponse.cs" />
     <Compile Include="Interface\IUserController.cs" />
+    <Compile Include="JSON\JsonAppointmentAddType.cs" />
     <Compile Include="JSON\ConverterAppointment.cs" />
     <Compile Include="JSON\ConverterAppointmentType.cs" />
     <Compile Include="JSON\ConverterBooking.cs" />

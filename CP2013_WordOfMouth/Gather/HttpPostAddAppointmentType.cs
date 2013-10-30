@@ -8,21 +8,31 @@ using RestSharp;
 
 namespace CP2013_WordOfMouth.Gather
 {
-    class HttpPostAddAppointmentType : IRequestResponse
+    public class HttpPostAddAppointmentType : IRequestResponse
     {
         private string baseUrl = HTTP_INFO.GetUrlBase();
         private string location = HTTP_INFO.GetAddAppointmentType();
+        private Http http;
+        private HttpResponse response;
+
+        public HttpPostAddAppointmentType()
+        {
+            http = new Http();
+            http.Url = new Uri(baseUrl + location);
+            http.RequestContentType = "application/json";
+        }
         
         #region IRequestResponse Members
 
         public void SendRequest(string request)
         {
-            throw new NotImplementedException();
+            http.RequestBody = request;
+            response = http.Post();
         }
 
         public string GetResponse()
         {
-            throw new NotImplementedException();
+            return response.Content;
         }
 
         #endregion
@@ -30,7 +40,7 @@ namespace CP2013_WordOfMouth.Gather
 
         public HttpResponse GetHttpResponse()
         {
-            throw new NotImplementedException();
+            return response;
         }
     }
 }

@@ -22,6 +22,10 @@ namespace CP2013_WordOfMouth
         private static RequestResponse rr = new HttpRequests("https://fast-taiga-8503.herokuapp.com/");
         public static void Main(string[] args)
         {
+            var helloIAm = new CP2013_WordOfMouth.DTO.AppointmentType(1, "Clean my teeth", 100);
+            var jsonApointment = new JsonAppointmentAddType().GetJson(helloIAm);
+            var test = PostRequests(new HttpPostAddAppointmentType(), jsonApointment);
+
             var Login = new Login("test.user@domain.com", "Password");
             var json = new JsonLogin().GetJson(Login);
             var something = PostRequests(new HttpPostLogin(), json);

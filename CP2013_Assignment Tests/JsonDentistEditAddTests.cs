@@ -10,10 +10,10 @@ namespace CP2013_WordOfMouth_Tests
     public class JsonDentistEditAddTests
     {
         private string correctJson = "{\"dentistID\":2,\"name\":\"Dr. John J0hn\",\"email\":\"john.smith@wordofmouth.com\",\"phone\":\"0429779889\"}";
-        private int id = 123;
-        private string name = "DENTIST NAME";
-        private string email = "example@domain.com";
-        private string phone = "044445556666";
+        private int id = 2;
+        private string name = "Dr. John J0hn";
+        private string email = "john.smith@wordofmouth.com";
+        private string phone = "0429779889";
 
         [TestMethod]
         public void JsonDentistEditObjectToJsonTest()
