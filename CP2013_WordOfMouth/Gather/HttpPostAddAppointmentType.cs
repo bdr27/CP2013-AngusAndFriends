@@ -11,7 +11,7 @@ namespace CP2013_WordOfMouth.Gather
     {
         private string baseUrl = HTTP_INFO.GetUrlBase();
         private string location = HTTP_INFO.GetAddAppointmentType();
-
+        
         #region IRequestResponse Members
 
         public void SendRequest(string request)

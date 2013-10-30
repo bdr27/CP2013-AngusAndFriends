@@ -54,6 +54,9 @@ namespace CP2013_WordOfMouthGUI.UserControls
 
         internal void SetAppointments(List<Appointment> appointments)
         {
+            if (appointments == null)
+                return;
+
             allAppointments = new List<AppointmentItem>();
             allDentists = new List<string>();
 
@@ -63,11 +66,11 @@ namespace CP2013_WordOfMouthGUI.UserControls
                 var start = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
                 var completeDate = start.AddMilliseconds(app.GetExpectedDate()).ToLocalTime();
                 var day = completeDate.Day + "/" + completeDate.Month + "/" + completeDate.Year;
-                var time = completeDate.Hour + ":";
+                var time = app.GetTimeSlot().GetHour() + ":";
                 if (completeDate.Minute < 10)
-                    time += "0" + completeDate.Minute;
+                    time += "0" + app.GetTimeSlot().GetMin();
                 else
-                    time += completeDate.Minute;
+                    time += app.GetTimeSlot().GetMin();
                 var appItem = new AppointmentItem { AppointmentID = id, Date = day, StartTime = time, DentistName = app.GetTimeSlot().GetDentist().GetName(), AppointmentType = app.GetAppointmentType().GetDescription() };
                 allAppointments.Add(appItem);
                 if (!allDentists.Contains(appItem.DentistName))
