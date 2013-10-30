@@ -68,6 +68,9 @@
     <Compile Include="UserControls\EditDentistControl.xaml.cs">
       <DependentUpon>EditDentistControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\EditDentistDetailsControl.xaml.cs">
+      <DependentUpon>EditDentistDetailsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\HomeControl.xaml.cs">
       <DependentUpon>HomeControl.xaml</DependentUpon>
     </Compile>
@@ -120,6 +123,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControls\EditDentistDetailsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\HomeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -191,7 +198,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\gmaps.html" />
-    <Content Include="UserControls\GoogleMaps.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

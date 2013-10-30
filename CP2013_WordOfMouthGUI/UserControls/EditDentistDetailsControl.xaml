@@ -4,8 +4,39 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="497" d:DesignWidth="784" Background="GhostWhite">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Label Content="Edit Dentist Details" FontFamily="Arial" FontSize="55" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4"/>
+        <Label Content="Name:" Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Right"/>
+        <Label Content="Phone:" Grid.Row="6" Grid.Column="1" HorizontalContentAlignment="Right"/>
+        <Label Content="Email Address:" Grid.Row="8" Grid.Column="1" HorizontalContentAlignment="Right"/>
+        <Label Content="Dentist To Edit:" FontWeight="Bold" Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Right"/>
+        <TextBox x:Name="TxtBox_DentistName" Grid.Row="4" Grid.Column="2" Margin="0,0,75,0"/>
+        <TextBox x:Name="TxtBox_DentistPhone" Grid.Row="6" Grid.Column="2" Margin="0,0,75,0"/>
+        <TextBox x:Name="TxtBox_DentistAddress" Grid.Row="8" Grid.Column="2" Margin="0,0,75,0"/>
+        <Button x:Name="Btn_Update" Content="Update" Grid.Row="11" Grid.Column="2" Margin="0,0,200,0"/>
+        <Button x:Name="Btn_Cancel" Content="Cancel" Grid.Row="11" Grid.Column="2" Margin="125,0,75,0"/>
+        <ComboBox x:Name="Cmbox_DentistFilter" Grid.Row="2" Grid.Column="2" Margin="0,0,75,0"/>
     </Grid>
 </UserControl>
