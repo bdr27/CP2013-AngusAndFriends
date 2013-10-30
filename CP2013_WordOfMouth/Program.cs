@@ -22,6 +22,8 @@ namespace CP2013_WordOfMouth
         private static RequestResponse rr = new HttpRequests("https://fast-taiga-8503.herokuapp.com/");
         public static void Main(string[] args)
         {
+            
+
             var helloIAm = new CP2013_WordOfMouth.DTO.AppointmentType(1, "Clean my teeth", 100);
             var jsonApointment = new JsonAppointmentAddType().GetJson(helloIAm);
             var test = PostRequests(new HttpPostAddAppointmentType(), jsonApointment);
@@ -33,7 +35,12 @@ namespace CP2013_WordOfMouth
             var dentistser = GetRequests(new HttpGetAllDentist(), new JsonAllDentists(), "") as List<Dentist>;
 
             var allAvaliable = GetRequests(new HttpGetAllAvaliableTimes(), new JsonDentistTimeSlots(), "");
-
+          //  foreach (var d in dentistser)
+          //  {
+                var stuffed = PostRequests(new HttpGetBookingsForDentist(), 2.ToString());
+                var objectsAreGood = new JsonAppointments().GetObject(stuffed) as List<Appointment>;
+          //  }
+            
             var dentistperson = new Dentist(0, "Dentist New", "dentist76665@dentist.com", "0412345678");
             var jd = new JsonDentistEditAdd();
             var json2 = jd.GetJson(dentistperson);
@@ -116,6 +123,7 @@ namespace CP2013_WordOfMouth
             var response = irr.GetResponse();
             return response;
         }
+
         private static void GetAllDentists()
         {
             IRequestResponse irr = new HttpGetAllDentist();

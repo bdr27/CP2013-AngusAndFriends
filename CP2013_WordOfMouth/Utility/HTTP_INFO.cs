@@ -30,6 +30,7 @@ namespace CP2013_WordOfMouth.Utility
         private static string deleteAppointmentType = "delete/appointment-type/";
         private static string addAnyDentistBooking = "give/me/a/booking/lol";
         private static string editDentist = "edit/dentist";
+        private static string bookingsForDentist = "get/bookings/for/dentist/";
 
         public static string GetUrlBase()
         {
@@ -140,5 +141,10 @@ namespace CP2013_WordOfMouth.Utility
         {
             return editDentist;
         }
+
+        public static string GetBookingsForDentist()
+        {
+            return bookingsForDentist;
+        }   
     }
 }

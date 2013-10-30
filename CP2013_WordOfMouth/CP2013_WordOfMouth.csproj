@@ -66,6 +66,7 @@
     <Compile Include="Gather\HttpGetAllDentist.cs" />
     <Compile Include="Gather\HttpGetAllDentistTimes.cs" />
     <Compile Include="Gather\HttpGetAppointments.cs" />
+    <Compile Include="Gather\HttpGetBookingsForDentist.cs" />
     <Compile Include="Gather\HttpGetDentist.cs" />
     <Compile Include="Gather\HttpGetDentistTimeSlots.cs" />
     <Compile Include="Gather\HttpGetSingleAppointmentType.cs" />
