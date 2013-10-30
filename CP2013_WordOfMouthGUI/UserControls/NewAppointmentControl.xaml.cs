@@ -79,6 +79,9 @@ namespace CP2013_WordOfMouthGUI.UserControls
 
         public void SetDentists(List<Dentist> dentists)
         {
+            if (dentists == null)
+                return;
+
             Cmbox_DentistFilter.Items.Clear();
             foreach (var dentist in dentists)
             {
@@ -214,6 +217,9 @@ namespace CP2013_WordOfMouthGUI.UserControls
 
         public void SetTimeSlots(List<TimeSlot> times)
         {
+            if (times == null)
+                return;
+
             UsrCntrl_TimeSlots.LstView_DayOne.Items.Clear();
             UsrCntrl_TimeSlots.LstView_DayTwo.Items.Clear();
             UsrCntrl_TimeSlots.LstView_DayThree.Items.Clear();
@@ -222,8 +228,36 @@ namespace CP2013_WordOfMouthGUI.UserControls
             UsrCntrl_TimeSlots.LstView_DaySix.Items.Clear();
             UsrCntrl_TimeSlots.LstView_DaySeven.Items.Clear();
             var listofcontrols = GetControlList(DateTime.Now.DayOfWeek);
-            
+
+            var objList = new object[7, 20];
+
+            foreach (var time in times)
+            {
+                var id = (time.GetHour() - 8);
+                if (time.GetMin() > 0)
+                {
+                    id *= 2;
+                }
+                System.Diagnostics.Debug.WriteLine("Day: " + time.GetDay() + ", ID: " + id);
+                objList[time.GetDay(), id] = time;
+            }
+
             for (int i = 0; i < 7; ++i)
+            {
+                for (int j = 0; j < 20; ++j)
+                {
+                    if (objList[i, j] == null)
+                    {
+                        listofcontrols.ElementAt(i).Items.Add("-");
+                    }
+                    else
+                    {
+                        listofcontrols.ElementAt(i).Items.Add(objList[i, j]);
+                    }
+                }
+            }
+
+            /*for (int i = 0; i < 7; ++i)
             {
                 var startTime = "8:00";
                 var endTime = "18:00";
@@ -258,7 +292,7 @@ namespace CP2013_WordOfMouthGUI.UserControls
                         break;
                     }
                 }
-            }
+            }*/
             /*
             foreach (var time in times)
             {

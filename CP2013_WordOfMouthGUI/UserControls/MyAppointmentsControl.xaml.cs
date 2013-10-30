@@ -22,11 +22,15 @@ namespace CP2013_WordOfMouthGUI.UserControls
     /// </summary>
     public partial class MyAppointmentsControl : UserControl, IControl
     {
+        List<AppointmentItem> allAppointments;
+        List<string> allDentists;
 
         public MyAppointmentsControl()
         {
             InitializeComponent();
             LstView_AppointmentsList.SelectionMode = SelectionMode.Single;
+            allAppointments = null;
+            allDentists = null;
         }
 
         public void Reset()
@@ -50,7 +54,9 @@ namespace CP2013_WordOfMouthGUI.UserControls
 
         internal void SetAppointments(List<Appointment> appointments)
         {
-            LstView_AppointmentsList.Items.Clear();
+            allAppointments = new List<AppointmentItem>();
+            allDentists = new List<string>();
+
             foreach (var app in appointments)
             {
                 var id = app.GetID();
@@ -62,7 +68,53 @@ namespace CP2013_WordOfMouthGUI.UserControls
                     time += "0" + completeDate.Minute;
                 else
                     time += completeDate.Minute;
-                LstView_AppointmentsList.Items.Add(new AppointmentItem { AppointmentID = id, Date = day, StartTime = time, DentistName = app.GetTimeSlot().GetDentist().GetName(), AppointmentType = app.GetAppointmentType().GetDescription() });
+                var appItem = new AppointmentItem { AppointmentID = id, Date = day, StartTime = time, DentistName = app.GetTimeSlot().GetDentist().GetName(), AppointmentType = app.GetAppointmentType().GetDescription() };
+                allAppointments.Add(appItem);
+                if (!allDentists.Contains(appItem.DentistName))
+                {
+                    allDentists.Add(appItem.DentistName);
+                }
+            }
+
+            SetUpAppointmentsList();
+
+            Cmbox_DentistFilter.Items.Clear();
+            Cmbox_DentistFilter.Items.Add("All");
+            foreach (var dentist in allDentists)
+            {
+                Cmbox_DentistFilter.Items.Add(dentist);
+            }
+            Cmbox_DentistFilter.SelectedIndex = 0;
+        }
+
+        private void SetUpAppointmentsList()
+        {
+            if (Cmbox_DentistFilter.SelectedItem is string)
+            {
+                if ((Cmbox_DentistFilter.SelectedItem as string).Equals("All"))
+                {
+                    LstView_AppointmentsList.Items.Clear();
+                    foreach (var app in allAppointments)
+                    {
+                        LstView_AppointmentsList.Items.Add(app);
+                    }
+                }
+                else if (allAppointments != null && allAppointments.Count > 0)
+                {
+                    var denName = Cmbox_DentistFilter.SelectedItem as string;
+                    LstView_AppointmentsList.Items.Clear();
+                    foreach (var app in allAppointments)
+                    {
+                        if (app.DentistName.Equals(denName))
+                        {
+                            LstView_AppointmentsList.Items.Add(app);
+                        }
+                    }
+                }
+                else
+                {
+                    Cmbox_DentistFilter.SelectedIndex = 0;
+                }
             }
         }
 
@@ -84,6 +136,11 @@ namespace CP2013_WordOfMouthGUI.UserControls
                 return appSel.AppointmentID;
             }
             return -1;
+        }
+
+        private void Cmbox_DentistFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SetUpAppointmentsList();
         }
     }
 }

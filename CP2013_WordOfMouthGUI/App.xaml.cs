@@ -395,7 +395,7 @@ namespace CP2013_WordOfMouthGUI
                 {
                     timeoutTimer = new System.Timers.Timer(5000);
                     timeoutTimer.Elapsed += new System.Timers.ElapsedEventHandler(TimeoutTimer_Tick);
-                    timeoutTimer.Enabled = true;
+                    //timeoutTimer.Enabled = true;
                     var response = Response(new JsonSession(), new HttpPostSession(), sessionKey).ToLower();
                     if (response.Equals("ok"))
                     {
