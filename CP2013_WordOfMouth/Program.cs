@@ -30,13 +30,21 @@ namespace CP2013_WordOfMouth
 
             var allAvaliable = GetRequests(new HttpGetAllAvaliableTimes(), new JsonDentistTimeSlots(), "");
 
-            var dentistperson = new Dentist(dentistser[0].GetID(), dentistser[0].GetName(), "iamanewdentist@what.com", dentistser[0].GetPhone());
-            var jd = new JsonDentist();
+            var dentistperson = new Dentist(0, "Dentist New", "dentist76665@dentist.com", "0412345678");
+            var jd = new JsonDentistEditAdd();
             var json2 = jd.GetJson(dentistperson);
 
-            var stuff = PostRequests(new HttpPostDentist(), json2);
+            var stuff = PostRequests(new HttpPostAddDentist(), json2);
 
             dentistser = GetRequests(new HttpGetAllDentist(), new JsonAllDentists(), "") as List<Dentist>;
+
+            var i = dentistser.Count - 1;
+
+            dentistperson = new Dentist(i, "Dentist New", "dentist76665@dentist.com", "0412345678");
+            jd = new JsonDentistEditAdd();
+            json2 = jd.GetJson(dentistperson);
+
+            stuff = PostRequests(new HttpPostEditDentist(), json2);
 
             GetRequests(new HttpGetDentist(), new JsonDentist(), 1.ToString());
             GetRequests(new HttpGetAppointments(), new JsonAppointments(), newSession.GetSessionID().ToString());

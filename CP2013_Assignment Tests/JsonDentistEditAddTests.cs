@@ -1,26 +1,22 @@
-﻿using CP2013_WordOfMouth.DTO;
-using CP2013_WordOfMouth.Exceptions;
-using CP2013_WordOfMouth.JSON;
+﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CP2013_WordOfMouth.JSON;
+using CP2013_WordOfMouth.DTO;
+using CP2013_WordOfMouth.Exceptions;
 
 namespace CP2013_WordOfMouth_Tests
 {
     [TestClass]
-    class JsonDentistEditAddTests
+    public class JsonDentistEditAddTests
     {
-        private string correctJson = "{\"dentistID\":123,\"name\":\"DENTIST NAME\",\"email\":\"example@domain.com\",\"phone\":\"044445556666\"}";
+        private string correctJson = "{\"dentistID\":2,\"name\":\"Dr. John J0hn\",\"email\":\"john.smith@wordofmouth.com\",\"phone\":\"0429779889\"}";
         private int id = 123;
         private string name = "DENTIST NAME";
         private string email = "example@domain.com";
         private string phone = "044445556666";
 
         [TestMethod]
-        public void JsonDentistObjectToJsonTest()
+        public void JsonDentistEditObjectToJsonTest()
         {
             TemplateJson tl = new JsonDentistEditAdd();
             var json = tl.GetJson(new Dentist(id, name, email, phone));
@@ -28,7 +24,7 @@ namespace CP2013_WordOfMouth_Tests
         }
 
         [TestMethod]
-        public void JsonDentistJsonToObjectTest()
+        public void JsonDentistEditJsonToObjectTest()
         {
             TemplateJson tl = new JsonDentistEditAdd();
             var o = tl.GetObject(correctJson) as Dentist;
@@ -39,7 +35,7 @@ namespace CP2013_WordOfMouth_Tests
         }
 
         [TestMethod]
-        public void JsonDentistObjectToJsonInvalidTest()
+        public void JsonDentistEditObjectToJsonInvalidTest()
         {
             bool exception = false;
             TemplateJson tl = new JsonDentistEditAdd();
@@ -56,7 +52,7 @@ namespace CP2013_WordOfMouth_Tests
         }
 
         [TestMethod]
-        public void JsonDentistJsonToObjectInvalidTest()
+        public void JsonDentistEditJsonToObjectInvalidTest()
         {
             bool exception = false;
             var incorrect = "{\"emails\":\"test.user@domain.com\",\"password\":\"Password\"}";

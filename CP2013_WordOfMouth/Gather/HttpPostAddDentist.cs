@@ -1,21 +1,21 @@
-﻿using System;
+﻿using CP2013_WordOfMouth.Utility;
+using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CP2013_WordOfMouth.Utility;
-using RestSharp;
 
 namespace CP2013_WordOfMouth.Gather
 {
-    public class HttpPostEditDentist : IRequestResponse
+    public class HttpPostAddDentist : IRequestResponse
     {
         private string baseUrl = HTTP_INFO.GetUrlBase();
-        private string location = HTTP_INFO.GetEditDentist();
+        private string location = HTTP_INFO.GetAddDentist();
         private Http http;
         private HttpResponse response;
 
-        public HttpPostEditDentist()
+        public HttpPostAddDentist()
         {
             http = new Http();
             http.Url = new Uri(baseUrl + location);
