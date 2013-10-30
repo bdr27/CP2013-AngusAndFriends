@@ -1,5 +1,6 @@
 ﻿using CP2013_WordOfMouth.Enum;
 using CP2013_WordOfMouth.Gather;
+using CP2013_WordOfMouth.JSON;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,12 @@ using System.Threading.Tasks;
 
 namespace CP2013_WordOfMouth.Threads
 {
-    public class RemoveAppointmentTypeThread : ThreadTemplate, IPostHTTPRequest
+    public class EditDentistTimeSlotThread : ThreadTemplate, IPostHTTPRequest
     {
-        public RemoveAppointmentTypeThread(int timerAmount, object o)
+        public EditDentistTimeSlotThread(int timerAmount, object o)
             : base(timerAmount, o)
         {
-            acceptedResponse = "Good Response";
-            successMessage = "You have successfully removed the appointment type.";
+            successMessage = "You have successfully updated this dentist's timetable!";
             failureMessage = "Oops! Something went wrong, try again. :(";
             timeoutMessage = "Your request has timed out, please try again. :(";
         }
@@ -25,7 +25,9 @@ namespace CP2013_WordOfMouth.Threads
         {
             try
             {
-                var response = PostHttpRequest(new HttpPostDeleteAppointmentType(), information);
+                timer.Enabled = false;
+                var info = information as List<string>;
+                var response = PostHttpRequest(new HttpPostEditDentistTimeslots(info.ElementAt(0)), info.ElementAt(1));
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
@@ -39,14 +41,14 @@ namespace CP2013_WordOfMouth.Threads
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.StackTrace);
-
+                
                 ThreadComplete(false);
             }
         }
 
         public HttpResponse PostHttpRequest(IRequestResponse h, object o)
         {
-            h.SendRequest(information.ToString());
+            h.SendRequest(o.ToString());
             return h.GetHttpResponse();
         }
 
@@ -77,6 +79,5 @@ namespace CP2013_WordOfMouth.Threads
 
             OnRequestComplete(args);
         }
-
     }
 }

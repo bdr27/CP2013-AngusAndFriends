@@ -46,10 +46,10 @@ namespace CP2013_WordOfMouth.Threads
             CreateEvent(UserActions.FAILURE, CompleteType.TIMER);
         }
 
-        protected virtual void ThreadComplete(string response)
+        protected virtual void ThreadComplete(bool success)
         {
             timer.Enabled = false;
-            if (response == acceptedResponse)
+            if (success)
             {
                 CreateEvent(UserActions.SUCCESS, CompleteType.THREAD);
             }
@@ -57,23 +57,6 @@ namespace CP2013_WordOfMouth.Threads
             {
                 CreateEvent(UserActions.FAILURE, CompleteType.THREAD);
             }
-        }
-
-        protected virtual string ResponsePost(TemplateJson tj, IRequestResponse irr, object o)
-        {
-            var json = tj.GetJson(o);
-            Console.WriteLine("Json in: " + json);
-            irr.SendRequest(json);
-            Console.WriteLine("Resposne: " + irr.GetResponse());
-            return irr.GetResponse();
-        }
-
-        protected virtual string ResponseGet(TemplateJson tj, IRequestResponse irr, int id)
-        {
-            Console.WriteLine("Id Sent: " + id);
-            irr.SendRequest(id.ToString());
-            Console.WriteLine("Resposne: " + irr.GetResponse());
-            return irr.GetResponse();
         }
 
         protected abstract void CreateEvent(UserActions action, CompleteType type);

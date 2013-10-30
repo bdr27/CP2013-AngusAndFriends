@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CP2013_WordOfMouth.Utility;
+using RestSharp;
 
 namespace CP2013_WordOfMouth.Gather
 {
@@ -25,5 +26,11 @@ namespace CP2013_WordOfMouth.Gather
         }
 
         #endregion
+
+
+        public HttpResponse GetHttpResponse()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

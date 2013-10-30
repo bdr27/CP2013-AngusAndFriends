@@ -10,34 +10,44 @@ using System.Threading.Tasks;
 
 namespace CP2013_WordOfMouth.Threads
 {
-    public class NewAppTimeSlotsThread : ThreadTemplate
+    public class NewAppTimeSlotsThread : ThreadTemplate, IGetJsonResponse
     {
         private List<TimeSlot> timeslots;
 
         public NewAppTimeSlotsThread(int timerAmount, object o)
             : base(timerAmount, o)
         {
-            acceptedResponse = "Good Response";
-            successMessage = "";
-            failureMessage = "";
-            timeoutMessage = "";
+            //acceptedResponse = "Good Response";
+            //successMessage = "";
+            //failureMessage = "";
+            //timeoutMessage = "";
         }
 
         protected override void ThreadMethod()
         {
             try
             {
-                var response = ResponseGet(new JsonDentistTimeSlots(), new HttpGetDentistTimeSlots(), (int) information);
+                var response = GetJsonResponse(new JsonDentistTimeSlots(), new HttpGetDentistTimeSlots(), information);
                 var dentistTimes = new JsonDentistTimeSlots();
+
                 timeslots = dentistTimes.GetObject(response) as List<TimeSlot>;
-                ThreadComplete(acceptedResponse);
+                ThreadComplete(true);
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+
                 timeslots = null;
-                ThreadComplete("Bad Response");
+                ThreadComplete(false);
             }
+        }
+
+        public string GetJsonResponse(TemplateJson tj, IRequestResponse irr, object o)
+        {
+            System.Diagnostics.Debug.WriteLine("Sent: " + o.ToString());
+            irr.SendRequest(o.ToString());
+            System.Diagnostics.Debug.WriteLine("Response: " + irr.GetResponse());
+            return irr.GetResponse();
         }
 
         protected override void CreateEvent(UserActions action, CompleteType type)

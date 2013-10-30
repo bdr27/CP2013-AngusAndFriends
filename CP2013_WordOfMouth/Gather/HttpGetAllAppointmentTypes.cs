@@ -13,6 +13,7 @@ namespace CP2013_WordOfMouth.Gather
         private string baseUrl = HTTP_INFO.GetUrlBase();
         private string location = HTTP_INFO.GetAppointmentTypes();
         private Http http;
+        private HttpResponse httpResponse;
 
         public HttpGetAllAppointmentTypes()
         {
@@ -24,13 +25,20 @@ namespace CP2013_WordOfMouth.Gather
 
         public void SendRequest(string request)
         {
+            httpResponse = http.Get();
         }
 
         public string GetResponse()
         {
-            return http.Get().Content;
+            return httpResponse.Content;
         }
 
         #endregion
+
+
+        public HttpResponse GetHttpResponse()
+        {
+            return httpResponse;
+        }
     }
 }

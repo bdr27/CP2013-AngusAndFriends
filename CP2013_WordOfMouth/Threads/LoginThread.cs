@@ -10,15 +10,15 @@ using System.Threading.Tasks;
 
 namespace CP2013_WordOfMouth.Threads
 {
-    public class LoginThread : ThreadTemplate
+    public class LoginThread : ThreadTemplate, IGetJsonResponse
     {
         private Session sessionKey;
 
         public LoginThread(int timerAmount, object o)
             : base(timerAmount, o)
         {
-            acceptedResponse = "Good Response";
-            successMessage = "You have successfully logged in! :)";
+            //acceptedResponse = "Good Response";
+            successMessage = "You have successfully logged in!";
             failureMessage = "Oops! Something went wrong, try again. :(";
             timeoutMessage = "Your request has timed out, please try again. :(";
         }
@@ -27,17 +27,27 @@ namespace CP2013_WordOfMouth.Threads
         {
             try
             {
-                var response = ResponsePost(new JsonLogin(), new HttpPostLogin(), information);
+                var response = GetJsonResponse(new JsonLogin(), new HttpPostLogin(), information);
                 var sessionJson = new JsonSession();
+
                 sessionKey = sessionJson.GetObject(response) as Session;
-                ThreadComplete(acceptedResponse);
+                ThreadComplete(true);
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.StackTrace);
                 sessionKey = null;
-                ThreadComplete("Bad Response");
+                ThreadComplete(false);
             }
+        }
+
+        public string GetJsonResponse(TemplateJson tj, IRequestResponse irr, object o)
+        {
+            var info = tj.GetJson(o);
+            System.Diagnostics.Debug.WriteLine("Sent: " + info);
+            irr.SendRequest(info);
+            System.Diagnostics.Debug.WriteLine("Response: " + irr.GetResponse());
+            return irr.GetResponse();
         }
 
         protected override void CreateEvent(UserActions action, CompleteType type)
@@ -68,5 +78,6 @@ namespace CP2013_WordOfMouth.Threads
 
             OnRequestComplete(args);
         }
+
     }
 }

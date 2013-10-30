@@ -13,7 +13,7 @@ namespace CP2013_WordOfMouth.Gather
         private string baseUrl = HTTP_INFO.GetUrlBase();
         private string location = HTTP_INFO.GetDentist();
         private Http http;
-        //private string response;
+        private HttpResponse response;
 
         public HttpGetDentist()
         {
@@ -26,13 +26,20 @@ namespace CP2013_WordOfMouth.Gather
         {
             http.Url = new Uri(baseUrl + location + request);
             http.RequestBody = request;
+            response = http.Get();
         }
 
         public string GetResponse()
         {
-            return http.Get().Content;
+            return response.Content;
         }
 
         #endregion
+
+
+        public HttpResponse GetHttpResponse()
+        {
+            return response;
+        }
     }
 }

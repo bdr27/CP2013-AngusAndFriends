@@ -10,42 +10,45 @@ using System.Threading.Tasks;
 
 namespace CP2013_WordOfMouth.Threads
 {
-    public class GetAppointmentTypesThread : ThreadTemplate
+    public class GetAppointmentTypesThread : ThreadTemplate, IGetJsonResponse
     {
         private List<CP2013_WordOfMouth.DTO.AppointmentType> appTypes;
 
         public GetAppointmentTypesThread(int timerAmount, object o)
             : base(timerAmount, o)
         {
-            acceptedResponse = "Good Response";
-            successMessage = "";
-            failureMessage = "";
-            timeoutMessage = "";
+            //acceptedResponse = "Good Response";
+            //successMessage = "";
+            //failureMessage = "";
+            //timeoutMessage = "";
         }
 
         protected override void ThreadMethod()
         {
             try
             {
-                var response = ResponseGet(new JsonAllAppointmentTypes(), new HttpGetAllAppointmentTypes(), 1);
+                var response = GetJsonResponse(new JsonAllAppointmentTypes(), new HttpGetAllAppointmentTypes(), 1);
                 var dentists = new JsonAllAppointmentTypes();
+
                 appTypes = dentists.GetObject(response) as List<CP2013_WordOfMouth.DTO.AppointmentType>;
-                ThreadComplete(acceptedResponse);
+                ThreadComplete(true);
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+
                 appTypes = null;
-                ThreadComplete("Bad Response");
+                ThreadComplete(false);
             }
         }
 
-        protected override string ResponseGet(TemplateJson tj, IRequestResponse irr, int id)
+        public string GetJsonResponse(TemplateJson tj, IRequestResponse irr, object o)
         {
+            irr.SendRequest("");
             return irr.GetResponse();
         }
 
-        protected override void CreateEvent(Enum.UserActions action, ThreadTemplate.CompleteType type)
+        protected override void CreateEvent(UserActions action, CompleteType type)
         {
             var args = new RequestCompleteArgs();
             args.RequestType = RequestReturnType.APPOINTMENT_TYPES;

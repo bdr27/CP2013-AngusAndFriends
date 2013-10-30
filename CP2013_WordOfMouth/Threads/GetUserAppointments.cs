@@ -10,38 +10,47 @@ using CP2013_WordOfMouth.Enum;
 
 namespace CP2013_WordOfMouth.Threads
 {
-    public class GetUserAppointments : ThreadTemplate
+    public class GetUserAppointments : ThreadTemplate, IGetJsonResponse
     {
         private List<Appointment> appointment;
 
         public GetUserAppointments(int timerAmount, object o)
             : base(timerAmount, o)
         {
-            acceptedResponse = "Good Response";
-            successMessage = "";
-            failureMessage = "";
-            timeoutMessage = "";
+            //acceptedResponse = "Good Response";
+            //successMessage = "";
+            //failureMessage = "";
+            //timeoutMessage = "";
         }
 
         protected override void ThreadMethod()
         {
             try
             {
-                var id = Int32.Parse(information.ToString());
-                var response = ResponseGet(new JsonAppointments(), new HttpGetAppointments(), id);
+                var response = GetJsonResponse(new JsonAppointments(), new HttpGetAppointments(), information);
                 var appointmentJson = new JsonAppointments();
+
                 appointment = appointmentJson.GetObject(response) as List<Appointment>;
-                ThreadComplete(acceptedResponse);
+                ThreadComplete(true);
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+
                 appointment = null;
-                ThreadComplete("Bad Response");
+                ThreadComplete(false);
             }
         }
 
-        protected override void CreateEvent(Enum.UserActions action, ThreadTemplate.CompleteType type)
+        public string GetJsonResponse(TemplateJson tj, IRequestResponse irr, object o)
+        {
+            System.Diagnostics.Debug.WriteLine("Sent: " + o.ToString());
+            irr.SendRequest(o.ToString());
+            System.Diagnostics.Debug.WriteLine("Response: " + irr.GetResponse());
+            return irr.GetResponse();
+        }
+
+        protected override void CreateEvent(UserActions action, CompleteType type)
         {
             var args = new RequestCompleteArgs();
             args.RequestType = RequestReturnType.APPOINTMENTS;

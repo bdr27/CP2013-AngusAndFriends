@@ -10,38 +10,41 @@ using System.Threading.Tasks;
 
 namespace CP2013_WordOfMouth.Threads
 {
-    public class GetDentistsThread : ThreadTemplate
+    public class GetDentistsThread : ThreadTemplate, IGetJsonResponse
     {
         private List<Dentist> dentistsList;
 
         public GetDentistsThread(int timerAmount, object o)
             : base(timerAmount, o)
         {
-            acceptedResponse = "Good Response";
-            successMessage = "";
-            failureMessage = "";
-            timeoutMessage = "";
+            //acceptedResponse = "Good Response";
+            //successMessage = "";
+            //failureMessage = "";
+            //timeoutMessage = "";
         }
 
         protected override void ThreadMethod()
         {
             try
             {
-                var response = ResponsePost(new JsonAllDentists(), new HttpGetAllDentist(), information);
+                var response = GetJsonResponse(new JsonAllDentists(), new HttpGetAllDentist(), information);
                 var dentists = new JsonAllDentists();
+
                 dentistsList = dentists.GetObject(response) as List<Dentist>;
-                ThreadComplete(acceptedResponse);
+                ThreadComplete(true);
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+
                 dentistsList = null;
-                ThreadComplete("Bad Response");
+                ThreadComplete(false);
             }
         }
 
-        protected override string ResponsePost(TemplateJson tj, IRequestResponse irr, object o)
+        public string GetJsonResponse(TemplateJson tj, IRequestResponse irr, object o)
         {
+            irr.SendRequest("");
             return irr.GetResponse();
         }
 

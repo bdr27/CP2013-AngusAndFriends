@@ -25,5 +25,11 @@ namespace CP2013_WordOfMouth.Gather
         }
 
         #endregion
+
+
+        public RestSharp.HttpResponse GetHttpResponse()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

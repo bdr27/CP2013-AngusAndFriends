@@ -14,6 +14,7 @@ namespace CP2013_WordOfMouth.Gather
         private string locationBegin = HTTP_INFO.GetTimeSlotsBegining();
         private string locationEnd = HTTP_INFO.GetTimeSlotsEnd();
         private Http http;
+        private HttpResponse httpResponse;
 
         public HttpGetDentistTimeSlots()
         {
@@ -25,13 +26,20 @@ namespace CP2013_WordOfMouth.Gather
         public void SendRequest(string request)
         {
             http.Url = new Uri(baseUrl + locationBegin + request + locationEnd);
+            httpResponse = http.Get();
         }
 
         public string GetResponse()
         {
-            return http.Get().Content;
+            return httpResponse.Content;
         }
 
         #endregion
+
+
+        public HttpResponse GetHttpResponse()
+        {
+            return httpResponse;
+        }
     }
 }

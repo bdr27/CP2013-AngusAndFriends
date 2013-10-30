@@ -141,7 +141,7 @@ namespace CP2013_WordOfMouthGUI.UserControls
             }
         }
 
-        public string GetSelectedAppointmentsString()
+        public List<string> GetSelectedAppointmentsList()
         {
             var returnString = @"{";
             var listofviews = GetControlList();
@@ -168,7 +168,16 @@ namespace CP2013_WordOfMouthGUI.UserControls
                 }
             }
             returnString += "}";
-            return returnString;
+
+            if (Cmbox_DentistName.SelectedItem is Dentist)
+            {
+                var dentist = Cmbox_DentistName.SelectedItem as Dentist;
+                var list = new List<string>();
+                list.Add(dentist.GetID().ToString());
+                list.Add(returnString);
+                return list;
+            }
+            return null;
         }
     }
 }

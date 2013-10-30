@@ -35,5 +35,11 @@ namespace CP2013_WordOfMouth.Gather
         }
 
         #endregion
+
+
+        public HttpResponse GetHttpResponse()
+        {
+            return httpResponse;
+        }
     }
 }

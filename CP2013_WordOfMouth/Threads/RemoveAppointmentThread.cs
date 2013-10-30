@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace CP2013_WordOfMouth.Threads
 {
-    public class RemoveAppointmentThread : ThreadTemplate
+    public class RemoveAppointmentThread : ThreadTemplate, IPostHTTPRequest
     {
         public RemoveAppointmentThread(int timerAmount, object o)
             : base(timerAmount, o)
         {
-            acceptedResponse = "Good Response";
+            //acceptedResponse = "Good Response";
             successMessage = "You have cancelled your appointment.";
             failureMessage = "Oops! Something went wrong, try again. :(";
             timeoutMessage = "Your request has timed out, please try again. :(";
@@ -26,26 +26,28 @@ namespace CP2013_WordOfMouth.Threads
             timer.Enabled = false;
             try
             {
-                var response = PostRequest(new HttpPostDeleteAppointment(), information);
+                var response = PostHttpRequest(new HttpPostDeleteAppointment(), information);
+
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    ThreadComplete(acceptedResponse);
+                    ThreadComplete(true);
                 }
                 else
                 {
-                    ThreadComplete("Bad Response");
+                    ThreadComplete(false);
                 }
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.StackTrace);
-                ThreadComplete("Bad Response");
+
+                ThreadComplete(false);
             }
         }
 
-        private HttpResponse PostRequest(HttpPostDeleteAppointment h, object information)
+        public HttpResponse PostHttpRequest(IRequestResponse h, object o)
         {
-            h.SendRequest(information.ToString());
+            h.SendRequest(o.ToString());
             return h.GetHttpResponse();
         }
 

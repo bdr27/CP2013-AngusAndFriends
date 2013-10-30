@@ -13,6 +13,7 @@ namespace CP2013_WordOfMouth.Gather
         private string baseUrl = HTTP_INFO.GetUrlBase();
         private string location = HTTP_INFO.GetAppointments();
         private Http http;
+        private HttpResponse httpResponse;
 
         public HttpGetAppointments()
         {
@@ -22,11 +23,18 @@ namespace CP2013_WordOfMouth.Gather
         public void SendRequest(string request)
         {
             http.Url = new Uri(baseUrl + location + request);
+            httpResponse = http.Get();
         }
 
         public string GetResponse()
         {
-            return http.Get().Content;
+            return httpResponse.Content;
+        }
+
+
+        public HttpResponse GetHttpResponse()
+        {
+            return httpResponse;
         }
     }
 }

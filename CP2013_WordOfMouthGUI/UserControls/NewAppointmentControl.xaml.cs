@@ -397,6 +397,9 @@ namespace CP2013_WordOfMouthGUI.UserControls
 
         public void SetAppTypes(List<AppointmentType> types)
         {
+            if (types == null)
+                return;
+
             Cmbox_AppointmentTypeFilter.Items.Clear();
             foreach (var type in types)
             {

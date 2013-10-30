@@ -132,7 +132,22 @@ namespace CP2013_WordOfMouthGUI
 
         private void HandleBtn_UpdateClick(object sender, RoutedEventArgs e)
         {
-            CompleteAction(UserActions.UPDATE_CLICK);
+            if (stateMachine.GetSystemState() == StateOfSystem.EDIT_DENTIST_PAGE)
+            {
+                var information = window.UsrCntrl_EditDentist.GetSelectedAppointmentsList();
+                if (information != null)
+                {
+                    stateMachine.SetSystemState(UserActions.UPDATE_CLICK);
+
+                    var thread = new EditDentistTimeSlotThread(5000, information);
+                    thread.eventHandler += HandleRequestComplete;
+                    thread.Start();
+                }
+            }
+            else
+            {
+                CompleteAction(UserActions.UPDATE_CLICK);
+            }
         }
 
         private void HandleBtn_NewDentistClick(object sender, RoutedEventArgs e)

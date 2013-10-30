@@ -76,6 +76,7 @@
     <Compile Include="Gather\HttpPostDeleteAppointmentType.cs" />
     <Compile Include="Gather\HttpPostDentist.cs" />
     <Compile Include="Gather\HttpPostEditDentist.cs" />
+    <Compile Include="Gather\HttpPostEditDentistTimeslots.cs" />
     <Compile Include="Gather\HttpPostLogin.cs" />
     <Compile Include="Gather\HttpPostDeleteDentist.cs" />
     <Compile Include="Gather\HttpPostSession.cs" />
@@ -105,9 +106,14 @@
     <Compile Include="MOCK\MOCKFileHandler.cs" />
     <Compile Include="MOCK\MOCKTimeSlot.cs" />
     <Compile Include="MOCK\MOCKUser.cs" />
+    <Compile Include="Threads\EditDentistTimeSlotThread.cs" />
     <Compile Include="Threads\GetAppointmentTypesThread.cs" />
     <Compile Include="Threads\GetDentistsThread.cs" />
     <Compile Include="Threads\GetUserAppointments.cs" />
+    <Compile Include="Threads\IGetHTTPResponse.cs" />
+    <Compile Include="Threads\IGetJsonResponse.cs" />
+    <Compile Include="Threads\IPostHTTPRequest.cs" />
+    <Compile Include="Threads\IPostJsonRequest.cs" />
     <Compile Include="Threads\JoinThread.cs" />
     <Compile Include="Threads\LoginThread.cs" />
     <Compile Include="Threads\MakeAppointmentThread.cs" />

@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace CP2013_WordOfMouth.Threads
 {
-    public class RemoveDentistThread : ThreadTemplate
+    public class RemoveDentistThread : ThreadTemplate, IPostHTTPRequest
     {
         public RemoveDentistThread(int timerAmount, object o)
             : base(timerAmount, o)
         {
-            acceptedResponse = "Good Response";
+            //acceptedResponse = "Good Response";
             successMessage = "You have successfully removed the dentist.";
             failureMessage = "Oops! Something went wrong, try again. :(";
             timeoutMessage = "Your request has timed out, please try again. :(";
@@ -25,24 +25,26 @@ namespace CP2013_WordOfMouth.Threads
         {
             try
             {
-                var response = PostRequest(new HttpPostDeleteDentist(), information);
+                var response = PostHttpRequest(new HttpPostDeleteDentist(), information);
+
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    ThreadComplete(acceptedResponse);
+                    ThreadComplete(true);
                 }
                 else
                 {
-                    ThreadComplete("Bad Response");
+                    ThreadComplete(false);
                 }
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.StackTrace);
-                ThreadComplete("Bad Response");
+
+                ThreadComplete(false);
             }
         }
 
-        private HttpResponse PostRequest(HttpPostDeleteDentist h, object information)
+        public HttpResponse PostHttpRequest(IRequestResponse h, object o)
         {
             h.SendRequest(information.ToString());
             return h.GetHttpResponse();
