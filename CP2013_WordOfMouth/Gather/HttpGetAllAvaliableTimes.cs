@@ -4,24 +4,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CP2013_WordOfMouth.Utility;
+using RestSharp;
 
 namespace CP2013_WordOfMouth.Gather
 {
     public class HttpGetAllAvaliableTimes : IRequestResponse
     {
-        public string baseUrl = HTTP_INFO.GetUrlBase();
-        public string location = HTTP_INFO.GetAllAvliableTimes();
+        private string baseUrl = HTTP_INFO.GetUrlBase();
+        private string location = HTTP_INFO.GetAllAvliableTimes();
+        private Http http;
+        private HttpResponse response;
+
+        public HttpGetAllAvaliableTimes()
+        {
+            http = new Http();
+            http.Url = new Uri(baseUrl + location);
+        }
 
         #region IRequestResponse Members
 
         public void SendRequest(string request)
         {
-            throw new NotImplementedException();
+            response = http.Get();
         }
 
         public string GetResponse()
         {
-            throw new NotImplementedException();
+            return response.Content;
         }
 
         #endregion

@@ -27,7 +27,9 @@ namespace CP2013_WordOfMouth
             var something = PostRequests(new HttpPostLogin(), json);
             var newSession = new JsonSession().GetObject(something) as Session;
             var dentistser = GetRequests(new HttpGetAllDentist(), new JsonAllDentists(), "") as List<Dentist>;
-            
+
+            var allAvaliable = GetRequests(new HttpGetAllAvaliableTimes(), new JsonAppointments(), "");
+
             GetRequests(new HttpGetDentist(), new JsonDentist(), 1.ToString());
             GetRequests(new HttpGetAppointments(), new JsonAppointments(), newSession.GetSessionID().ToString());
             var timeSlots = GetRequests(new HttpGetDentistTimeSlots(), new JsonDentistTimeSlots(), dentistser[0].GetID().ToString());
@@ -73,6 +75,12 @@ namespace CP2013_WordOfMouth
                 key = GetStringFromOutput(MENU);
             }
             #endregion
+        }
+
+        private static object GetRequests(IRequestResponse stuff)
+        {
+            stuff.SendRequest("");
+            return stuff.GetResponse();
         }
 
         private static object GetRequests(IRequestResponse irr, TemplateJson ts, string message)
