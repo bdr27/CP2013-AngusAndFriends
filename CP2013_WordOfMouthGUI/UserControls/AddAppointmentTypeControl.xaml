@@ -24,8 +24,8 @@
         <Label Content="Add Appointment Type" FontFamily="Arial" FontSize="55" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1"/>
         <Label Content="Type Name:" Grid.Row="2" Grid.Column="1" Margin="60,0,482,0" HorizontalContentAlignment="Right"/>
         <Label Content="Type Cost:" Grid.Row="4" Grid.Column="1" Margin="60,0,482,0" HorizontalContentAlignment="Right"/>
-        <TextBox x:Name="TxtBox_TypeName" Grid.Row="2" Grid.Column="1" Margin="273,0,277,0"/>
-        <TextBox x:Name="TxtBox_TypeCost" Grid.Row="4" Grid.Column="1" Margin="273,0,400,0"/>
+        <TextBox x:Name="TxtBox_TypeName" Grid.Row="2" Grid.Column="1" Margin="273,0,277,0" TextChanged="TxtBox_TypeName_TextChanged"/>
+        <TextBox x:Name="TxtBox_TypeCost" Grid.Row="4" Grid.Column="1" Margin="273,0,400,0" Height="25" VerticalAlignment="Top" TextChanged="TxtBox_TypeCost_TextChanged"/>
         <Button x:Name="Btn_Create" Content="Create" Grid.Row="6" Grid.Column="1" Margin="273,0,400,0"/>
         <Button x:Name="Btn_Cancel" Content="Cancel" Grid.Row="6" Grid.Column="1" Margin="396,0,277,0"/>
     </Grid>

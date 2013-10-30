@@ -83,6 +83,7 @@ namespace CP2013_WordOfMouthGUI.UserControls
                 return;
 
             Cmbox_DentistFilter.Items.Clear();
+            Cmbox_DentistFilter.Items.Add("Any");
             foreach (var dentist in dentists)
             {
                 Cmbox_DentistFilter.Items.Add(dentist);
@@ -233,10 +234,10 @@ namespace CP2013_WordOfMouthGUI.UserControls
 
             foreach (var time in times)
             {
-                var id = (time.GetHour() - 8);
+                var id = (time.GetHour() - 8) * 2;
                 if (time.GetMin() > 0)
                 {
-                    id *= 2;
+                    id += 1;
                 }
                 System.Diagnostics.Debug.WriteLine("Day: " + time.GetDay() + ", ID: " + id);
                 objList[time.GetDay(), id] = time;
@@ -420,6 +421,18 @@ namespace CP2013_WordOfMouthGUI.UserControls
                     var day = timeslot.GetDay();
                     var time = timeslot.ToString();
                     var booking = new Booking(ID, appType, dentist, day, time);
+                    return booking;
+                }
+            }
+            else if (Cmbox_AppointmentTypeFilter.SelectedItem is AppointmentType && Cmbox_DentistFilter.SelectedItem is string)
+            {
+                var appType = (Cmbox_AppointmentTypeFilter.SelectedItem as AppointmentType).GetID();
+                var timeslot = GetSelectedTimeSlot();
+                if (timeslot != null)
+                {
+                    var day = timeslot.GetDay();
+                    var time = timeslot.ToString();
+                    var booking = new Booking(ID, appType, timeslot.GetDentist().GetID(), day, time);
                     return booking;
                 }
             }

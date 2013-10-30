@@ -502,7 +502,7 @@ namespace CP2013_WordOfMouthGUI
 
         private void HandleBtn_CreateClick(object sender, RoutedEventArgs e)
         {
-            if (stateMachine.GetSystemState() == StateOfSystem.CREATE_APPOINT_PAGE)
+            if (stateMachine.GetSystemState() == StateOfSystem.CREATE_APPOINT_PAGE && window.UsrCntrl_NewApp.Cmbox_DentistFilter.SelectedItem is Dentist)
             {
                 var booking = window.UsrCntrl_NewApp.GetBooking(sessionKey.GetSessionID());
                 if (booking != null)
@@ -517,11 +517,34 @@ namespace CP2013_WordOfMouthGUI
                     MessageBox.Show("Please select a valid time slot.");
                 }
             }
+            else if (stateMachine.GetSystemState() == StateOfSystem.CREATE_APPOINT_PAGE && window.UsrCntrl_NewApp.Cmbox_DentistFilter.SelectedItem is string)
+            {
+                var booking = window.UsrCntrl_NewApp.GetBooking(sessionKey.GetSessionID());
+                if (booking != null)
+                {
+                    stateMachine.SetSystemState(UserActions.CREATE_CLICK);
+                    var thread = new MakeAnyAppointmentThread(5000, booking);
+                    thread.eventHandler += HandleRequestComplete;
+                    thread.Start();
+                }
+                else
+                {
+                    MessageBox.Show("Please select a valid time slot.");
+                }
+            }
             else if (stateMachine.GetSystemState() == StateOfSystem.ADD_DENTIST_PAGE)
             {
                 var dentist = window.UsrCntrl_AddDentist.GetDentist();
                 stateMachine.SetSystemState(UserActions.CREATE_CLICK);
                 var thread = new AddDentistThread(5000, dentist);
+                thread.eventHandler += HandleRequestComplete;
+                thread.Start();
+            }
+            else if (stateMachine.GetSystemState() == StateOfSystem.ADD_APPOINT_TYPE_PAGE)
+            {
+                var appType = window.UsrCntrl_AddAppType.GetAppointmentType();
+                stateMachine.SetSystemState(UserActions.CREATE_CLICK);
+                var thread = new AddAppointmentTypeThread(5000, appType);
                 thread.eventHandler += HandleRequestComplete;
                 thread.Start();
             }
@@ -589,10 +612,16 @@ namespace CP2013_WordOfMouthGUI
 
         private void HandleCmbox_DentistFilterChange(object sender, SelectionChangedEventArgs e)
         {
-            if (window.UsrCntrl_NewApp.Cmbox_DentistFilter.SelectedItem != null)
+            if (window.UsrCntrl_NewApp.Cmbox_DentistFilter.SelectedItem is Dentist)
             {
                 var dentist = window.UsrCntrl_NewApp.Cmbox_DentistFilter.SelectedItem as Dentist;
                 var thread = new NewAppTimeSlotsThread(5000, dentist.GetID());
+                thread.eventHandler += HandleGetNewAppTimeSlotsComplete;
+                thread.Start();
+            }
+            else if (window.UsrCntrl_NewApp.Cmbox_DentistFilter.SelectedItem is string)
+            {
+                var thread = new AllAvailableTimesThread(5000, 0);
                 thread.eventHandler += HandleGetNewAppTimeSlotsComplete;
                 thread.Start();
             }

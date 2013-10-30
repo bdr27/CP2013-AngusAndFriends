@@ -32,7 +32,7 @@ namespace CP2013_WordOfMouth.Gather
 
         public string GetResponse()
         {
-            throw new NotImplementedException();
+            return response.Content;
         }
 
         #endregion

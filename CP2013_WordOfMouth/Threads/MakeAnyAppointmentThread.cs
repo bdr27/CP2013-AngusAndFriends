@@ -11,12 +11,13 @@ using System.Threading.Tasks;
 
 namespace CP2013_WordOfMouth.Threads
 {
-    public class AddDentistThread : ThreadTemplate, IPostHTTPRequest
+    public class MakeAnyAppointmentThread : ThreadTemplate, IPostHTTPRequest
     {
-        public AddDentistThread(int timerAmount, object o)
+        public MakeAnyAppointmentThread(int timerAmount, object o)
             : base(timerAmount, o)
         {
-            successMessage = "You have successfully created a new dentist!";
+            //acceptedResponse = "a booking has been made has been made";
+            successMessage = "You have successfully booked an appointment!";
             failureMessage = "Oops! Something went wrong, try again. :(";
             timeoutMessage = "Your request has timed out, please try again. :(";
         }
@@ -25,8 +26,8 @@ namespace CP2013_WordOfMouth.Threads
         {
             try
             {
-                var jsonData = new JsonDentistEditAdd().GetJson(information);
-                var response = PostHttpRequest(new HttpPostAddDentist(), jsonData);
+                var jsonData = new JsonAddBooking().GetJson(information);
+                var response = PostHttpRequest(new HttpPostAnyDentistBooking(), jsonData);
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
@@ -40,14 +41,15 @@ namespace CP2013_WordOfMouth.Threads
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.StackTrace);
-
                 ThreadComplete(false);
             }
         }
 
         public HttpResponse PostHttpRequest(IRequestResponse h, object o)
         {
+            Console.WriteLine("Json in: " + o.ToString());
             h.SendRequest(o.ToString());
+            Console.WriteLine("Response: " + h.GetResponse());
             return h.GetHttpResponse();
         }
 
