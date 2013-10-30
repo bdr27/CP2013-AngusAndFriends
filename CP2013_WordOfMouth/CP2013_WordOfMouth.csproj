@@ -120,15 +120,16 @@
     <Compile Include="Interface\Booking.cs" />
     <Compile Include="Interface\ReqJson.cs" />
     <Compile Include="Interface\RequestResponse.cs" />
-    <Compile Include="MOCK\MOCKBooking.cs" />
+    <Compile Include="JSON\MOCK\MOCKBooking.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interface\TimeSlot.cs" />
     <Compile Include="Interface\FileHandler.cs" />
-    <Compile Include="MOCK\MOCKTimeSlot.cs" />
+    <Compile Include="Interface\User.cs" />
+	<Compile Include="MOCK\MOCKTimeSlot.cs" />
     <Compile Include="MOCK\MOCKFileHandler.cs" />
     <Compile Include="MOCK\MOCKUser.cs" />
-    <Compile Include="Interface\User.cs" />
+
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
