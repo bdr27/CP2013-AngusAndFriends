@@ -117,10 +117,8 @@
     <Compile Include="Threads\GetAppointmentTypesThread.cs" />
     <Compile Include="Threads\GetDentistsThread.cs" />
     <Compile Include="Threads\GetUserAppointments.cs" />
-    <Compile Include="Threads\IGetHTTPResponse.cs" />
     <Compile Include="Threads\IGetJsonResponse.cs" />
     <Compile Include="Threads\IPostHTTPRequest.cs" />
-    <Compile Include="Threads\IPostJsonRequest.cs" />
     <Compile Include="Threads\JoinThread.cs" />
     <Compile Include="Threads\LoginThread.cs" />
     <Compile Include="Threads\MakeAnyAppointmentThread.cs" />
