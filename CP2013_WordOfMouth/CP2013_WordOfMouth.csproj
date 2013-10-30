@@ -95,6 +95,7 @@
     <Compile Include="JSON\JsonAppointments.cs" />
     <Compile Include="JSON\JsonAppointmentType.cs" />
     <Compile Include="JSON\JsonDentist.cs" />
+    <Compile Include="JSON\JsonDentistEditAdd.cs" />
     <Compile Include="JSON\JsonDentistTimeSlots.cs" />
     <Compile Include="JSON\JsonEveryTimeSlot.cs" />
     <Compile Include="JSON\JsonLogin.cs" />
