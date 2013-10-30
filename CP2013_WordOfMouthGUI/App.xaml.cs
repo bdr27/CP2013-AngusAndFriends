@@ -177,7 +177,7 @@ namespace CP2013_WordOfMouthGUI
                         window.Btn_LogInOut.Content = "Log Out";
                         window.Btn_Appointments.IsEnabled = true;
                         var thread = new GetUserAppointments(5000, sessionKey.GetSessionID());
-                        thread.eventHandler += HandleAppointmentsUpdate;
+                        thread.eventHandler += HandleAppointmentsMyAppsUpdate;
                         thread.Start();
                     } break;
                 case StateOfSystem.VERIFY_JOIN:
@@ -208,16 +208,16 @@ namespace CP2013_WordOfMouthGUI
                     {
                         window.SetPage(window.UsrCntrl_NewApp);
                         var thread = new GetDentistsThread(5000, "");
-                        thread.eventHandler += HandleGetAllDentistsUpdate;
+                        thread.eventHandler += HandleGetAllDentistsNewAppUpdate;
                         thread.Start();
                         var threadTypes = new GetAppointmentTypesThread(5000, 0);
-                        threadTypes.eventHandler += HandleGetAllAppTypesUpdate;
+                        threadTypes.eventHandler += HandleGetAllAppTypesNewAppUpdate;
                         threadTypes.Start();
                     } break;
             }
         }
 
-        private void HandleGetAllAppTypesUpdate(object sender, RequestCompleteArgs e)
+        private void HandleGetAllAppTypesNewAppUpdate(object sender, RequestCompleteArgs e)
         {
             Dispatcher.Invoke(() =>
             {
@@ -229,7 +229,7 @@ namespace CP2013_WordOfMouthGUI
             });
         }
 
-        private void HandleGetAllDentistsUpdate(object sender, RequestCompleteArgs e)
+        private void HandleGetAllDentistsNewAppUpdate(object sender, RequestCompleteArgs e)
         {
             Dispatcher.Invoke(() =>
             {
@@ -241,7 +241,7 @@ namespace CP2013_WordOfMouthGUI
             });
         }
 
-        private void HandleAppointmentsUpdate(object sender, RequestCompleteArgs e)
+        private void HandleAppointmentsMyAppsUpdate(object sender, RequestCompleteArgs e)
         {
             Dispatcher.Invoke(() =>
             {
@@ -301,7 +301,7 @@ namespace CP2013_WordOfMouthGUI
                 {
                     stateMachine.SetLoginStatus(e.SessionID);
                     sessionKey = e.SessionID;
-                    LauchThread();
+                    LaunchThread();
                 }
 
                 stateMachine.SetSystemState(e.Action);
@@ -380,7 +380,7 @@ namespace CP2013_WordOfMouthGUI
             CompleteAction(UserActions.ADMIN_CLICK);
         }
 
-        private void LauchThread()
+        private void LaunchThread()
         {
             sessionThread = new Thread(SessionThread_Run);
             sessionThread.IsBackground = true;            
