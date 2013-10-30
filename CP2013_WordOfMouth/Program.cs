@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using CP2013_WordOfMouth.Enum;
 using CP2013_WordOfMouth.Utility;
 using CP2013_WordOfMouth.Interface;
-using CP2013_WordOfMouth.MOCK;
 using CP2013_WordOfMouth.Gather;
 using CP2013_WordOfMouth.JSON;
 using CP2013_WordOfMouth.DTO;
+using CP2013_WordOfMouth.MOCK;
 
 namespace CP2013_WordOfMouth
 {
@@ -28,11 +28,11 @@ namespace CP2013_WordOfMouth
             var newSession = new JsonSession().GetObject(something) as Session;
             var dentistser = GetRequests(new HttpGetAllDentist(), new JsonAllDentists(), "") as List<Dentist>;
 
-            var allAvaliable = GetRequests(new HttpGetAllAvaliableTimes(), new JsonAppointments(), "");
+            var allAvaliable = GetRequests(new HttpGetAllAvaliableTimes(), new JsonDentistTimeSlots(), "");
 
             GetRequests(new HttpGetDentist(), new JsonDentist(), 1.ToString());
             GetRequests(new HttpGetAppointments(), new JsonAppointments(), newSession.GetSessionID().ToString());
-            var timeSlots = GetRequests(new HttpGetDentistTimeSlots(), new JsonDentistTimeSlots(), dentistser[0].GetID().ToString());
+            var timeSlots = GetRequests(new HttpGetDentistTimeSlots(), new JsonDentistTimeSlots(), 2.ToString());
             var apps = GetRequests(new HttpGetAllAppointmentTypes(), new JsonAllAppointmentTypes(), "");
             var deleteAppointment = new HttpPostDeleteAppointment();
             deleteAppointment.SendRequest(1.ToString());
