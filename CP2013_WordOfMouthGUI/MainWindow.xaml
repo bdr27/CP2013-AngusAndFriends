@@ -42,5 +42,6 @@
         <local:NewAppointmentControl x:Name="UsrCntrl_NewApp" Grid.Row="4" Grid.ColumnSpan="11" IsEnabled="False" Visibility="Hidden"/>
         <local:RemoveAppointmentTypeControl x:Name="UsrCntrl_RemoveAppType" Grid.Row="4" Grid.ColumnSpan="11" IsEnabled="False" Visibility="Hidden"/>
         <local:RemoveDentistControl x:Name="UsrCntrl_RemoveDentist" Grid.Row="4" Grid.ColumnSpan="11" IsEnabled="False" Visibility="Hidden"/>
+        <local:EditDentistDetailsControl x:Name="UsrCntrl_EditDentistDetails" Grid.Row="4" Grid.ColumnSpan="11" IsEnabled="False" Visibility="Hidden"/>
     </Grid>
 </Window>

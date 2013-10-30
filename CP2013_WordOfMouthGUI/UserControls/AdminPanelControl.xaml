@@ -32,10 +32,10 @@
         <Label Content="Dentists" FontFamily="Arial" FontSize="25" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5"/>
         <Label Content="Miscellaneous" FontFamily="Arial" FontSize="25" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="5"/>
         <Button x:Name="Btn_NewDentist" Content="Add New Dentist" Grid.Row="3" Grid.Column="1"/>
-        <Button x:Name="Btn_EditDentist" Content="Edit Existing Dentist" Grid.Row="3" Grid.Column="3"/>
+        <Button x:Name="Btn_EditDentistDetails" Content="Edit Dentist Details" Grid.Row="3" Grid.Column="3"/>
         <Button x:Name="Btn_RemoveDentist" Content="Remove Dentist" Grid.Row="3" Grid.Column="5"/>
         <Button x:Name="Btn_NewAppType" Content="Add New Appointment Type" Grid.Row="6" Grid.Column="1"/>
         <Button x:Name="Btn_RemoveAppType" Content="Remove Appointment Type" Grid.Row="6" Grid.Column="3"/>
-        <Button Content="View Daily Bookings" IsEnabled="False" Grid.Row="6" Grid.Column="5"/>
+        <Button x:Name="Btn_EditDentist" Content="Edit Dentist Timetable" Grid.Row="6" Grid.Column="5"/>
     </Grid>
 </UserControl>

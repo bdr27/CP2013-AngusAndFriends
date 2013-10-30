@@ -26,6 +26,7 @@ namespace CP2013_WordOfMouth.Enum
         REMOVE_DENTIST_PAGE,
         ADD_APPOINT_TYPE_PAGE,
         REMOVE_APPOINT_TYPE_PAGE,
+        EDIT_DENTIST_DETAILS_PAGE,
         
         // Verification states
         VERIFY_LOGIN,
@@ -37,6 +38,7 @@ namespace CP2013_WordOfMouth.Enum
         VERIFY_EDIT_DENTIST,
         VERIFY_REMOVE_DENTIST,
         VERIFY_ADD_APPOINT_TYPE,
-        VERIFY_REMOVE_APPOINT_TYPE
+        VERIFY_REMOVE_APPOINT_TYPE,
+        VERIFY_EDIT_DENTIST_DETAILS
     }
 }

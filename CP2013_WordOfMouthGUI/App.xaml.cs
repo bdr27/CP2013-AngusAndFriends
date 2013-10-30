@@ -87,6 +87,9 @@ namespace CP2013_WordOfMouthGUI
 
             window.UsrCntrl_NewApp.AddCmbox_DentistFilterChangedHandler(HandleCmbox_DentistFilterChange);
             window.UsrCntrl_EditDentist.AddCmbox_DentistNameHandler(HandleCmbox_DentistNameChange);
+
+            window.UsrCntrl_EditDentistDetails.AddBtn_UpdateHandler(HandleBtn_UpdateClick);
+            window.UsrCntrl_EditDentistDetails.AddBtn_CancelHandler(HandleBtn_CancelClick);
         }
 
         private void HandleBtn_RemoveClick(object sender, RoutedEventArgs e)

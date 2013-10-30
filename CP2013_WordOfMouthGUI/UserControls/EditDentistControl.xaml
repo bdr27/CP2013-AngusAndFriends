@@ -23,7 +23,7 @@
             <ColumnDefinition Width="700"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Label Content="Edit Dentist" FontFamily="Arial" FontSize="55" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Label Content="Edit Dentist Timetable" FontFamily="Arial" FontSize="55" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"/>
         <Label Content="Name:" Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Right"/>
         <ComboBox x:Name="Cmbox_DentistName" Grid.Row="2" Grid.Column="2" Margin="0,0,500,0"/>
         <Button x:Name="Btn_Update" Content="Update" Grid.Row="6" Grid.Column="2" Margin="494,0,126,0"/>

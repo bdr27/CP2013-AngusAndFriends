@@ -187,6 +187,16 @@ namespace CP2013_WordOfMouth.Controllers
                 {
                     state = StateOfSystem.ADMIN_PAGE;
                 }
+
+                // edit dentist details page | Possible actions >> Update, Cancel
+                else if (state == StateOfSystem.EDIT_DENTIST_DETAILS_PAGE && action == UserActions.UPDATE_CLICK)
+                {
+                    state = StateOfSystem.VERIFY_EDIT_DENTIST_DETAILS;
+                }
+                else if (state == StateOfSystem.EDIT_DENTIST_DETAILS_PAGE && action == UserActions.CANCEL_CLICK)
+                {
+                    state = StateOfSystem.ADMIN_PAGE;
+                }
             }
             
             // verify join states | Possible actions >> Success, Failure
@@ -267,6 +277,12 @@ namespace CP2013_WordOfMouth.Controllers
             else if (state == StateOfSystem.VERIFY_REMOVE_APPOINT_TYPE)
             {
                 state = StateOfSystem.REMOVE_APPOINT_TYPE_PAGE;
+            }
+
+            // verify editing a dentist's details | Possible actions >> None
+            else if (state == StateOfSystem.VERIFY_EDIT_DENTIST_DETAILS)
+            {
+                state = StateOfSystem.EDIT_DENTIST_DETAILS_PAGE;
             }
 
             return prevState != state;

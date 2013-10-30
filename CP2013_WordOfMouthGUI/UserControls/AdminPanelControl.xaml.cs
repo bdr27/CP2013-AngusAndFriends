@@ -55,5 +55,10 @@ namespace CP2013_WordOfMouthGUI.UserControls
         {
             Btn_RemoveAppType.Click += handler;
         }
+
+        public void AddBtn_EditDentistDetailsHandler(RoutedEventHandler handler)
+        {
+            Btn_EditDentistDetails.Click += handler;
+        }
     }
 }
