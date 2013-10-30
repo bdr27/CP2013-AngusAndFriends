@@ -8,24 +8,23 @@ using RestSharp;
 
 namespace CP2013_WordOfMouth.Gather
 {
-    public class HttpPostDentist : IRequestResponse
+    public class HttpPostEditDentist : IRequestResponse
     {
-        //TODO THIS WHOLE CLASS
         private string baseUrl = HTTP_INFO.GetUrlBase();
         private string location = HTTP_INFO.GetEditDentist();
         private Http http;
         private HttpResponse response;
 
-        public HttpPostDentist()
+        public HttpPostEditDentist()
         {
             http = new Http();
-            http.Url = new Uri(baseUrl + location);
         }
+
         #region IRequestResponse Members
 
         public void SendRequest(string request)
         {
-            http.RequestBody = (request);
+            http.RequestBody = request;
             response = http.Post();
         }
 

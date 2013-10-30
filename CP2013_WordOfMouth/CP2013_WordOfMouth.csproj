@@ -75,6 +75,7 @@
     <Compile Include="Gather\HttpPostDeleteAppointment.cs" />
     <Compile Include="Gather\HttpPostDeleteAppointmentType.cs" />
     <Compile Include="Gather\HttpPostDentist.cs" />
+    <Compile Include="Gather\HttpPostEditDentist.cs" />
     <Compile Include="Gather\HttpPostLogin.cs" />
     <Compile Include="Gather\HttpPostDeleteDentist.cs" />
     <Compile Include="Gather\HttpPostSession.cs" />
