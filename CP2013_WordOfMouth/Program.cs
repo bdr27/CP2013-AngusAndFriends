@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using CP2013_WordOfMouth.Enum;
 using CP2013_WordOfMouth.Utility;
 using CP2013_WordOfMouth.Interface;
-using CP2013_WordOfMouth.MOCK;
 using CP2013_WordOfMouth.Gather;
 using CP2013_WordOfMouth.JSON;
 using CP2013_WordOfMouth.DTO;
+using CP2013_WordOfMouth.MOCK;
 
 namespace CP2013_WordOfMouth
 {

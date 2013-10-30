@@ -100,6 +100,10 @@
     <Compile Include="JSON\JsonSignUp.cs" />
     <Compile Include="JSON\TemplateJson.cs" />
     <Compile Include="DTO\AppointmentType.cs" />
+    <Compile Include="MOCK\MOCKBooking.cs" />
+    <Compile Include="MOCK\MOCKFileHandler.cs" />
+    <Compile Include="MOCK\MOCKTimeSlot.cs" />
+    <Compile Include="MOCK\MOCKUser.cs" />
     <Compile Include="Threads\GetAppointmentTypesThread.cs" />
     <Compile Include="Threads\GetDentistsThread.cs" />
     <Compile Include="Threads\GetUserAppointments.cs" />
@@ -133,7 +137,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
