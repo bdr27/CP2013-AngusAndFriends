@@ -113,6 +113,17 @@ namespace CP2013_WordOfMouthGUI
                     thread.Start();
                 }
             }
+            else if (stateMachine.GetSystemState() == StateOfSystem.REMOVE_DENTIST_PAGE)
+            {
+                if (window.UsrCntrl_RemoveDentist.Cmbox_DentistName.SelectedItem is Dentist)
+                {
+                    var dentist = window.UsrCntrl_RemoveDentist.Cmbox_DentistName.SelectedItem as Dentist;
+                    stateMachine.SetSystemState(UserActions.REMOVE_CLICK);
+                    var thread = new RemoveDentistThread(5000, dentist.GetID());
+                    thread.eventHandler += HandleRequestComplete;
+                    thread.Start();
+                }
+            }
             else
             {
                 CompleteAction(UserActions.REMOVE_CLICK);
