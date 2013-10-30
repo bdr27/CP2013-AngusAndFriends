@@ -18,14 +18,13 @@ namespace CP2013_WordOfMouth.Gather
         public HttpPostDeleteDentist()
         {
             http = new Http();
-            http.RequestContentType = "application/json";
         }
+
         #region IRequestResponse Members
 
         public void SendRequest(string request)
         {
             http.Url = new Uri(baseUrl + location + request);
-            http.RequestBody = request;
             httpResponse = http.Post();
         }
 
@@ -35,5 +34,10 @@ namespace CP2013_WordOfMouth.Gather
         }
 
         #endregion
+
+        public HttpResponse GetHttpResponse()
+        {
+            return httpResponse;
+        }
     }
 }

@@ -113,6 +113,7 @@
     <Compile Include="Threads\MakeAppointmentThread.cs" />
     <Compile Include="Threads\NewAppTimeSlotsThread.cs" />
     <Compile Include="Threads\RemoveAppointmentThread.cs" />
+    <Compile Include="Threads\RemoveAppointmentTypeThread.cs" />
     <Compile Include="Threads\ThreadTemplate.cs" />
     <Compile Include="Utility\HTTP_INFO.cs" />
     <Compile Include="Utility\OldDentist.cs" />

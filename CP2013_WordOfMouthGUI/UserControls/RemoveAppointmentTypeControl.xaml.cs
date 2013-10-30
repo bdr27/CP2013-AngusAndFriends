@@ -1,4 +1,5 @@
-﻿using CP2013_WordOfMouthGUI.Interfaces;
+﻿using CP2013_WordOfMouth.DTO;
+using CP2013_WordOfMouthGUI.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,9 +42,19 @@ namespace CP2013_WordOfMouthGUI.UserControls
             Btn_Cancel.Click += handler;
         }
 
-        internal void SetDentists(List<CP2013_WordOfMouth.DTO.Dentist> dentists)
+        public void SetAppTypes(List<AppointmentType> types)
         {
-            throw new NotImplementedException();
+            if (types == null)
+                return;
+
+            Cmbox_TypeName.Items.Clear();
+
+            foreach (var type in types)
+            {
+                Cmbox_TypeName.Items.Add(type);
+            }
+
+            Cmbox_TypeName.SelectedIndex = 0;
         }
     }
 }

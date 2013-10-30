@@ -9,7 +9,7 @@ namespace CP2013_WordOfMouth_Tests
     [TestClass]
     public class JsonDentistTests
     {
-        private string correctJson = "{\"dentistID\":123,\"name\":\"DENTIST NAME\",\"email\":\"example@domain.com\",\"phone\":\"044445556666\"}";
+        private string correctJson = "{\"id\":123,\"name\":\"DENTIST NAME\",\"email\":\"example@domain.com\",\"phone\":\"044445556666\"}";
         private int id = 123;
         private string name = "DENTIST NAME";
         private string email = "example@domain.com";

@@ -20,8 +20,8 @@ namespace CP2013_WordOfMouth.JSON
         public override object GetObject(string json)
         {
             var d = JsonConvert.DeserializeObject<ConverterDentist>(json);
-            CheckValidParams(d.dentistID, d.name, d.email, d.phone);
-            return new Dentist(d.dentistID, d.name, d.email, d.phone);
+            CheckValidParams(d.id, d.name, d.email, d.phone);
+            return new Dentist(d.id, d.name, d.email, d.phone);
         }
     }
 }

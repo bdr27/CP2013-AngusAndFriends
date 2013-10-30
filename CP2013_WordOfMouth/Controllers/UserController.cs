@@ -266,7 +266,7 @@ namespace CP2013_WordOfMouth.Controllers
             // verify removing an appointment type | Possible actions >> None
             else if (state == StateOfSystem.VERIFY_REMOVE_APPOINT_TYPE)
             {
-                state = StateOfSystem.VERIFY_REMOVE_APPOINT_TYPE;
+                state = StateOfSystem.REMOVE_APPOINT_TYPE_PAGE;
             }
 
             return prevState != state;

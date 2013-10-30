@@ -28,8 +28,8 @@ namespace CP2013_WordOfMouth.JSON
             var d = new List<Dentist>();
             foreach (var dentist in dentists)
             {
-                CheckValidParams(dentist.dentistID, dentist.name);
-                d.Add(new Dentist(dentist.dentistID, dentist.name, dentist.email, dentist.phone));
+                CheckValidParams(dentist.id, dentist.name);
+                d.Add(new Dentist(dentist.id, dentist.name, dentist.email, dentist.phone));
             }
             return d;
         }

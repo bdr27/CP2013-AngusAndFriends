@@ -9,7 +9,7 @@ namespace CP2013_WordOfMouth_Tests
     [TestClass]
     public class JsonTimeSlotTests
     {
-        private string correctJson = "{\"id\":165,\"dentist\":{\"dentistID\":3,\"name\":\"Dr.Carl\",\"email\":\"\",\"phone\":\"\"},\"hour\":15,\"minute\":30,\"day\":5}";
+        private string correctJson = "{\"id\":165,\"dentist\":{\"id\":3,\"name\":\"Dr.Carl\",\"email\":\"\",\"phone\":\"\"},\"hour\":15,\"minute\":30,\"day\":5}";
         private int id = 165;
         private Dentist dentist = new Dentist(3, "Dr.Carl", "", "");
         private int hour = 15;

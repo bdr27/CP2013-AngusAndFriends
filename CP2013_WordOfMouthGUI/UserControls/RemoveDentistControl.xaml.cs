@@ -1,4 +1,5 @@
-﻿using CP2013_WordOfMouthGUI.Interfaces;
+﻿using CP2013_WordOfMouth.DTO;
+using CP2013_WordOfMouthGUI.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,20 @@ namespace CP2013_WordOfMouthGUI.UserControls
         public void AddBtn_CancelHandler(RoutedEventHandler handler)
         {
             Btn_Cancel.Click += handler;
+        }
+
+        public void SetDentists(List<Dentist> dentists)
+        {
+            if (dentists == null)
+                return;
+
+            Cmbox_DentistName.Items.Clear();
+            foreach (var dentist in dentists)
+            {
+                Cmbox_DentistName.Items.Add(dentist);
+            }
+
+            Cmbox_DentistName.SelectedIndex = 0;
         }
     }
 }

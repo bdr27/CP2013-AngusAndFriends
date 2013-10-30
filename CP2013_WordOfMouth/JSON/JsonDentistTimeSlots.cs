@@ -32,7 +32,7 @@ namespace CP2013_WordOfMouth.JSON
             {
                 CheckValidParams(ts.id, ts.dentist, ts.hour, ts.minute, ts.day);
                 var dc = ts.dentist;
-                var d = new Dentist(dc.dentistID, dc.name, dc.email, dc.phone);
+                var d = new Dentist(dc.id, dc.name, dc.email, dc.phone);
                 timeSlots.Add(new TimeSlot(ts.id, d, ts.hour, ts.minute, ts.day));
             }
             return timeSlots;

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CP2013_WordOfMouth.Utility;
+using RestSharp;
 
 namespace CP2013_WordOfMouth.Gather
 {
@@ -11,18 +12,34 @@ namespace CP2013_WordOfMouth.Gather
     {
         private string baseUrl = HTTP_INFO.GetUrlBase();
         private string location = HTTP_INFO.GetDeleteAppointmentType();
+        private Http http;
+
+        private HttpResponse response;
+
+        public HttpPostDeleteAppointmentType()
+        {
+            http = new Http();
+        }
+
         #region IRequestResponse Members
 
         public void SendRequest(string request)
         {
-            throw new NotImplementedException();
+            http.Url = new Uri(baseUrl + location + request);
+            response = http.Post();
         }
 
         public string GetResponse()
         {
-            throw new NotImplementedException();
+            return response.Content;
         }
 
         #endregion
+
+        public HttpResponse GetHttpResponse()
+        {
+            return response;
+        }
+
     }
 }

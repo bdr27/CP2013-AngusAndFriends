@@ -7,14 +7,14 @@ namespace CP2013_WordOfMouth.JSON
 {
     class ConverterDentist
     {
-        public int dentistID { get; set; }
+        public int id { get; set; }
         public string name { get; set; }
         public string email { get; set; }
         public string phone { get; set; }
 
         public ConverterDentist(int id, string name, string email, string phone)
         {
-            this.dentistID = id;
+            this.id = id;
             this.name = name;
             this.email = email;
             this.phone = phone;
