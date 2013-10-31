@@ -45,9 +45,6 @@ namespace CP2013_WordOfMouthGUI
             window.Show();
         }
 
-        #region Button Click Handlers
-        #endregion
-
         private void AssignHandlers()
         {
             window.AddBtn_HomeHandler(HandleBtn_HomeClick);
@@ -98,131 +95,7 @@ namespace CP2013_WordOfMouthGUI
             window.UsrCntrl_RemoveDentist.AddCmboxDentistNameHandler(HandleCmbox_DentistNameRemChange);
         }
 
-        private void HandleCmbox_DentistNameRemChange(object sender, SelectionChangedEventArgs e)
-        {
-            if (window.UsrCntrl_RemoveDentist.Cmbox_DentistName.SelectedItem is Dentist)
-            {
-                var dentistID = (window.UsrCntrl_RemoveDentist.Cmbox_DentistName.SelectedItem as Dentist).GetID();
-                var thread = new GetBookingsForDentistThread(5000, dentistID);
-                thread.eventHandler += HandleAppointmentsRemoveDentistUpdate;
-                thread.Start();
-            }
-        }
-
-        private void HandleAppointmentsRemoveDentistUpdate(object sender, RequestCompleteArgs e)
-        {
-            Dispatcher.Invoke(() =>
-            {
-                if (e.RequestType == RequestReturnType.APPOINTMENTS)
-                {
-                    var appointments = e.Infomation as List<Appointment>;
-                    window.UsrCntrl_RemoveDentist.SetAppointments(appointments);
-                }
-            });
-        }
-
-        private void HandleBtn_EditDentistDetailsClick(object sender, RoutedEventArgs e)
-        {
-            CompleteAction(UserActions.EDIT_DEN_DETAILS_CLICK);
-        }
-
-        private void HandleBtn_RemoveClick(object sender, RoutedEventArgs e)
-        {
-            if (stateMachine.GetSystemState() == StateOfSystem.APPOINTMENTS_PAGE)
-            {
-                var appSel = window.UsrCntrl_MyApps.GetSelectedAppID();
-                if (appSel != -1)
-                {
-                    stateMachine.SetSystemState(UserActions.REMOVE_CLICK);
-                    var thread = new RemoveAppointmentThread(5000, appSel);
-                    thread.eventHandler += HandleRequestComplete;
-                    thread.Start();
-                }
-            }
-            else if (stateMachine.GetSystemState() == StateOfSystem.REMOVE_APPOINT_TYPE_PAGE)
-            {
-                if (window.UsrCntrl_RemoveAppType.Cmbox_TypeName.SelectedItem is CP2013_WordOfMouth.DTO.AppointmentType)
-                {
-                    var type = window.UsrCntrl_RemoveAppType.Cmbox_TypeName.SelectedItem as CP2013_WordOfMouth.DTO.AppointmentType;
-                    stateMachine.SetSystemState(UserActions.REMOVE_CLICK);
-                    var thread = new RemoveAppointmentTypeThread(5000, type.GetID());
-                    thread.eventHandler += HandleRequestComplete;
-                    thread.Start();
-                }
-            }
-            else if (stateMachine.GetSystemState() == StateOfSystem.REMOVE_DENTIST_PAGE)
-            {
-                if (window.UsrCntrl_RemoveDentist.Cmbox_DentistName.SelectedItem is Dentist)
-                {
-                    var dentist = window.UsrCntrl_RemoveDentist.Cmbox_DentistName.SelectedItem as Dentist;
-                    stateMachine.SetSystemState(UserActions.REMOVE_CLICK);
-                    var thread = new RemoveDentistThread(5000, dentist.GetID());
-                    thread.eventHandler += HandleRequestComplete;
-                    thread.Start();
-                }
-            }
-            else
-            {
-                CompleteAction(UserActions.REMOVE_CLICK);
-            }
-        }
-
-        private void HandleBtn_UpdateClick(object sender, RoutedEventArgs e)
-        {
-            if (stateMachine.GetSystemState() == StateOfSystem.EDIT_DENTIST_PAGE)
-            {
-                var information = window.UsrCntrl_EditDentist.GetSelectedAppointmentsList();
-                if (information != null)
-                {
-                    stateMachine.SetSystemState(UserActions.UPDATE_CLICK);
-                    var thread = new EditDentistTimeSlotThread(5000, information);
-                    thread.eventHandler += HandleRequestComplete;
-                    thread.Start();
-                }
-            }
-            else if (stateMachine.GetSystemState() == StateOfSystem.EDIT_DENTIST_DETAILS_PAGE)
-            {
-                var dentist = window.UsrCntrl_EditDentistDetails.GetDentist();
-                if (dentist != null)
-                {
-                    stateMachine.SetSystemState(UserActions.UPDATE_CLICK);
-                    var thread = new EditDentistThread(5000, dentist);
-                    thread.eventHandler += HandleRequestComplete;
-                    thread.Start();
-                }
-                
-            }
-            else
-            {
-                CompleteAction(UserActions.UPDATE_CLICK);
-            }
-        }
-
-        private void HandleBtn_NewDentistClick(object sender, RoutedEventArgs e)
-        {
-            CompleteAction(UserActions.ADD_DEN_CLICK);
-        }
-
-        private void HandleBtn_EditDentistClick(object sender, RoutedEventArgs e)
-        {
-            CompleteAction(UserActions.EDIT_DEN_CLICK);
-        }
-
-        private void HandleBtn_RemoveDentistClick(object sender, RoutedEventArgs e)
-        {
-            CompleteAction(UserActions.REMOVE_DEN_CLICK);
-        }
-
-        private void HandleBtn_NewAppTypeClick(object sender, RoutedEventArgs e)
-        {
-            CompleteAction(UserActions.ADD_APP_TYPE_CLICK);
-        }
-
-        private void HandleBtn_RemoveAppTypeClick(object sender, RoutedEventArgs e)
-        {
-            CompleteAction(UserActions.REMOVE_APP_TYPE_CLICK);
-        }
-
+        #region GUI Handling
         private void ModifyPage(StateOfSystem systemState)
         {
             window.ResetWindow();
@@ -331,119 +204,111 @@ namespace CP2013_WordOfMouthGUI
             }
         }
 
-        private void HandleGetAllDentistsEditDenDetailsUpdate(object sender, RequestCompleteArgs e)
-        {
-            Dispatcher.Invoke(() =>
-            {
-                if (e.RequestType == RequestReturnType.DENTISTS)
-                {
-                    var dentists = e.Infomation as List<Dentist>;
-                    window.UsrCntrl_EditDentistDetails.SetDentists(dentists);
-                }
-            });
-        }
-
-        private void HandleGetAllAppTypesRemAppUpdate(object sender, RequestCompleteArgs e)
-        {
-            Dispatcher.Invoke(() =>
-            {
-                if (e.RequestType == RequestReturnType.APPOINTMENT_TYPES)
-                {
-                    var types = e.Infomation as List<CP2013_WordOfMouth.DTO.AppointmentType>;
-                    window.UsrCntrl_RemoveAppType.SetAppTypes(types);
-                }
-            });
-        }
-
-        private void HandleGetDentistsRemoveDenUpdate(object sender, RequestCompleteArgs e)
-        {
-            Dispatcher.Invoke(() =>
-            {
-                if (e.RequestType == RequestReturnType.DENTISTS)
-                {
-                    var dentists = e.Infomation as List<Dentist>;
-                    window.UsrCntrl_RemoveDentist.SetDentists(dentists);
-                }
-            });
-        }
-
-        private void HandleGetDentistsEditDenUpdate(object sender, RequestCompleteArgs e)
-        {
-            Dispatcher.Invoke(() =>
-            {
-                if (e.RequestType == RequestReturnType.DENTISTS)
-                {
-                    var dentists = e.Infomation as List<Dentist>;
-                    window.UsrCntrl_EditDentist.SetDentists(dentists);
-                }
-            });
-        }
-
-        private void HandleGetDentistTimesEditDenUpdate(object sender, RequestCompleteArgs e)
-        {
-            Dispatcher.Invoke(() =>
-            {
-                if (e.RequestType == RequestReturnType.TIMESLOTS)
-                {
-                    var times = e.Infomation as List<CP2013_WordOfMouth.DTO.TimeSlot>;
-                    window.UsrCntrl_EditDentist.SetTimeSlots(times);
-                }
-            });
-        }
-
-        private void HandleCmbox_DentistNameChange(object sender, SelectionChangedEventArgs e)
-        {
-            if (window.UsrCntrl_EditDentist.Cmbox_DentistName.SelectedItem is Dentist)
-            {
-                var dentist = window.UsrCntrl_EditDentist.Cmbox_DentistName.SelectedItem as Dentist;
-                var thread = new NewAppTimeSlotsThread(5000, dentist.GetID());
-                thread.eventHandler += HandleGetDentistTimesEditDenUpdate;
-                thread.Start();
-            }
-        }
-
-        private void HandleGetAllAppTypesNewAppUpdate(object sender, RequestCompleteArgs e)
-        {
-            Dispatcher.Invoke(() =>
-            {
-                if (e.RequestType == RequestReturnType.APPOINTMENT_TYPES)
-                {
-                    var types = e.Infomation as List<CP2013_WordOfMouth.DTO.AppointmentType>;
-                    window.UsrCntrl_NewApp.SetAppTypes(types);
-                }
-            });
-        }
-
-        private void HandleGetAllDentistsNewAppUpdate(object sender, RequestCompleteArgs e)
-        {
-            Dispatcher.Invoke(() =>
-            {
-                if (e.RequestType == RequestReturnType.DENTISTS)
-                {
-                    var dentists = e.Infomation as List<Dentist>;
-                    window.UsrCntrl_NewApp.SetDentists(dentists);
-                }
-            });
-        }
-
-        private void HandleAppointmentsMyAppsUpdate(object sender, RequestCompleteArgs e)
-        {
-            Dispatcher.Invoke(() =>
-            {
-                if (e.RequestType == RequestReturnType.APPOINTMENTS)
-                {
-                    var app = e.Infomation as List<Appointment>;
-                    window.UsrCntrl_MyApps.SetAppointments(app);
-                }
-            });
-        }
-
         private void CompleteAction(UserActions action)
         {
             if (!isVolatile && stateMachine.SetSystemState(action))
             {
                 ModifyPage(stateMachine.GetSystemState());
             }
+        }
+        #endregion
+
+        #region Button Click Handlers
+        private void HandleBtn_RemoveClick(object sender, RoutedEventArgs e)
+        {
+            if (stateMachine.GetSystemState() == StateOfSystem.APPOINTMENTS_PAGE)
+            {
+                var appSel = window.UsrCntrl_MyApps.GetSelectedAppID();
+                if (appSel != -1)
+                {
+                    stateMachine.SetSystemState(UserActions.REMOVE_CLICK);
+                    var thread = new RemoveAppointmentThread(5000, appSel);
+                    thread.eventHandler += HandleRequestComplete;
+                    thread.Start();
+                }
+            }
+            else if (stateMachine.GetSystemState() == StateOfSystem.REMOVE_APPOINT_TYPE_PAGE)
+            {
+                if (window.UsrCntrl_RemoveAppType.Cmbox_TypeName.SelectedItem is CP2013_WordOfMouth.DTO.AppointmentType)
+                {
+                    var type = window.UsrCntrl_RemoveAppType.Cmbox_TypeName.SelectedItem as CP2013_WordOfMouth.DTO.AppointmentType;
+                    stateMachine.SetSystemState(UserActions.REMOVE_CLICK);
+                    var thread = new RemoveAppointmentTypeThread(5000, type.GetID());
+                    thread.eventHandler += HandleRequestComplete;
+                    thread.Start();
+                }
+            }
+            else if (stateMachine.GetSystemState() == StateOfSystem.REMOVE_DENTIST_PAGE)
+            {
+                if (window.UsrCntrl_RemoveDentist.Cmbox_DentistName.SelectedItem is Dentist)
+                {
+                    var dentist = window.UsrCntrl_RemoveDentist.Cmbox_DentistName.SelectedItem as Dentist;
+                    stateMachine.SetSystemState(UserActions.REMOVE_CLICK);
+                    var thread = new RemoveDentistThread(5000, dentist.GetID());
+                    thread.eventHandler += HandleRequestComplete;
+                    thread.Start();
+                }
+            }
+            else
+            {
+                CompleteAction(UserActions.REMOVE_CLICK);
+            }
+        }
+
+        private void HandleBtn_UpdateClick(object sender, RoutedEventArgs e)
+        {
+            if (stateMachine.GetSystemState() == StateOfSystem.EDIT_DENTIST_PAGE)
+            {
+                var information = window.UsrCntrl_EditDentist.GetSelectedAppointmentsList();
+                if (information != null)
+                {
+                    stateMachine.SetSystemState(UserActions.UPDATE_CLICK);
+                    var thread = new EditDentistTimeSlotThread(5000, information);
+                    thread.eventHandler += HandleRequestComplete;
+                    thread.Start();
+                }
+            }
+            else if (stateMachine.GetSystemState() == StateOfSystem.EDIT_DENTIST_DETAILS_PAGE)
+            {
+                var dentist = window.UsrCntrl_EditDentistDetails.GetDentist();
+                if (dentist != null)
+                {
+                    stateMachine.SetSystemState(UserActions.UPDATE_CLICK);
+                    var thread = new EditDentistThread(5000, dentist);
+                    thread.eventHandler += HandleRequestComplete;
+                    thread.Start();
+                }
+
+            }
+            else
+            {
+                CompleteAction(UserActions.UPDATE_CLICK);
+            }
+        }
+
+        private void HandleBtn_NewDentistClick(object sender, RoutedEventArgs e)
+        {
+            CompleteAction(UserActions.ADD_DEN_CLICK);
+        }
+
+        private void HandleBtn_EditDentistClick(object sender, RoutedEventArgs e)
+        {
+            CompleteAction(UserActions.EDIT_DEN_CLICK);
+        }
+
+        private void HandleBtn_RemoveDentistClick(object sender, RoutedEventArgs e)
+        {
+            CompleteAction(UserActions.REMOVE_DEN_CLICK);
+        }
+
+        private void HandleBtn_NewAppTypeClick(object sender, RoutedEventArgs e)
+        {
+            CompleteAction(UserActions.ADD_APP_TYPE_CLICK);
+        }
+
+        private void HandleBtn_RemoveAppTypeClick(object sender, RoutedEventArgs e)
+        {
+            CompleteAction(UserActions.REMOVE_APP_TYPE_CLICK);
         }
 
         private void HandleBtn_HomeClick(object sender, RoutedEventArgs e)
@@ -476,39 +341,6 @@ namespace CP2013_WordOfMouthGUI
             {
                 CompleteAction(UserActions.JOIN_CLICK);
             }
-        }
-
-        private void HandleRequestComplete(object sender, RequestCompleteArgs e)
-        {
-            Dispatcher.Invoke(() =>
-            {
-                if (e.LoggedIn)
-                {
-                    stateMachine.SetLoginStatus(e.SessionID);
-                    sessionKey = e.SessionID;
-                    LaunchThread();
-                }
-
-                stateMachine.SetSystemState(e.Action);
-
-                if (e.RefreshUI)
-                {
-                    ModifyPage(stateMachine.GetSystemState());
-                }
-            });
-
-            if (e.DisplayResponse)
-            {
-                MessageBox.Show(e.Response);
-            }
-        }
-
-        //This will be the thread
-        private string Response(TemplateJson tj, IRequestResponse irr, object o)
-        {
-            var json = tj.GetJson(o);
-            irr.SendRequest(json);
-            return irr.GetResponse();
         }
 
         private void HandleBtn_LogInClick(object sender, RoutedEventArgs e)
@@ -596,11 +428,213 @@ namespace CP2013_WordOfMouthGUI
             CompleteAction(UserActions.ADMIN_CLICK);
         }
 
+        private void HandleBtn_EditDentistDetailsClick(object sender, RoutedEventArgs e)
+        {
+            CompleteAction(UserActions.EDIT_DEN_DETAILS_CLICK);
+        }
+        #endregion
+
+        #region Combo Box Handlers
+        private void HandleCmbox_DentistNameRemChange(object sender, SelectionChangedEventArgs e)
+        {
+            if (window.UsrCntrl_RemoveDentist.Cmbox_DentistName.SelectedItem is Dentist)
+            {
+                var dentistID = (window.UsrCntrl_RemoveDentist.Cmbox_DentistName.SelectedItem as Dentist).GetID();
+                var thread = new GetBookingsForDentistThread(5000, dentistID);
+                thread.eventHandler += HandleAppointmentsRemoveDentistUpdate;
+                thread.Start();
+            }
+        }
+
+        private void HandleCmbox_DentistFilterChange(object sender, SelectionChangedEventArgs e)
+        {
+            if (window.UsrCntrl_NewApp.Cmbox_DentistFilter.SelectedItem is Dentist)
+            {
+                var dentist = window.UsrCntrl_NewApp.Cmbox_DentistFilter.SelectedItem as Dentist;
+                var thread = new NewAppTimeSlotsThread(5000, dentist.GetID());
+                thread.eventHandler += HandleGetNewAppTimeSlotsComplete;
+                thread.Start();
+            }
+            else if (window.UsrCntrl_NewApp.Cmbox_DentistFilter.SelectedItem is string)
+            {
+                var thread = new AllAvailableTimesThread(5000, 0);
+                thread.eventHandler += HandleGetNewAppTimeSlotsComplete;
+                thread.Start();
+            }
+        }
+
+        private void HandleCmbox_DentistNameChange(object sender, SelectionChangedEventArgs e)
+        {
+            if (window.UsrCntrl_EditDentist.Cmbox_DentistName.SelectedItem is Dentist)
+            {
+                var dentist = window.UsrCntrl_EditDentist.Cmbox_DentistName.SelectedItem as Dentist;
+                var thread = new NewAppTimeSlotsThread(5000, dentist.GetID());
+                thread.eventHandler += HandleGetDentistTimesEditDenUpdate;
+                thread.Start();
+            }
+        }
+        #endregion
+
+        #region Event Handlers
+        private void HandleRequestComplete(object sender, RequestCompleteArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (e.LoggedIn)
+                {
+                    stateMachine.SetLoginStatus(e.SessionID);
+                    sessionKey = e.SessionID;
+                    LaunchThread();
+                }
+
+                stateMachine.SetSystemState(e.Action);
+
+                if (e.RefreshUI)
+                {
+                    ModifyPage(stateMachine.GetSystemState());
+                }
+            });
+
+            if (e.DisplayResponse)
+            {
+                MessageBox.Show(e.Response);
+            }
+        }
+
+        private void HandleGetAllDentistsEditDenDetailsUpdate(object sender, RequestCompleteArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (e.RequestType == RequestReturnType.DENTISTS)
+                {
+                    var dentists = e.Infomation as List<Dentist>;
+                    window.UsrCntrl_EditDentistDetails.SetDentists(dentists);
+                }
+            });
+        }
+
+        private void HandleGetAllAppTypesRemAppUpdate(object sender, RequestCompleteArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (e.RequestType == RequestReturnType.APPOINTMENT_TYPES)
+                {
+                    var types = e.Infomation as List<CP2013_WordOfMouth.DTO.AppointmentType>;
+                    window.UsrCntrl_RemoveAppType.SetAppTypes(types);
+                }
+            });
+        }
+
+        private void HandleGetDentistsRemoveDenUpdate(object sender, RequestCompleteArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (e.RequestType == RequestReturnType.DENTISTS)
+                {
+                    var dentists = e.Infomation as List<Dentist>;
+                    window.UsrCntrl_RemoveDentist.SetDentists(dentists);
+                }
+            });
+        }
+
+        private void HandleGetDentistsEditDenUpdate(object sender, RequestCompleteArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (e.RequestType == RequestReturnType.DENTISTS)
+                {
+                    var dentists = e.Infomation as List<Dentist>;
+                    window.UsrCntrl_EditDentist.SetDentists(dentists);
+                }
+            });
+        }
+
+        private void HandleGetDentistTimesEditDenUpdate(object sender, RequestCompleteArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (e.RequestType == RequestReturnType.TIMESLOTS)
+                {
+                    var times = e.Infomation as List<CP2013_WordOfMouth.DTO.TimeSlot>;
+                    window.UsrCntrl_EditDentist.SetTimeSlots(times);
+                }
+            });
+        }
+
+        private void HandleGetAllAppTypesNewAppUpdate(object sender, RequestCompleteArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (e.RequestType == RequestReturnType.APPOINTMENT_TYPES)
+                {
+                    var types = e.Infomation as List<CP2013_WordOfMouth.DTO.AppointmentType>;
+                    window.UsrCntrl_NewApp.SetAppTypes(types);
+                }
+            });
+        }
+
+        private void HandleGetAllDentistsNewAppUpdate(object sender, RequestCompleteArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (e.RequestType == RequestReturnType.DENTISTS)
+                {
+                    var dentists = e.Infomation as List<Dentist>;
+                    window.UsrCntrl_NewApp.SetDentists(dentists);
+                }
+            });
+        }
+
+        private void HandleAppointmentsMyAppsUpdate(object sender, RequestCompleteArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (e.RequestType == RequestReturnType.APPOINTMENTS)
+                {
+                    var app = e.Infomation as List<Appointment>;
+                    window.UsrCntrl_MyApps.SetAppointments(app);
+                }
+            });
+        }
+
+        private void HandleAppointmentsRemoveDentistUpdate(object sender, RequestCompleteArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (e.RequestType == RequestReturnType.APPOINTMENTS)
+                {
+                    var appointments = e.Infomation as List<Appointment>;
+                    window.UsrCntrl_RemoveDentist.SetAppointments(appointments);
+                }
+            });
+        }
+
+        private void HandleGetNewAppTimeSlotsComplete(object sender, RequestCompleteArgs e)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (e.RequestType == RequestReturnType.TIMESLOTS)
+                {
+                    var times = e.Infomation as List<CP2013_WordOfMouth.DTO.TimeSlot>;
+                    window.UsrCntrl_NewApp.SetTimeSlots(times);
+                }
+            });
+        }
+        #endregion
+
+        #region Session Handler
+        private string Response(TemplateJson tj, IRequestResponse irr, object o)
+        {
+            var json = tj.GetJson(o);
+            irr.SendRequest(json);
+            return irr.GetResponse();
+        }
+
         private void LaunchThread()
         {
             sessionThread = new Thread(SessionThread_Run);
-            sessionThread.IsBackground = true;            
-            sessionThread.Start();            
+            sessionThread.IsBackground = true;
+            sessionThread.Start();
         }
 
         private void SessionThread_Run()
@@ -623,7 +657,7 @@ namespace CP2013_WordOfMouthGUI
                 {
                     break;
                 }
-                
+
             }
         }
 
@@ -641,34 +675,6 @@ namespace CP2013_WordOfMouthGUI
                 ModifyPage(stateMachine.GetSystemState());
             });
         }
-
-        private void HandleCmbox_DentistFilterChange(object sender, SelectionChangedEventArgs e)
-        {
-            if (window.UsrCntrl_NewApp.Cmbox_DentistFilter.SelectedItem is Dentist)
-            {
-                var dentist = window.UsrCntrl_NewApp.Cmbox_DentistFilter.SelectedItem as Dentist;
-                var thread = new NewAppTimeSlotsThread(5000, dentist.GetID());
-                thread.eventHandler += HandleGetNewAppTimeSlotsComplete;
-                thread.Start();
-            }
-            else if (window.UsrCntrl_NewApp.Cmbox_DentistFilter.SelectedItem is string)
-            {
-                var thread = new AllAvailableTimesThread(5000, 0);
-                thread.eventHandler += HandleGetNewAppTimeSlotsComplete;
-                thread.Start();
-            }
-        }
-
-        private void HandleGetNewAppTimeSlotsComplete(object sender, RequestCompleteArgs e)
-        {
-            Dispatcher.Invoke(() =>
-            {
-                if (e.RequestType == RequestReturnType.TIMESLOTS)
-                {
-                    var times = e.Infomation as List<CP2013_WordOfMouth.DTO.TimeSlot>;
-                    window.UsrCntrl_NewApp.SetTimeSlots(times);
-                }
-            });
-        }
+        #endregion
     }
 }

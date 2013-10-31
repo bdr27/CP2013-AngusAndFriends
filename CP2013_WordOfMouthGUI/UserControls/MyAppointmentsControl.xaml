@@ -38,8 +38,8 @@
         <Button x:Name="Btn_CancelAppointments" Content="Cancel Selected" Grid.Row="3" Grid.Column="3" Margin="70,10,10,0"/>
         <Label Grid.Row="4" Grid.Column="2" Grid.RowSpan="3" BorderBrush="LightGray" BorderThickness="1"/>
         <Label Content=" Wish to Create a&#x0a;New Appointment?" Grid.Row="5" Grid.Column="2" FontFamily="Arial" FontSize="15" FontStyle="Italic" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,0,50"/>
-        <Button x:Name="Btn_CreateNew" Content="Create New" Grid.Row="5" Grid.Column="2" Margin="35,70,205,15"/>
-        <Button x:Name="Btn_FeelingLucky" Content="I'm Feeling Lucky" Grid.Row="5" Grid.Column="2" Margin="205,70,35,15"/>
+        <Button x:Name="Btn_CreateNew" Content="Create New" Grid.Row="5" Grid.Column="2" Margin="120,70,120,15"/>
+        <Button x:Name="Btn_FeelingLucky" Visibility="Hidden" Content="I'm Feeling Lucky" Grid.Row="5" Grid.Column="2" Margin="286,70,154,15" Grid.ColumnSpan="2"/>
         <Label Content="Select Dentist:" FontWeight="Bold" Grid.Row="1" Grid.Column="3" VerticalContentAlignment="Bottom" Margin="-90,0,165,0"/>
         <ComboBox x:Name="Cmbox_DentistFilter" Grid.Row="1" Grid.Column="3" SelectionChanged="Cmbox_DentistFilter_SelectionChanged" />
     </Grid>

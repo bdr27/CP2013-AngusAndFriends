@@ -45,6 +45,6 @@
         <Label Content="" Grid.Row="9" Grid.Column="2" Grid.RowSpan="4" BorderThickness="1" BorderBrush="LightGray"/>
         <Button x:Name="Btn_LogIn" Content="Log In" Grid.Row="6" Grid.Column="2" Margin="60,0,60,0"/>
         <Button x:Name="Btn_Join" Content="Join" Grid.Row="11" Grid.Column="2" Margin="60,0,60,0"/>
-        <Button x:Name="Btn_GooglePlus" Content="Google+" Grid.Row="4" Grid.Column="6" Margin="10,0,10,0"/>
+        <Button x:Name="Btn_GooglePlus" Content="Sign In With Google" Grid.Row="4" Grid.Column="6" Margin="10,0,10,0"/>
     </Grid>
 </UserControl>

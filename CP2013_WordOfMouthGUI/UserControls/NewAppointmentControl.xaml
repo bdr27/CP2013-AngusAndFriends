@@ -29,7 +29,7 @@
         <ComboBox x:Name="Cmbox_DentistFilter" Grid.Row="2" Grid.Column="1" Margin="152,0,498,0"/>
         <ComboBox x:Name="Cmbox_AppointmentTypeFilter" Grid.Row="2" Grid.Column="1" Margin="406,0,241,0"/>
         <local:TableGridControl x:Name="UsrCntrl_TimeSlots" Grid.Row="4" Grid.Column="1"/>
-        <Button x:Name="Btn_FeelingLucky" Content="I'm Feeling Lucky" FontWeight="Bold" Grid.Row="2" Grid.Column="1" Margin="650,0,10,0"/>
+        <Button x:Name="Btn_FeelingLucky" Visibility="Hidden" Content="I'm Feeling Lucky" FontWeight="Bold" Grid.Row="2" Grid.Column="1" Margin="650,0,10,0"/>
         <Button x:Name="Btn_CreateAppointment" Content="Create Appointment" Grid.Row="6" Grid.Column="1" Margin="316,0,317,0"/>
         <Button x:Name="Btn_Cancel" Content="Cancel" Grid.Row="6" Grid.Column="1" Margin="680,0,10,0"/>
     </Grid>
