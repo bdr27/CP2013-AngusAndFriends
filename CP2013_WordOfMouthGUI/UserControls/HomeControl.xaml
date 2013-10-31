@@ -31,8 +31,20 @@
         <Label Content="About Us" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="20" Grid.Row="4" Grid.Column="1" />
         <Label Content="Contact/Find Us" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Arial" FontSize="20" Grid.Row="4" Grid.Column="3" />
         <Rectangle Fill="LightGray" Grid.Row="4" Grid.Column="2" Grid.RowSpan="2"/>
-        <WebBrowser x:Name="wbMain" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="1">
-            
-        </WebBrowser>
+        <WebBrowser x:Name="wbMain" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="1" Margin="50,50,50,0"/>
+        <Label Grid.Row="5" Grid.Column="3" Margin="0,10,0,0" HorizontalContentAlignment="Center">
+            Phone: 04 2352 3223 
+        </Label>
+        <TextBlock Grid.Row="5" Grid.Column="1" IsEnabled="False">
+            Welcome to <Bold>Word of Mouth</Bold>! Where we strive <LineBreak/>
+            to provide the lowest prices for the best dental <LineBreak/>
+            around! <LineBreak/>
+            <LineBreak/>
+            Starting in 2005, a group of 5 university <LineBreak/>
+            students, thought of a need for the dental <LineBreak/>
+            community, where people would instead get <LineBreak/>
+            dental done locally instead of internationally. <LineBreak/>
+            This was when <Bold>Word of Mouth</Bold> was created.
+        </TextBlock>
     </Grid>
 </UserControl>

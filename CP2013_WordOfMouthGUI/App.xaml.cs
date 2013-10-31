@@ -45,6 +45,9 @@ namespace CP2013_WordOfMouthGUI
             window.Show();
         }
 
+        #region Button Click Handlers
+        #endregion
+
         private void AssignHandlers()
         {
             window.AddBtn_HomeHandler(HandleBtn_HomeClick);
@@ -230,7 +233,9 @@ namespace CP2013_WordOfMouthGUI
                         window.SetPage(window.UsrCntrl_Home);
                         window.Btn_LogInOut.Content = "Log In";
                         window.Btn_Admin.IsEnabled = false;
+                        window.Btn_Admin.Visibility = Visibility.Hidden;
                         window.Btn_Appointments.IsEnabled = false;
+                        window.Btn_Appointments.Visibility = Visibility.Hidden;
                     } break;
                 case StateOfSystem.LOGIN_PAGE:
                     {
@@ -253,12 +258,14 @@ namespace CP2013_WordOfMouthGUI
                         window.SetPage(window.UsrCntrl_Admin);
                         window.Btn_LogInOut.Content = "Log Out";
                         window.Btn_Admin.IsEnabled = true;
+                        window.Btn_Admin.Visibility = Visibility.Visible;
                     } break;
                 case StateOfSystem.APPOINTMENTS_PAGE:
                     {
                         window.SetPage(window.UsrCntrl_MyApps);
                         window.Btn_LogInOut.Content = "Log Out";
                         window.Btn_Appointments.IsEnabled = true;
+                        window.Btn_Appointments.Visibility = Visibility.Visible;
                         var thread = new GetUserAppointments(5000, sessionKey.GetSessionID());
                         thread.eventHandler += HandleAppointmentsMyAppsUpdate;
                         thread.Start();
