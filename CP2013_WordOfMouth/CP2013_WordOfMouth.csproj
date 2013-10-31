@@ -54,6 +54,16 @@
     <Compile Include="DTO\Booking.cs" />
     <Compile Include="DTO\Dentist.cs" />
     <Compile Include="DTO\TimeSlot.cs" />
+    <Compile Include="Engine\AddDentistRequest.cs" />
+    <Compile Include="Engine\GetAppointmentsRequest.cs" />
+    <Compile Include="Engine\GetAppointmentTypesRequest.cs" />
+    <Compile Include="Engine\GetDentistRequest.cs" />
+    <Compile Include="Engine\GetMultipleRequestComposite.cs" />
+    <Compile Include="Engine\IActiveObjectEngine.cs" />
+    <Compile Include="Engine\IRequest.cs" />
+    <Compile Include="Engine\RemoveAppointmentRequest.cs" />
+    <Compile Include="Engine\RemoveDentistRequest.cs" />
+    <Compile Include="Engine\RequestEngine.cs" />
     <Compile Include="Enum\AppointmentType.cs" />
     <Compile Include="Enum\LoginStatus.cs" />
     <Compile Include="Enum\RequestReturnType.cs" />
